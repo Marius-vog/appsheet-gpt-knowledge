@@ -1,0 +1,961 @@
+ Account subscription and billing: The EssentialsLearn about what you can do with a free account, when and how to subscribe to a paid plan, and how to manage billing.
+
+Use AppSheet for prototyping and personal use (free)
+Subscribe to a paid plan
+Upgrade or change your subscription or number of licenses
+About the enforcement of your subscription and licenses
+Add a payment method
+View billing invoices
+
+See also:
+
+Find answers to your pricing questions.
+If you are a partner, learn how to enable delegated billing for your clients.
+Learn tips and tricks for account management from the AppSheet Community:
+    
+Account tips and tricks
+Account Q&A
+
+
+
+Use AppSheet for prototyping and personal use (free)
+AppSheet is free for prototype development and testing, and for personal use. By default, every user account is free until you subscribe to a paid plan.  
+We encourage you to try all the features of the platform. App features and behavior can be tested for free until you are ready to deploy and share your app. That is, your app will function even if you haven't yet subscribed to a paid plan.
+
+A subset of features, such as sending emails or triggering bots with schedule events using AppSheet automation, are not fully supported with a free plan. That is, you can configure these features, but they won't execute as expected. See Subscribe to a paid plan.
+
+Stay with a free plan if:
+
+Your apps are for personal (non-business) use
+You are the only app user
+You don't need to use features not supported for a free account (such as sending emails using AppSheet automation)
+You are testing your app with 10 or fewer users (the app creator will count towards the total number of test users)
+
+To configure your app for personal use:
+
+Open the app in the app editor.
+Select Settings > Information > Properties.
+In the App properties section and enable Personal use only?
+When you are done, save the task by selecting one of the following:
+    
+Save - Save the app
+Save & verify data - Save the app and verify the data defined.
+
+
+
+If you want to deploy your apps and share them with other users, you need to subscribe to a paid plan and purchase licenses, as described in the next section.
+Subscribe to a paid plan
+
+If you have a Google Workspace edition that includes AppSheet Core, you and other users in your organization automatically have access to an AppSheet Core license. 
+
+When you are ready to deploy and share your apps with other users, you must:
+
+Choose your subscription plan.
+    See also: What subscription plan is right for me?
+Determine the number of licenses you need to purchase.
+    See How many licenses do I need to purchase for my subscription plan?
+Subscribe to a paid plan, as described in the following sections:
+    
+Subscribe to the Starter or Core plan
+Subscribe to the Enterprise Standard or Enterprise Plus plan
+Subscribe to the Publisher Pro plan (for public apps)
+
+
+
+
+Note: When you perform a deployment check on your app, you will be notified if your account is not on a paid plan. 
+
+
+
+We have structured our plans and pricing to encourage adoption with minimal friction and barriers to use. If none of our plans are appropriate for your scenario, contact your AppSheet Sales representative to discuss options.
+You can only change your subscription plan if it is an individual self-service account. If your account is managed as part of a team or organization, the options to subscribe to a plan individually are not available. You'll need to contact your organization or team administrator. 
+
+
+Choose your subscription plan
+Before you begin, determine the subscription plan that is right for you. See also How to choose your subscription plan.
+
+
+
+Plan
+Description
+Subscribe or upgrade
+
+
+Secure (pay per user)
+Select your subscription plan based on the features required. See What subscription plan is right for me?
+
+See:
+
+Subscribe to the Starter or Core plan
+Subscribe to the Enterprise Standard or Enterprise Plus plan
+
+
+
+
+Public (pay per app)
+
+Share publicly accessible apps with users without requiring them to sign-in (if you don't have an Enterprise plan).
+
+If you have an Enterprise plan, work with your AppSheet Sales representative to include support for public apps in your existing Enterprise plan. You do not need to subscribe to the Publisher Pro plan.
+
+
+
+See Subscribe to the Publisher Pro Plan (for public apps).
+
+
+
+
+Subscribe to the Starter or Core plan
+
+The steps in this section are applicable only if you have an individual self-service account. If your account is managed as part of a team or organization, the options described in this section are not available and you'll need to contact your team or organization admin for assistance.
+ 
+If you have a Google Workspace edition that includes AppSheet Core, you and other users in your organization automatically have access to an AppSheet Core license. 
+
+To subscribe to the Starter or Core plan:
+
+Sign in to AppSheet.
+Select your account from the account profile drop-down to go to the My account page.
+
+
+Select the Billing tab.
+Click Upgrade.
+Enter the following information:
+    
+
+
+Field
+Description
+
+
+Plan
+Select Secure (pay per user).
+
+
+Subscription Plan
+Select AppSheet Starter or AppSheet Core.
+
+
+Number of user licenses
+Set this value to the number of licenses required based on the total number of unique app users across all of your deployed apps. See How many licenses do I need for my subscription plan? 
+
+
+Billing period
+Select Monthly or Annually.
+
+
+Promo Code
+Enter your promotion code, if applicable, and click Apply. For example, we offer discounts to non-profits.
+
+
+
+
+Review the expected charges.
+Click Accept.
+    The recurring bill payment dialog displays.
+Enter your billing information at the prompt. 
+Click Payment Info.
+Enter your credit card information.
+Click Add card.
+
+Subscribe to the Enterprise Standard or Enterprise Plus plan
+To subscribe to the Enterprise Standard or Enterprise Plus plan, contact your AppSheet Sales representative for assistance.
+Subscribe to the Publisher Pro plan (for public apps)
+
+
+Notes: 
+
+If you have an Enterprise plan, work with your AppSheet Sales representative to include support for public apps in your existing Enterprise plan. You do not need to subscribe to the Publisher Pro plan.
+If you have a Starter or Core plan, you need to subscribe to the Publisher Pro plan using a separate AppSheet account. See Can I subscribe to multiple plans using the same AppSheet account?
+The steps in this section are applicable only if you have an individual self-service account. If your account is managed as part of a team or organization, the options described in this section are not available and you'll need to contact your team or organization admin for assistance.
+
+
+
+To subscribe to the Publisher Pro plan:
+
+Sign in to AppSheet.
+Select your account from the account profile drop-down to go to the My account page.
+
+
+Select the Billing tab.
+Click Upgrade.
+Enter the following information:
+    
+
+
+Field
+Description
+
+
+Plan Class
+Select Public (pay per app).
+
+
+Subscription Plan
+Select AppSheet Publisher Pro.
+
+
+Number of app licenses
+Set this value to the number of licenses required based on the number of deployed apps. See How many licenses do I need for my subscription plan? 
+
+
+Billing period
+Select Annual or Monthly.
+
+
+Promo Code
+Enter your promotion code, if applicable, and click Apply. For example, we offer discounts to non-profits.
+
+
+
+
+Review the expected charges.
+Click Accept.
+    The recurring bill payment dialog displays.
+Enter your billing information at the prompt. 
+Click Payment Info.
+Enter your credit card information.
+Click Add card.
+
+Upgrade or change your subscription or number of licenses
+You can upgrade or change your subscription or the number of licenses on your plan at any time. Any charges are prorated to reflect the changes and applied to your next 30-day bill. If your plan change lowers your charge, then we will credit you with the appropriate amount.
+For example, you may need to upgrade or change your plan if:
+
+Your app uses a feature that requires a subscription plan upgrade. For more information, see How to determine if a subscription plan upgrade is required.
+You have five users of your app and have purchased five user licenses and you need to send the app to more users. In this case, you should simply increase the number of app licenses. Likewise, you can decrease the number of licenses to reflect lower expected usage or change plans.
+
+For Enterprise plans, contact your AppSheet Sales representative to make changes to your plan. 
+For Starter, Core, and Publisher Pro plans, you can increase or decrease the number of licenses as described in Subscribe to a paid plan.
+
+Note: It is uncommon to switch from a paid subscription plan to a free plan unless you expect your apps to see no usage. Typically, it is more appropriate to modify the number of licenses to reflect periods of lower expected usage. 
+
+
+Troubleshoot: My subscription plan upgrade is not reflected in my account after purchase
+
+It may take 24-48 hours before the changes to your account take effect. If the changes are not reflected in your account after this period of time, try signing out and then signing in to your AppSheet account.
+
+
+About the enforcement of your subscription and licenses
+We try to ensure that app usage is never compromised because of short-term discrepancies in plans and licenses. To allow you time to modify your subscription appropriately, your app status will remain active and the access to your app won't be affected for a reasonable interval if any of the following situations occur:
+
+The actual number of users for your app exceeds your license limits
+You are on the wrong plan
+There is a problem with your credit card (see below)
+
+Credit card failures
+When there is a failure processing a credit card payment, you will receive an email notification indicating that the credit card information should be updated. You can go to My account > Billing page and update your card information. In the interim, your app status will remain active and the access to your app won't be affected for up to 15 days from the date the email notification was sent. 
+
+Our credit card charges are United States dollar-based, and cards based in countries outside the US may have security constraints that disable foreign charges. We are currently not able to charge directly in currencies other than United States dollars.
+
+ Add a payment method
+
+Notes:
+
+The steps in this section are applicable only if you have an individual self-service account. If your account is managed as part of a team or organization, the options described in this section are not available and you'll need to contact your team or organization admin for assistance.
+You don't need to add a payment method for Enterprise plans.
+
+
+For Starter, Core, and Publish Pro plans, you must add a credit card to be used for payment. When subscribing to a paid plan, you are prompted for billing information and payment method. You can also add a payment method using the steps described below.
+Your credit card is charged on a monthly schedule based on the particular plan and license count you have chosen. AppSheet processes credit card payments through Stripe, a popular and reliable platform for credit card payments.
+If you make changes in the middle of the month, the pricing is prorated to the time of the change. You may see adjustments to the next month's billing to reflect these changes. For example, if you lower the number of licenses, you will see credit reflected in your next month's bill. Please contact us at any time if you have questions about your billing. 
+AppSheet partners can manage the plans and licenses of clients through delegated billing. 
+To add your payment method:
+
+Sign in to AppSheet.
+Select your account from the account profile drop-down to go to the My account page.
+
+
+Select the Billing tab.
+Under Payment Method, click + Payment Method.
+The recurring bill payment dialog displays.
+Enter your billing information at the prompt. 
+Click Payment Info.
+Enter your credit card information.
+Click Add card.
+
+View billing invoices
+
+Notes:
+
+The steps in this section are applicable only if you have an individual self-service account. If your account is managed as part of a team or organization, the options described in this section are not available and you'll need to contact your team or organization admin for assistance.
+For Enterprise plans, contact your AppSheet Sales representative directly for specific invoicing procedures.
+
+
+Every time your credit card is charged using Stripe, you will receive an invoice email from Stripe showing what you have been charged by AppSheet and the details of the invoice. If you have not received these invoice emails, please check your Junk mail folder.
+To display your invoice.
+
+Sign in to AppSheet.
+Select your account from the account profile drop-down to go to the My account page.
+
+
+Select the Billing tab.
+Scroll to Billing History.
+Select the desired invoice and click View.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ How to choose a subscription planThe following sections describe what you can do with a free plan. It also explains how to choose a subscription plan and the number of licenses required when you are ready to deploy your apps for use by other users. 
+
+What can I do with a free plan?
+When should I subscribe to a paid plan?
+What subscription plan is right for me?
+Which Google Workspace editions include AppSheet Core?
+What subscription plan do I need to use Duet AI in AppSheet?
+What subscription plan do I need to share apps with anyone (public access)?
+How many licenses do I need to purchase for my subscription plan? 
+Can I subscribe to multiple plans using the same AppSheet account?
+
+What can I do with a free plan?
+AppSheet is free for prototype development and testing, and for personal projects. By default, every user account is free until you sign up for a subscription plan. For more information, see Use AppSheet for prototyping and personal use (free plan).
+When should I subscribe to a paid plan?
+When you are ready to deploy your apps for use by other users, you must:
+
+Choose a subscription plan. See What subscription plan is right for me?
+Determine the number of licenses you need to purchase. See How many licenses do I need to purchase for my subscription plan?
+
+The cost of the paid subscription plan is calculated based on the number of licenses required.
+What subscription plan is right for me? 
+
+If you have a Google Workspace edition that includes AppSheet Core, you and other users in your organization automatically have access to an AppSheet Core license. 
+
+Choosing the right paid subscription plan will depend on whether you are an individual app creator or a team administrator managing a group of app creators.
+As an individual app creator, a self-serve plan (Starter or Core) may be right for you, depending on the types of features you need in the apps you’re creating. If you want to take advantage of more advanced features, such as machine learning, you might consider purchasing an Enterprise plan. 
+As a team admin, you'll need an Enterprise plan. Consider the features your team’s apps require, and whether you need management oversight (governance) of apps to determine the Enterprise-level plan required (Standard or Plus).
+Review a detailed list of features provided with each plan and a list of frequently asked questions on the AppSheet pricing page.
+
+The best way to determine the right subscription plan is by simply using the features you want and letting AppSheet recommend the minimal subscription plan required. Go to My Account > App Info to review your subscription plan recommendations in the Minimal plan needed column. 
+
+ 
+You can also review the current usage to determine if you have purchased the correct subscription plan and number of licenses (see below). For more information see, How to determine if a subscription plan upgrade is required.
+
+After you choose your subscription plan, you need to determine the number of licenses to purchase.
+Which Google Workspace editions include AppSheet Core?
+The following Google Workspace editions include AppSheet Core licenses for each domain-verified user in the Workspace organization.
+
+Note: If you have subscribed to AppSheet Core licenses through appsheet.com or Google Workspace, they may no longer be necessary if your app users are also part of your Workspace organization and have access to AppSheet Core. To determine how many app users are part of your Workspace org and no longer require Core licenses, go to My Account > App Info. To cancel your existing Core license subscriptions, visit your AppSheet Billing settings. 
+
+ 
+
+
+
+
+
+
+Category
+
+
+Editions
+
+
+
+
+Business
+
+
+
+Google Workspace Business Starter
+Google Workspace Business Standard
+Google Workspace Business Plus
+
+
+
+
+
+Enterprise
+
+
+
+Google Workspace Enterprise Starter
+Google Workspace Enterprise Standard
+Google Workspace Enterprise Plus
+
+
+
+
+
+Education
+
+
+
+Google Workspace for Education Standard 
+Google Workspace for Education Plus
+
+
+
+
+
+Essentials
+
+Google Workspace Enterprise Essentials Plus
+
+
+
+Frontline
+
+
+
+Google Workspace Frontline Starter
+Google Workspace Frontline Standard
+
+
+
+
+
+Non-profit
+
+
+Google Workspace for Nonprofits
+
+
+
+
+
+What subscription plan do I need to use Duet AI in AppSheet? 
+Duet AI in AppSheet is included with AppSheet paid plans with the following caveats:
+
+
+Initially, the product is being progressively deployed and will therefore be only visible to a subset of customers; we will expand availability to all eligible customers over time. To request access, contact your AppSheet Sales representative.
+In addition, Duet AI in AppSheet is currently only available using a Google Chat app and at the moment only Google Workspace customers are able to access Duet AI.
+
+What subscription plan do I need to share apps with anyone (public access)?
+If you want to share publicly accessible apps with users without requiring them to sign-in and you do not have an Enterprise plan, you need to purchase the public Publisher Pro plan.
+The Publisher Pro plan is appropriate for apps used at a public event, a public survey, a city guide, or a restaurant menu. The goal is usually for the apps to be used by as many people as possible without restricting access to any specific subset of users.
+Choose the public Publisher Pro plan if all of the following are true:
+
+You do not need to restrict app access to particular people
+Your app uses no confidential data
+You do not need to customize the behavior of the app based on the specific user
+
+
+Notes: 
+
+If you have an Enterprise plan, work with your AppSheet Sales representative to include support for public apps in your existing Enterprise plan. You do not need to subscribe to the Publisher Pro plan.
+If you have a Starter or Core plan, you need to subscribe to the Publisher Pro plan using a separate AppSheet account. See Can I subscribe to multiple plans using the same AppSheet account?
+
+
+How many licenses do I need to purchase for my subscription plan?
+After you choose your subscription plan, you need to determine the number of licenses to purchase.
+
+
+Starter, Core, and Enterprise plans (per user)
+
+If you have a Google Workspace edition that includes AppSheet Core, you and other users in your organization automatically have access to an AppSheet Core license. 
+
+For Starter, Core, and Enterprise plans, determine the number of licenses required by counting the total number of unique app users across all of your deployed apps. Each licensed user can use multiple apps. (The app creator doesn't need to purchase a license.)
+For example, if you are deploying an app to 10 employees and another app to a different set of 5 employees, purchase 15 licenses. On the other hand, if your company has 10 employees, you can purchase 10 licenses and build any number of apps for them.
+
+Notes:
+
+The per-user subscription plans involve a variable cost component depending on the number of unique users of the app. AppSheet monitors this usage and you, the app creator, can see approximate historical usage statistics for each of your apps on the Activity tab of your Account page. AppSheet warns you when the user limits are reached, and can block access to the app after several warnings.
+Make certain that you require user authentication for each of your applications. If you fail to do this, AppSheet counts every device that launches the app as a separate guest user.
+
+
+See also:
+
+How does AppSheet count app users?
+When does AppSheet count app users?
+Does AppSheet automatically charge based on usage?
+Google Workspace Admins: Assign AppSheet Core or Enterprise licenses to users
+
+Public Publisher Pro plan (per app)
+If you chose the public Publisher Pro plan, purchase one app license for each deployed app. For example, if your account has one deployed app, purchase one app license. If your account has three deployed apps, purchase three app licenses.
+Can I subscribe to multiple plans using the same AppSheet account?
+Each AppSheet account has a single subscription plan. It is not possible to have some apps in an account associated with one plan and other apps associated with a different plan. To subscribe to multiple plans, you can create additional AppSheet accounts—using different user accounts (such as, Google, Microsoft, etc.)—to add apps to a different type of plan.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ How to determine if a subscription plan upgrade is requiredAppSheet has different subscription plans, as described in How to choose a subscription plan. 
+All basic app functionality is available for free for prototypes and purely personal use. All use in business and professional settings requires a paid plan. All the same, every app feature and behavior can be tested for free until you are ready to deploy. In short, your app will function even if you haven't yet selected a plan. If features of your app do not work, it is not because of the plan you are on. 
+
+A subset of features, such as sending emails or triggering bots with schedule events using AppSheet automation, are not fully supported with a free plan. That is, you can configure these features, but they won't execute as expected. See Subscribe to a paid plan.
+
+The app editor informs you if a certain app behavior (such as, security, offline, content optimization, team collaboration, and so on) requires a paid plans. When your app definition enables these features, AppSheet knows for sure that you are not building an app as a prototype or for personal use. The use of these features may lead to a warning message that tells you that a plan upgrade is required. Even if you are not using these features, if your app is used in a business setting, you should be on a paid subscription plan. 
+To determine which apps are causing a warning and why, check the App Info tab of your My Account page. This shows a list of all your apps and their billing status. The Minimal plan needed column indicates the minimal subscription plan required to use the features in your app.
+
+If any app requires an upgrade, a warning indicator appears in the status column. See Upgrade or change your subscription or number of licenses.
+
+The per-user subscription plans involve a variable cost component depending on the number of unique users of the app. AppSheet monitors this usage and you, the app creator, can see approximate historical usage statistics for each of your apps on the Activity tab of your Account page. AppSheet warns you when the user limits are reached, and can block access to the app after several warnings.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ How AppSheet Enterprise licenses are provisionedLearn how AppSheet Enterprise licenses are provisioned.
+
+Overview of AppSheet Enterprise licensing models
+Benefits of assigned licensing
+Comparison of features with assigned and team licensing
+
+Overview of AppSheet Enterprise licensing models
+AppSheet Enterprise licenses are provisioned in one of the following ways:
+
+
+
+Assigned licensing (Default model)
+
+Team licensing (Legacy model)
+
+
+
+
+New AppSheet Enterprise customers with an existing Google Workspace account are required to assign licenses through the Workspace Admin Console.
+If a Workspace user has not been assigned an Enterprise license, then they retain their AppSheet entitlement, if applicable, or access to the free plan.
+
+
+
+
+The legacy approach to provisioning AppSheet Enterprise provides access to all users in the customer’s verified domain.
+Any user that shares the customer's domain in their email address gets access to AppSheet Enterprise regardless of license assignment in the Workspace Admin Console.
+
+New non-Workspace customers can purchase AppSheet Enterprise using the team licensing model by working with with their AppSheet Sales representative.
+ 
+Legacy customers and non-Workspace customers can remain on the team licensing model, or can work with their AppSheet Sales representative to switch to assigned licensing using the Workspace admin console.
+
+
+
+
+
+Benefits of assigned licensing
+Benefits of assigned licensing include the ability to do the following:
+
+Control access to the AppSheet Enterprise subscription.
+Review and manage billing in the Workspace Admin Console.
+Automatically assign licenses to organizational units, as required.
+Enable a dual-license environment (for example, AppSheet Core and AppSheet Enterprise users).
+
+Comparison of features with assigned and team licensing
+The following table compares AppSheet features and their behaviors with each licensing model.
+
+
+
+Feature
+Assigned licensing
+Team licensing
+
+
+App creation and sharing
+
+Only users that have been assigned a license have access to AppSheet Enterprise.
+App creators can share licenses with users using the Share dialog. It's up to the Workspace admin to ensure that they have the required licenses.
+
+
+All users that share a domain with the root admin have access to the same AppSheet Enterprise entitlement.
+App creators can share licenses with users using the Share dialog. It's up to the admin to ensure that they have the required licenses.
+
+
+
+Access and billing
+
+Customers on a commit plan are billed for a pre-negotiated number of users regardless of usage.
+Customers on a flex plan are billed for assigned licenses; only users that have been assigned a license can access and use AppSheet Enterprise.
+
+
+Customers on a commit plan are billed for the pre-negotiated number of users regardless of usage
+Customers on a flex plan are billed for assigned licenses; but any user within the customer’s domain can access and use AppSheet Enterprise
+
+
+
+Governance
+
+You should not expect to be able to govern (that is, enforce policies, apply team settings, etc.) users that are not assigned an AppSheet Enterprise license. For legacy reasons, this restriction may not always be enforced, but to reliably govern a set of users they all need to be upgraded to AppSheet Enterprise.
+Users that have AppSheet Core are also subject to the policies and team management settings defined by the admin with AppSheet Enterprise.
+
+
+All users in a customer’s domain, regardless of Enterprise license assignment, are subject to governance policies and team management settings.
+Users that have AppSheet Core are also subject to the policies and team management settings defined by the admin with AppSheet Enterprise.
+
+
+
+
+ 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Pricing FAQFind answers to your pricing questions in the following categories:
+
+Subscription plan
+Billing and usage
+
+Subscription plan
+
+What can I do for free?
+
+AppSheet is free for prototype development and testing, and for personal projects. By default, every user account is free until you subscribe to a paid plan. For more information, see Use AppSheet for prototyping and personal use (free plan).
+
+
+When should I subscribe to a paid plan?
+
+
+When your app leaves the prototype testing phase and is ready to be deployed and shared with other users, you should subscribe to a paid plan. See When should I subscribe to a paid plan?
+
+
+
+
+How can I set up my subscription plan?
+
+See Subscribe to a plan. If you require assistance, contact Customer Support. 
+
+
+
+
+Can I change my subscription at any time?
+
+
+Yes, you can change your subscription or number of licenses at any time, even switch back to a free account if your app is not going to be in use for a certain period of time. Your charges are prorated. If a plan change lowers your charge, you will have a credit applied to your next monthly bill. See Upgrade or change your subscription or number of licenses.
+
+
+
+
+Can I subscribe to multiple plans using the same AppSheet account?
+
+Each AppSheet account has a single subscription plan. It is not possible to have some apps in an account associated with one plan and other apps associated with a different plan. To subscribe to multiple plans, you can create additional AppSheet accounts—using different user accounts (such as, Google, Microsoft, etc.)—to add apps to a different type of plan.
+
+
+How does AppSheet distinguish between prototypes and deployable apps?
+
+
+The Manage > Deploy page of the app editor lets you run a deployment check which will highlight any issues with the app. On this page, you can move an app between Deployed and Prototype states. See Deploy: The Essentials.
+
+
+
+
+Does AppSheet "shut off" features unless I am on a paid plan?
+
+
+No. We encourage you to try out all the features of the platform in the prototype phase, and build the ideal app for your needs.
+
+
+
+
+
+Billing and usage 
+
+
+Is there a discount for educational or non-profit organizations?
+
+Yes, we offer a discount for educationaland non-profit organizations.
+
+
+
+Why was my credit card payment declined?
+
+
+If you reside outside the United States, your payment may have been declined because your bank blocks foreign charges. Check with the bank that issued the card.
+
+
+
+Can I pay using a 3D Secure-enabled credit card?
+
+Yes, but you must ensure that your browser allows popups as you'll be prompted to complete an additional verification step when paying.
+
+
+
+
+Can I pay by bank draft?
+
+
+We encourage you to pay using a credit card. However, if need to pay by bank draft, contact AppSheet Sales for assistance.
+
+
+
+
+Where can I see my invoices?
+
+
+
+For Enterprise plans, contact your AppSheet Sales representative directly for specific invoicing procedures.
+
+Every time your credit card is charged using Stripe, you will receive an invoice email from Stripe showing what you have been charged by AppSheet and the details of the invoice. You can also access prior invoices and use the browser print function to get a printed invoice. See View billing invoices.
+If you want the invoice to include more details about your organization, send us the relevant information and we can include it.
+
+
+
+
+How often does AppSheet bill?
+
+
+Either monthly or annually based on the plan you choose.
+
+
+
+
+Does AppSheet prorate charges when changes are made midway through a billing cycle?
+
+
+Yes, changes to your plan or license count take effect immediately. The value of the prior plan for the remainder of the month is applied as "Unused time" credit to the next invoice, and a new prorated charge for the new plan is added for the remainder of the month. As a result, the next invoice will contain two line-items for each change made during the prior billing period.
+
+
+
+
+Where can I see and understand my app usage?
+
+
+The Manage > Monitor pane in the app editor shows the usage statistics for one specific app. In your My account > App Info pane, you can also see a summary of app usage across all of your apps.
+
+
+
+
+How does AppSheet count app users?
+
+
+If your app requires users to sign in and a user allow list is provided, each email in the list is counted as an app user. If the app doesn't require sign-in, we count every device that launches the app as a separate user. Each signed-in user can use the app on as many as five devices. For example, a user with the email jane@example.com uses an AppSheet app that requires sign-in. When Jane uses the app on her smartphone, desktop, and tablet, it still counts as one user. If the app didn't require sign-in, then it would count as three distinct 'guest' users.
+This means that, even if you're the app creator, if you're also an app user of the app that you made, you count as one user. For example, if you have yourself and five other users of your app, you would need to count it as six separate users.
+
+
+
+When does AppSheet count app users?
+
+
+AppSheet records the number of app users continuously, and applies the counts over a trailing 30-day period for the purposes of licensing.
+
+
+
+
+
+Does AppSheet automatically charge based on usage?
+
+
+No, we only charge exactly what you ask us to charge. We do not automatically add charges based on usage. Our usage reporting and account alerting is information that helps you move to the appropriate plan.
+
+
+
+
+What happens if my app usage temporarily exceeds the plan limits or I am temporarily on the wrong plan?
+
+
+You will see an account alert and may receive email reminders to update your subscription. However, your apps will continue to run without interruption. We only block functionality in very rare cases (such as, continued payment failures or egregious violation of license counts). See How to determine if a subscription plan upgrade is required.
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Enable delegated billingDelegated billing allows an AppSheet partner to manage the plans and licenses for their clients. Once you are an approved AppSheet partner, you can visit the Partner tab on your account page to set up delegated billing for a client.
+Adding a client for delegated billing will make their billing details available to you in your delegated client list as pictured below. At this point, you can see and change their billing details including plan type and license count. You will also see any billing alerts on their account. Note that any existing credit cards are removed once that user is added to your account. You will need to add a credit card for each new delegated user if they are on a paid plan. Once you take over delegated billing for a user, any future invoices from AppSheet will be emailed to you directly, instead of going to your client.
+
+Once you enable delegated billing, your client will no longer be able to see their billing page, and will not see any coupon codes you use. They will still see their plan class and any billing alerts which may display license counts.
+Any credit cards or coupon codes you add will be removed if you ever remove that user from your delegated billing client list.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Manage AppSheet data residency
+This feature is available to Google Workspace organizations that have AppSheet Enterprise Plus accounts only.
+
+
+Learn how to manage data residency for your AppSheet apps.
+
+What is AppSheet data residency?
+What data is stored in the EU region?
+Which data sources are supported in the EU region?
+Before you begin: Consider tradeoffs
+Enable the EU region on your Enterprise Plus account
+Select the region to use for your apps
+Copy an app between regions
+Manage IP addresses and firewall information for the EU region
+
+What is AppSheet data residency?
+Your AppSheet app data is subject to the laws of the country in which it is stored and data privacy and security protections can vary by region. To help you meet data residency requirements, AppSheet gives you the ability to control the geographical area, or "region", in which your data is stored and processed. 
+Today, you can choose to store your AppSheet app data in the following regions:
+
+
+
+
+
+Region
+
+
+Description
+
+
+AppSheet URL
+
+
+
+
+European Union (EU)
+
+
+Data is stored and processed in EU region only. This helps customers by supporting compliance with the General Data Protection Regulation (GDPR) data protection requirements.
+See also:
+
+What data is stored in the EU region? 
+Which data sources are supported in the EU region?
+
+
+
+eu.appsheet.com
+
+
+
+
+Global (All regions)
+
+
+Data storage is not restricted. This is the default.
+
+
+appsheet.com
+
+
+
+
+
+What data is stored in the EU region?
+The data that is stored in the EU region includes (but is not limited to):
+
+App definitions
+Data source configurations and access tokens
+Customer data in AppSheet databases
+Audit logs
+Backups (described below)
+
+Backups
+AppSheet maintains backups of primary data for disaster recovery and business continuity. In rare cases, AppSheet uses backups to restore data and maintain high reliability.
+
+  These backups aren’t available to restore data upon customer request. Backups expire (are overwritten) on defined timelines.
+Which data sources are supported in the EU region?
+All data sources are supported in the EU region,  excluding the following:
+
+Box
+Dropbox
+Microsoft Excel
+Salesforce
+
+Before you begin: Consider tradeoffs
+Selecting a specific region doesn't provide performance improvements or fine-tuning for your network or data access. Take the following factors into consideration before selecting your region:
+
+
+Users outside of the region where their data is located might experience higher latency in some cases. Latency could happen while:
+
+Editing shared objects in real time across regions
+Sharing files, such as documents, with someone outside the user's region
+Traveling internationally
+
+
+In rare cases, when a data region has been selected users outside that region might lose access to the data due to events beyond Google’s control (for example, natural disasters).
+
+If there are apps in multiple regions that share the same data source, your users may be more likely to run into concurrency issues, as described in Concurrent usage with multiple users. AppSheet currently recommends that you avoid sharing data sources across regions if possible. 
+
+
+Enable the EU region on your Enterprise Plus account
+To enable the EU data residency on your Enterprise Plus account, contact your AppSheet Sales representative. 
+
+If required by your organization, you can support both EU and Global regions for the same Enterprise Plus account. Then, you can optionally allow app creators to select the region for their apps or enforce the use of one region. 
+
+Select the region to use for your apps
+If both EU and global regions are supported for your Enterprise plus account and your company doesn't enforce the use of one region, you can select the region based on the URL you use to access AppSheet:
+
+eu.appsheet.com: View and create apps in the EU region. 
+appsheet.com: View and create apps in the Global region. 
+
+Only apps created in the selected region are displayed and accessible from the My Apps page.
+
+If you are using OpenID Connect, you need to update the callback URL to use the EU region. See Control user access using OpenID Connect.
+
+Copy an app between regions
+
+When copying an app between regions, only the app definition is copied, not its data source or file data. As a result, you might need to configure the same data source in the target region; this only needs to be done once per data source, not once per app. If you need to copy an AppSheet database to a new region, contact AppSheet Support for assistance.
+
+To copy an app between regions, perform the following steps:
+
+ Sign in to AppSheet.
+Perform one of the following steps for the app you want to copy:
+    
+On the My Apps page, locate the app and select More > Copy.
+Open the app in the editor and select Manage > Collaborate & Publish > Copy App.
+        
+We've made some improvements to the app editor.
+You are opted in to the new editor by default, but you can switch back to the legacy editor at any time.
+
+
+If you are using the legacy editor
+
+Open the app in the editor, select Manage > Author, and click Copy App. 
+
+
+
+
+
+In the Copy your app dialog, click Copy to region.
+In the App name field, edit the name of the app, if desired.
+In the Region list, select the region to copy the app to (such as https://eu.appsheet.com).
+Click Copy.
+
+Manage IP addresses and firewall information for the EU region
+If you are managing network traffic within your organization, or if you need to request AppSheet traffic be added to your allow list, use the AppSheet IP addresses for the EU data residency described in Manage IP addresses and firewall information.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Deactivate or delete your accountDeactivate or delete your account, as described below.
+
+You can only deactivate or delete your account if it is an individual self-service account. If your account is managed as part of a team or organization, the options described in tis section to deactivate or delete your account are not available. See Remove team members.
+
+Deactivate your account
+If you have an individual self-service account, you can deactivate your account. If you deactivate your account, billing will stop, but your apps will be preserved and you can resume using AppSheet later.
+To deactivate your account:
+
+ Sign in to AppSheet.
+Select your account from the account profile drop-down to go to the My account page.
+
+
+Select the Billing tab.
+Click Change.
+In the Plan Class drop down select Free.
+Click Save Changes.
+Confirm the change.
+
+Delete your account
+If you have an individual self-service account, you can delete your account.
+If you delete your account, billing will stop and all of your apps will be deleted along with your account.
+To delete your account:
+
+ Sign in to AppSheet.
+Select Account settings from the account profile drop-down to go to the My account page.
+
+
+
+    The My account page opens with the Settings tab selected.
+Under Delete My Account, click Delete Account.
+
+
+If you are a user of an AppSheet app, in addition to deleting your AppSheet account, you can request the app owner of any apps you used to delete data associated with you. You can find their contact information by going into the app's left-hand menu and selecting About > Terms.
+See also: Why is "Delete my account" available to iOS branded app users?
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Enable AppSheet Support to access your appWhen you interface with AppSheet Support, in some cases the support team might request access to your app to assist with diagnosing the issue. 
+
+
+When enabling AppSheet Support access to your app, consider the following:
+
+You are allowing read and write access to your app by AppSheet Support. However, the AppSheet Support team will not update any data unless instructed by you in the steps to reproduce the issue. All updates are captured in the Audit History.
+Access to your app by the AppSheet Support team expires at the end of each calendar day (UTC). If the issue isn't resolved, the AppSheet Support team must request access each additional calendar day (UTC) needed to fully troubleshoot and resolve the issue.
+You will be notified by email each time AppSheet requests access to your app.
+You can revoke access to your app at anytime.
+
+
+
+To enable Google Support to access to your app:
+
+Sign in to AppSheet.
+Select My account profile > Account settings.
+
+
+
+    The My Account page displays.
+Under App Creator Settings, enable Allow AppSheet staff to access all of my apps and related data at any time in order to provide support and maintenance?, as shown below:
+Click Save.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ AppSheet Terms of ServiceReview the AppSheet Terms of Service:
+
+AppSheet via Google Workspace account
+AppSheet account
+
+AppSheet via Google Workspace account
+
+If you or your end users access AppSheet via a Google Workspace account and are not accessing AppSheet using an AppSheet plan purchased on https://www.appsheet.com, the following terms of service apply.
+As of May 31, 2023, to make the integration of Google AppSheet and Google Workspace more seamless, AppSheet is now included in the Google Workspace Services Summary as an Other Service and is covered under the Google Workspace Terms of Service. 
+No action is required by you; this change has been automatically applied. 
+
+
+Important: This change in terms of service has no impact on what you, as an app creator, or your app users can do with AppSheet under your current contract. There is also no change to who in your organization can access AppSheet.  
+
+In the coming weeks, you may notice subtle changes to the Workspace Admin Console with how you manage AppSheet in your organization. 
+Learn more about what you can do with Google Workspace and AppSheet.
+AppSheet account
+If you or your end users access AppSheet using an account other than Google Workspace or are using an AppSheet plan purchased on https://www.appsheet.com, the following terms of service apply:
+AppSheet Terms of Service
+   Was this helpful?How can we improve it?YesNoSubmit   
+

@@ -1,0 +1,1167 @@
+ Expressions: The EssentialsCalculate new values from existing ones using expressions.
+About expressions
+There are several places in the app editor where you can use expressions to affect your app's behavior and provide users with advanced functionality. Several AppSheet features use expressions, including: app formulas, initial values, column constraints, virtual columns, and deep links.
+AppSheet checks all expressions to ensure they are correctly formed and being used in an appropriate manner. For example, if an expression is being used to assign an initial value to a column of type Number, AppSheet checks that the result of the expression is indeed a Number.
+
+Note: If you're familiar with spreadsheet formulas in Microsoft Excel or Google Sheets, you'll find AppSheet expressions similar in syntax and meaning.
+
+An expression may be built with any combination of the following:
+Constants
+
+Numbers: any whole numbers (integers) or real (floating-point) numbers, positive or negative.
+Dates and times, enclosed in double quotes. Format dates as MM/DD/YYYY and times as HH:MM:SS. For example, "12/31/1999" and "10:15:00". See also Date and time expressions.
+Text, enclosed in double quotes. For example, "Wordy words".
+
+Columns
+
+Use the value of a column by enclosing the column's name in square brackets like this: [Column]. Then, you can use columns in expressions. 
+Dereferences are a type of expression that is useful when you have references between tables.
+
+Build expressions
+Learn more about building expressions with AppSheet.          
+
+
+
+
+Use Expression Assistant
+Learn how build expressions using Expression Assistant in the AppSheet editor.
+
+
+Expression types
+Understand the types of expressions you can build.
+
+
+
+
+
+
+Column expressions
+Build column expressions that are dynamically computed to determine the behavior of a specific column when the user tries to enter or change its value. For example, you can use column constraints to control the behavior of the data in each column. 
+
+
+List expressions
+Build list expressions that are dynamically computed to determine the contents of a list.
+
+
+
+
+AppSheet function list 
+View all of the AppSheet functions that can be used when building expressions.
+
+
+Tips and tricks
+Learn tips and tricks for building expressions from the AppSheet Community:
+
+Expression tips and tricks
+Expressions Q&A
+
+
+
+
+
+ Sample template
+Use the Quote Calculator template which shows the use of various expressions in app formula.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Build expressions using Expression AssistantBuild and test simple and complex expressions using Expression Assistant as described in the following sections.
+
+Access Expression Assistant
+Build an expression using Expression Assistant
+View and insert column references into expressions
+View and insert predefined patterns into expressions
+Test expressions
+
+See also:
+
+Expressions: The Essentials
+Expression types
+AppSheet function list
+
+Access Expression Assistant
+Within the app editor, you can access Expression Assistant anywhere you're able to enter an expression.
+To access Expression Assistant:
+
+
+Click the flask icon next to an input field to toggle to the expression format (if available). For example:
+
+
+
+Click in the expression field indicated with an equals sign (=). For example:
+
+
+
+Note: The equals sign indicates that the expression's result will be used as the setting's value.
+Expression Assistant opens. Build and test your expressions as described in the following sections.
+Build expressions
+Build expression using Expression Assistant as shown in the following figure. 
+
+As highlighted in the previous figure, Expression Assistant enables you to:
+
+Build your expression in the text area
+
+
+
+
+Confirm the valid syntax and function of the expression
+View and insert column references or predefined patterns into the expression using the tabs at the bottom of the dialog
+Test the expression
+Expand the text area by:
+    
+Dragging the handle in the lower-right corner to accommodate more complex expressions that span several lines
+Collapsing the tabs at the bottom of the dialog
+
+
+
+With the Expression Assistant improvements turned on, you can take advantage of the following features to assist you with AppSheet function syntax:
+
+Syntax highlighting to display components of an expression in different colors
+
+
+    Color key:
+    
+Green: AppSheet functions
+Pink: Data references, such as column names
+Blue: Text 
+Orange: Numbers
+
+
+Syntax of current function with contextual highlighting 
+
+Auto-completion for columns
+
+Documentation panel for quick access to the description and syntax for the current function
+
+     
+
+
+The AppSheet Toolbox Chrome extension is not yet compatible with the Expression Assistant improvements. The AppSheet team has been in communication with the Toolbox development team and a fix should be coming soon.
+ 
+If you want to continue to use the AppSheet Toolbox Chrome extension, you need to disable the Expression Assistant improvements by clicking  in the top right corner of the Expression Assistant, then close the Expression Assistant and re-open it.
+
+View and insert column references into expressions
+View and insert column references into expressions by clicking the Data Explorer tab, as shown in the following figure.
+
+Data Explorer tab enables you to:
+
+View all tables and columns in your app
+Insert a column reference into an expression, as described below
+View Ref associations (references to other tables)
+Expand and collapse table, and pin their display in Expression Assistant
+
+To insert a column reference into an expression:
+
+Click within the expression text area where you want to insert the column reference.
+Expand the table that contains the column you want to add.
+Position your cursor over the column name and click Insert.
+
+View and insert predefined patterns into expressions
+View and insert predefined patterns into expressions by clicking the Examples tab, as shown in the following figure.
+
+The Examples tab enables you to:
+
+Select an expression type
+Insert a predefined pattern into an expression, as described below
+
+To insert a predefined pattern into an expression:
+
+Click within the expression text area where you want to insert the example pattern.
+Select the tab based on the expression type that you want to add.
+Position your cursor over the example pattern and click Insert.
+
+Test expressions
+To test the results of the expression for each row in the table, click Test in Expression Assistant. The Expression Test page displays.
+The first column shows the Expression Result for each row in the table, as shown below:
+
+Expand the Expression Result by clicking the expand icon to view the results of each part of the expression:
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Column value expressionsWrite an expression to get a value from a specific column and rowColumn value expressions return the value of a specific column in a row. The row itself does not need to be specified; it's usually implicit in the context of the expression.
+
+Name any column using square brackets around the exact column name: [ColumnName].
+When used in a column constraint (Editable_If,  Required_If, Show_If, or Valid_If), you can use [_THIS] to refer to the value of the current column of the current row.
+If the current row is not implicit from the context of the expression, it must be explicitly specified using a dereference expressions
+
+New to expressions and formulas? See Expressions: The Essentials.
+Common use cases
+
+In a virtual column: CONCATENATE([FirstName], " ", [LastName])
+In a slice filter condition: [Status] = "Complete"
+
+In a Valid_If column constraint: [_THIS] > 25
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Conditional expressionsBehavior depends on a set of conditionsWhen using expressions, some values depend on other values conditionally. Here are some examples of conditional statements:
+
+If you oversleep, then you're late to work.
+If you drink a lot of water, then you're hydrated, but if you don't, you're dehydrated.
+
+In expressions, you can approach these conditional situations in a few ways:
+
+IF(condition, then-expression, else-expression)to choose one of the results based on whether the condition evaluates to TRUE or FALSE.
+IFS(condition1, then-expression1, condition2, then-expression2, ...) to provide a sequence of condition-value pairs that are evaluated left-to-right until one of the conditions is true.
+SWITCH(expression, value1, result1, value2, result2, ..., default_result) to choose one of the results based on the value of the expression.
+
+Expressions may be used in various AppSheet features--app formulas, initial values, virtual columns and column constraints (Editable_If,  Required_If, Show_If, or Valid_If)--to customize app behavior and provide your users with advanced functionality.
+New to expressions and formulas? See also Expressions: The Essentials.
+ 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Date and time expressionsIncorporate dates and times into the behavior of your appDate and time expressions use Date or Duration values to produce a DateTime, Date, Time, Duration, or Number value.
+The following sections describe the components for building date and time expressions:
+
+Current date and time functions
+Time component functions
+Date component functions
+Legacy operators
+Examples
+
+New to expressions and formulas? See also Expressions: The Essentials.
+Current date and time functions
+
+NOW() for the current DateTime on the user's device.
+TIMENOW() for the current Time on the user's device. Equivalent to TIME(NOW()). See also TIME().
+TODAY() for the current Date on the user's device. Equivalent to DATE(NOW()). See also DATE().
+UTCNOW() for the current DateTime  in Coordinated Universal Time (UTC). 
+
+The values returned by NOW(), TODAY(),  and TIMENOW() reflect the timezone offset of the user's device. For example, if the timezone of the user's device is Pacific Standard Time (PST), the value returned is UTC-08:00; if the timezone of the user's device is Hong Kong, the value returned is UTC+8:00.
+When the user's device contacts the server to read or update data, the device includes its timezone with the request. The server uses the timezone of the user's device when performing time and date calculations. For example, when the server evaluates security filters and workflow rules that include dates and times.
+To understand how your mobile device's locale or browser's language setting can impact the format of the returned value, see Considerations for apps using Date, Time, and DateTime formats.
+
+Time component functions
+
+EXTRACTDURATIONS() to extract a list of Duration values within a textual value.
+EXTRACTTIMES() to extract a list of Time values within a textual value.
+HOUR() for the hour component of a specific Duration.
+MINUTE() for the minute component of a specific Duration.
+SECOND() for the second component of a specific Duration.
+TIME() for the Time from Date, DateTime, or Time.
+TOTALHOURS() for count of hours in Duration.
+TOTALMINUTES() for count of minutes in Duration.
+TOTALSECONDS() for count of seconds in Duration.
+
+Note that each of HOUR(), MINUTE(), and SECOND() accept as input a Duration value, not a Time value. To convert a Time value to a Duration value, subtract another Time value. For instance, to convert the current time-of-day to a Duration: TIMENOW() - "00:00:00".
+Date component functions
+
+DATE()for the Date from Date, DateTime, or Time.
+DATETIME()for the DateTime from Date, DateTime, or Time.
+DAY()for the day of the month from a Date.
+EOMONTH() calculates the last day of a month some number of months away, factoring in different month lengths and leap years.
+EOWEEK() calculates the date of the last day of a week from Date or DateTime.
+EWOMONTH() calculates the date of the last weekday (Monday through Friday) of the month specified by the Date or DateTime value.
+EXTRACTDATES() to extract a list of Date values within a textual value.
+EXTRACTDATETIMES() to extract a list of DateTime values within a textual value.
+ISOWEEKNUM()for the ISO week number from Date or DateTime.
+MONTH() for the month number from a Date.
+WEEKDAY() for the day number from a Date. Sunday is 1, Saturday is 7.
+WEEKNUM() for the week number from a Date. A week begins on Sunday.
+WORKDAY() returns a date some number of days away, ignoring weekends and other designated days.
+YEAR() for the year from a Date.
+
+Some constant values, such as "MM/DD/YYYY", are evaluated as a Date value by AppSheet. Similarly, "000:00:00" is evaluated as a Duration value. This doesn't mean your spreadsheet data must use the same formats: the date and time formats in your spreadsheets are determined by the locale/language setting. Column will always be evaluated as the type of column. Additionally, you can convert data, both columns and string literals, to specific types using functions such as DATE(), TIME(), or DATETIME(). 
+Formatting dates and times as text
+
+TEXT() accepts a DateTime, Date, or Time and a format string, and returns a text representation.
+
+Legacy operators
+For backwards compatibility, we also support the function syntax below for a set of functions that have been supported from the earliest AppSheet release.
+
+@(_NOW) is equivalent to NOW().
+@(_TODAY) is equivalent to TODAY().
+@(_TIMENOW) is equivalent to TIMENOW().
+
+Examples
+Examples that compute Dates
+
+TODAY() + 1: adds one day (a Number) to the current Date.
+TODAY() - 3 : subtracts 3 days (a Number) from the current Date.
+[StartDate] + 7 : adds 7 days (a Number) to the StartDate (a Date).
+TODAY() - (WEEKDAY(TODAY()) - 1)  : the date of the preceding Sunday.
+TODAY() - (WEEKDAY(TODAY()) - 2)  : the date of the preceding Monday.
+
+Examples that compute Times
+
+TIMENOW() + 1 : adds one hour (a Number) to the current Time.
+TIMENOW() + "003:03:00" : adds 3 hours 3 minutes (a Duration) to the current Time.
+TIMENOW() - "003:03:00" : subtracts 3 hours 3 minutes (a Duration) from the current Time.
+
+Examples that compute DateTimes
+
+NOW() + 1 : adds one day (a Number) to the current DateTime.
+NOW() - 3 : subtracts three days (a Number) from the current DateTime.
+[TargetDateTime] + "012:59:00" : adds 12 hours 59 minutes (a Duration) to a DateTime value.
+[TargetDate] + ([TargetTime] - "00:00:00")  : Creates a DateTime value from a Date value and a Time value.
+
+Examples that compute Durations
+
+TIMENOW() - "12:30:00" : the Duration between the current Time and 12:30 PM (a Time).
+NOW() - "03:15:30" : the Duration between the current Time and 3:15:30 AM (a Time) on December 30, 1899 (the default Date if none is included).
+TODAY() - "12/30/2001" : the Duration between the current Date and December 30, 2001 (a Date).
+[EndDate] - [StartDate] : the Duration between StartDate (a Date) at midnight and EndDate (a Date) at midnight.
+IF(([StopWhen] > [StartWhen]), ([StopWhen] - [StartWhen]), (([StopWhen] + 24) - [StartWhen])) : the Duration between StartWhen and StopWhen (two DateTime values). See also IF().
+
+Examples that compute Durations in Days, Months, or Years
+
+HOUR(TODAY() - [TargetDate]) / 24 : number of days between today's date and the Date value given in the TargetDate column.
+((YEAR([EndDate]) - YEAR([StartDate]))): the number of years between the start and end dates.
+((((YEAR([EndDate]) - YEAR([StartDate])) * 12) + MONTH([EndDate])) - MONTH([StartDate])) : the number of months between the start and end dates. 
+
+Examples that compare Dates, Times, and DateTimes
+
+(TODAY() - [When]) = 7: a Yes/No value indicating whether the Date or DateTime value of the When column value is exactly seven days before today's Date.
+(EOMONTH([When], 0) = EOMONTH(TODAY(), 0)): a Yes/No value indicating whether the Date or DateTime value of the When column value is in the same month as today's date. See also: EOMONTH(), TODAY()
+([When] - TODAY()) = 7 : a Yes/No value indicating whether the Date or DateTime value of the When column value is exactly seven days after today's Date.
+
+AND([OrderDateTime] >= [StartDateTime], [OrderDateTime] <= [EndDateTime]) : a Yes/No value indicating whether the DateTime value of the OrderDateTime column is between the StartDateTime and EndDateTime column values. See also: AND()
+
+AND([OrderDate] >= [StartDate], [OrderDate] <= [EndDate]) : a Yes/No value indicating whether the Date value of the OrderDate column is between the StartDate and EndDate column values. See also: AND()
+AND(([When] >= (TODAY() - 7)), ([When] <= TODAY())) : a Yes/No value indicating whether the Date or DateTime value of the When column is within the past seven days. See also: AND()
+TODAY() > ([TargetWhen] + 1): a Yes/No value indicating whether the Date or DateTime value of the TargetWhen column is more than a day in the past.
+[Timestamp] > (NOW() - 1): a Yes/No value indicating whether the DateTime value of the Timestamp column is within 24 hours of the current date and time.
+[OrderDateTime] >= (NOW() - "001:30:00")  a Yes/No value indicating whether the DateTime value of the OrderDateTime  column is within 1 hour 30 minutes of the current DateTime.
+
+IN(MINUTE([_THIS] - "00:00:00"), LIST(0, 15, 30, 45)) : a Yes/No value indicating whether the minute component of the DateTime or Time value of the current column falls on the quarter hour (that is, is 0, 15, 30, or 45). See also: IN(), LIST()
+
+
+Examples for scheduling
+
+
+AND((TODAY() >= DATE("01/01/2021")),
+      (TODAY() <= DATE("12/31/2021")),
+      (MOD(HOUR(TODAY()- DATE("01/01/2021"))/24, 15) = 0)) : a Yes/No value for a scheduled periodic event. The DATE value in the first line specifies the starting date of the scheduled periodic event. The DATE value in the second line specifies the ending date of the scheduled periodic event. The DATE value in the third line specifies when the scheduled periodic event should first be triggered. Normally the DATE values in the first and third lines should be identical, but you could specify a slightly later DATE value in the third line to trigger the first scheduled periodic event at a slightly later date. The value 15 in the third line specifies that the scheduled periodic event should be triggered every 15 days after the Date specified in the third line.
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Dereference expressionsGet a column value from the referenced rowA dereference expression gets the value of a column from a specific row of another table. A dereference expression makes use of references between tables, using the value of a column of type Ref in this table to find a specific row in another table and get a value from a column there.
+The following sections describe dereference expressions in more detail:
+
+Form and meaning
+Dereference a list
+Chained dereference expressions
+
+New to expressions and formulas? See Expressions: The Essentials.
+Form and meaning
+A dereference expression is of the form:
+
+[ref-column].[value-column]
+Where ref-column is the name of the column of type Ref in the this table, and value-column is the name of a column of the other table.
+The configuration of a column of type Ref identifies the table in which referenced rows are to be found:
+
+The value of a Ref column should be the key column value of a row in the Ref column's source table.
+The Order Deliveries sample app includes a typical dereference expression. The Orders table uses the dereference expression, [Customer ID].[Email], to retrieve the customer email from the Customers table based on the customer ID. This dereference expression can be thought to mean:
+
+
+Go to the source table identified Customers column's configuration.
+
+
+In that source table, find the row with a key column value that matches the Customer ID column of this row.
+
+
+From that row in the source table, get the value of the Email column.
+
+
+Dereference a list
+A column value of type List or EnumList with a base type of Ref can be dereferenced to produce a new list of the values from dereferencing each individual reference, an operation called a list dereference.
+A list dereference is performed by enclosing the Ref list column name (such as, Related Orders) and the column name of the desired column value (such as, Order Date) each in square brackets ([, ]) and placing them adjacent to each other: [Related Orders][Order Date]
+The result will be a list of Order Date column values from the rows identified by the list in the Related Orders column value.
+See also Build list dereferences.
+Chained dereference expressions
+You can dereference a dereference.
+For example, you might have a three-level hierarchy consisting of a Customer row, a child Order row, and a grandchild Order Detail row. The Order Detail row contains a reference to the Order row. The Order row contains a reference to the Customer row.
+From the Order Detail row, you can directly access the value of a column in the Customer row by chaining dereference expressions. That is, you can dereference from the Order Detail row to the Order row, and then dereference from the Order row to the Customer row in a single expression.
+
+[Order Id].[Customer Name].[Email]
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ List expressionsUse and produce lists of valuesA list is a collection of zero or more values, each of the same data type, such as a list of numbers, a list of names, a list of email addresses, or a list of rows
+A list expression is an expression that produces a list, or an expression that uses one or more lists to produce a result of any type.
+Lists may be constructed in a variety of ways:
+
+From raw values.
+From expressions.
+From existing values in the column of a table.
+From expressions.
+By dereferencing a list of Ref values.
+By list addition, to get all items in two lists.
+By list subtraction, to get items unique to only one of two lists.
+
+The value of a column of type List or EnumList is already a list, and may be used directly anywhere a list is allowed within an expression.
+
+[Vacation Dates] gives the list of vacation dates from with the current row, e.g. in an Employees table.
+[Notification Emails] gives the list of notification email addresses from the current row, e.g. in an Events table.
+[Related Order Details] gives the list of Order Details rows related to the current row, e.g in an Orders table.
+
+New to expressions and formulas? See also Expressions: The Essentials.
+Use lists in functions
+A variety of functions accept lists as input:
+
+ANY() - One arbitrary item of a list.
+AVERAGE() - Arithmetic average of list of numeric values.
+COUNT() - Count of list items.
+IN() - Is item in a list?
+INDEX() - One specific item of a list.
+INTERSECT() - List of items common to two lists.
+ISBLANK() - Does the list have no items?
+ISNOTBLANK() - Does the list have any items?
+MAX() - Highest of a list of numeric or temporal values.
+MIN() - Lowest  of a list of numeric or temporal values.
+ORDERBY() - List of rows in custom order.
+SELECT() - List of column values from select rows.
+SORT() - List of items in order.
+STDEVP() - Arithmetic standard deviation of a list of numeric values.
+SUM() - Arithmetic sum of a list of numeric values.
+TOP() - List of initial items of list.
+UNIQUE() - List of items with duplicates removed.
+
+Use lists to show and hide columns
+A column's Show? expression may be used to conditionally show or hide a column from the user. The Show? expression must produce a Yes/No result, not a list, but lists are commonly used within Show? expressions.
+
+
+IN(USEREMAIL(), SELECT(Users[Email], ("Admin" = [Role])))  shows the column only for users whose email (USEREMAIL()) is in the list of admin user emails (SELECT(...)). See also: IN(), SELECT(), USEREMAIL()
+
+
+
+
+IN(CONTEXT("ViewType"), { "deck", "table" }) shows the column only if the current view type (CONTEXT(...)) in the list of view types ({...}). See also: CONTEXT(), IN()
+
+
+Use lists to show and hide views
+A view's Show if expression may be used to conditionally show or hide a view in the main menu or navigation bar. The Show if expression must produce a Yes/No result, not a list, but lists are commonly used within Show if expressions.
+
+IN(USEREMAIL(), SELECT(Users[Email], ("Admin" = [Role]))) shows the view only for users whose email (USEREMAIL()) is in the list of admin user emails (SELECT(...)). See also: IN(), SELECT(), USEREMAIL()
+
+Use lists to suggest column values
+A column's suggested values expression may be used to suggest values when the user goes to make a change to the column. The suggested values expression must produce a list with elements of a compatible type, the values of which are then presented in a drop-down from which the user may choose.
+
+Customers[Name] produces a list of existing customer names, allowing the user to select from the list. Note that the list will be unsorted; to provide a sorted list, use SORT(Customers[Name]). See also: SORT()
+
+
+LIST(TODAY(), (TODAY() + 1), (TODAY() + 2) produces a list of the dates for today, tomorrow, and the day after. See also: LIST(), TODAY()
+
+Use lists to validate column values
+The Valid If expression may be used to validate a column value. If the Valid If expression produces a list result, the values in the list are considered the only valid values for the column. When the user attempts to change the column's value, the values of the list are presented in a drop-down menu for the user to choose from.
+
+Customers[Name] produces a list of existing customer names, allowing the user to select from the list. Note that the list will be unsorted; to provide a sorted list, use SORT(Customers[Name]). See also: SORT()
+
+
+{ "Ordered", "Prepared", "Shipped", "Delivered" } produces a fixed list of order status values from which the user may choose. Note that  the defined values of an Enum column could also be used to offer the same list of fixed options.
+
+Valid If is commonly used to prevent duplicate values from occurring within a table. For instance, to ensure the current column value is the only occurrence in the entire Customer Name column of the Customers table:
+
+ISBLANK(
+  FILTER(
+    "Customers",
+    ([_THIS] = [Customer Name])
+  )
+  - LIST([_THISROW])
+)
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Math expressionsCalculate numeric values from other numeric valuesThe following sections describe the components for building Math expressions:
+
+Math operators
+Math functions
+Numeric types
+
+New to expressions and formulas? See also Expressions: The Essentials.
+
+
+Math operators
+The common numeric operators below may be used in math expressions.
+Add
+The plus character (+) between two numeric values produces the result of adding them together. If both values are of the Number type, the result will be a Number; otherwise the result will be Decimal.
+Examples:
+
+2 + 2
+[Count] + 1
+[Price] + [Tax] 
+
+Divide
+The slash character (/) between two numeric values produces the result of dividing the left value by the right value. If both values are of the Number type, the result will be a Number; otherwise the result will be Decimal.
+Examples:
+
+4 / 2
+([Day Count] / 7.0) 
+[Total] / [Unit Count] 
+
+Multiply
+The asterisk character (*) between two numeric values produces the result of multiplying them together. If both values are of the Number type, the result will be a Number; otherwise the result will be Decimal.
+Examples:
+
+
+(10.0 * 10)
+
+
+[Week Count] * 7
+
+
+[Unit Cost] * [Unit Price] 
+
+
+Negate
+The minus character (-) preceding a single numeric value produces the arithmetic negation of the value: a positive value becomes negative, a negative value becomes positive. The type of the result will match that of the original value.
+Examples:
+
+-18.56
+-[Unit Count]
+-([Seat Count] * [Gift Value])
+
+Subtract
+The minus character (-) between two numeric values produces the result of subtracting the right value from the left value. If both values are of the Number type, the result will be a Number; otherwise the result will be Decimal.
+Examples:
+
+124.0 - 18.9
+(14.0 - [Vacation Days Used])
+[Price] - [Discount]
+
+ 
+Math functions
+The following Math functions can be used in math expressions within your app:
+
+ABS(): Absolute value
+AVERAGE(): Average of list of values
+CEILING(): Nearest higher Number
+DECIMAL(): Decimal from any value
+FLOOR(): Nearest lower Number
+LN(): Natural log
+LOG(): Logarithm
+LOG2(): Log base 2
+LOG10(): Log base 10
+MOD(): Remainder from Number division
+NUMBER(): Number from any value
+POWER(): Exponentiation
+RANDBETWEEN(): Random Number
+ROUND(): Nearest Number
+SQRT(): Square root
+STDEVP(): Standard deviation of list of values
+SUM(): Sum of list of values
+
+Numeric types
+AppSheet understands two basic numeric data types:
+Decimal: numbers that include a decimal point separating a whole number component from a fractional component. For example: -0.03, 0.0, 3.14159, 14.99. Also known as a real number or floating-point number. The number of digits displayed after the decimal point (2 by default) can be changed in a Decimal column's configuration. The display format is also affected by the app user's locale. See also: DECIMAL()
+Number: numbers that do not include a decimal point. For example: -29, -5, 0, 732, 4096. Also known as integers or whole numbers. See also: NUMBER()
+Several other data types are based on the above:
+Percent is a Decimal with special display characteristics. For example, a Percent value of 0.0 is displayed as 0%; 0.05 is displayed as 5%; 0.2 as 20%; and 1.0 as 100%.
+Price is a Decimal with special display characteristics. For example, a Price value of 0.0 is displayed as $0.00; 5.2 is displayed as $5.20; 67.482 as $67.48; and 100.0 as $100.00. The currency symbol ($ by default) can be changed in a Price column's configuration.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Text expressionsUse and produce textual valuesA textual value is a sequence of letters, numbers, punctuation, emoji, spaces, or other characters that is not recognized as some other data type or expression keyword or operator.
+A text expression is an expression that produces a textual value, or that uses one or more textual values to produce a value of any type.
+The basic textual data type is Text, which may contain only one line of text. The LongText data type allows multiple lines of text. Several other column types, including Address, Email, and Name, have additional characteristics but are fundamentally textual values, and may be used as such within expressions.
+New to expressions and formulas? See also Expressions: The Essentials.
+Constructing text
+Constructing a raw textual value
+Within an expression, in general, AppSheet will treat any sequence of letters, numbers, punctuation, emoji, or other non-space characters as Text if not recognizable as something else, such as a Date, Decimal, Number, or Time value, or an expression keyword or operator.
+To ensure AppSheet recognizes a raw textual value in an expression, the raw textual value should be enclosed in double quotes:
+
+"John Smith"
+"jsmith@email.work"
+"Please choose an option below:"
+"Company Name"
+
+Some words commonly used as column names may be confused with expression keywords. To avoid confusion entirely, best to always double-quote raw textual values:
+
+"Date"
+"DateTime"
+"Decimal"
+"Number"
+"Text"
+"Time"
+
+To include spaces at the beginning or the end of a raw textual value, or multiple consecutive spaces within, the raw value must be double-quoted:
+
+" space before"
+"space after "
+
+To spread text across multiple lines (as for a LongText value), the entire multi-line raw value must be double-quoted:
+
+"This value
+is spread
+across lines."
+When in doubt, if you want a raw value treated as a textual value, put double-quotes around it.
+Constructing a textual value with concatenation
+Two or more textual values can be combined to produce a new textual value using concatenation. The CONCATENATE() function does this:
+
+CONCATENATE("ABC", "123") gives ABC123.
+CONCATENATE("Hi, ", [First Name], " ", [Last Name], "!") might give Hi, John Smith!
+
+The text-concatenate operator (&) is a short way to concatenate two values:
+
+("ABC" & "123") gives ABC123.
+("Hi, " & [First Name] & " " & [Last Name] & "!") might give Hi, John Smith!
+
+Constructing a textual value with a function
+A number of functions produce textual results:
+
+CONCATENATE() - Text from textual fragments.
+ENCODEURL() - Encoded textual value for use in a URL.
+INITIALS() - First character of each word in a textual value.
+LEFT() - Left-most consecutive characters from a textual value.
+LINKTEXT() - Textual component of hyperlink.
+LOWER() - Textual value with all letters lowercase.
+MID() - Consecutive characters from a textual value.
+RIGHT() - Right-most consecutive characters from a textual value.
+SUBSTITUTE() - Textual value with one fragment replaced by another.
+TEXT() - Textual representation of any value.
+TRIM() - Textual value with excess whitespace removed.
+UNIQUEID() - Random text value suitable for ID.
+UPPER() - Textual value with all letters uppercase.
+
+Constructing a textual value from a non-textual value
+In certain places within expressions and in other AppSheet features, textual values may be required but the data you want to use is stored in a column of a non-textual type, such as Decimal or a DateTime. There are several ways to convert non-textual values to a Text:
+
+TEXT() function: Using a non-textual value with the TEXT() function (e.g. TEXT([My Data])) creates a new textual value from the original value, formatted in a suitable way. The result will be localized, which may affect the appearance of dates, times, numbers, decimals, and currency. If the original value is a column value (e.g., not a raw value or the result of an expression), any column-specific display preferences, such as number of digits, decimal precision, time precision, and date verbosity, will also be applied.
+CONCATENATE() function: Using a non-textual value with the CONCATENATE() function (e.g. CONCATENATE([My Data])) or with the text-concatenate operator (e.g., ([My Data] & "")) creates a new textual value using the exact text of the original value (the raw value, or the value as stored in the spreadsheet or other data store beneath the app table). Note that using this method does not apply column-specific display preferences (such as number of digits, decimal precision, time precision, and date verbosity), nor is the result localized (which may affect the appearance of dates, times, numbers, decimals, and currency).
+Other functions: A number of other functions designed to work with textual values may accept non-textual values and produce reasonable textual results. Using non-textual values directly with functions intended for textual values is not recommended. Instead, consider using TEXT() or CONCATENATE() as described above to convert the non-textual value first.
+
+Use text
+Using text expressions to customize messages
+The text of many of the messages AppSheet displays to the app user may be customized from the UX > Localize page in the app editor.
+By default, custom message text is provided as a raw value, but can be generated with an expression by toggling from the pencil (raw) to the flask (expression):
+
+A common use is to localize messages to the user's preferred language. In an app designed to accommodate multiple languages, there might be a table specifically containing translation text (such as, Translations), where each row is for a specific language (specified by the Language column, for example) and each column is the translation of a specific message. The following expression might then be used to provide the localized text for the Syncing the app message according to the user's preferred language (from the Language user setting):
+
+LOOKUP(
+  USERSETTINGS("Language"),
+  "Translations",
+  "Language",
+  "Syncing the app"
+)
+See also: LOOKUP(), USERSETTINGS()
+Use textual values in functions
+A variety of functions accept textual input:
+
+APP() - App (deep-link) from a textual value.
+CONCATENATE() - Text from textual fragments.
+CONTAINS() - Does textual value contain fragment?
+DECIMAL() - Decimal from a textual value.
+ENCODEURL() - Encoded textual value for use in a URL.
+ENDSWITH() - Does text end with fragment?
+EXTRACT() - List of recognizable elements from a textual value.
+EXTRACTCHOICE() - Extract one Yes/No value from a textual value.
+EXTRACTDATES() - List of dates from a textual value.
+EXTRACTDATETIMES() - List of DateTimes from a textual value.
+EXTRACTDOMAINS() - List of email domains from a textual value.
+EXTRACTDURATIONS() - List of durations from a textual value.
+EXTRACTEMAILS() - List of email addresses from a textual value.
+EXTRACTHASHTAGS() - List of hashtags from a textual value.
+EXTRACTMENTIONS() - List of mentions from a textual value.
+EXTRACTNUMBERS() - List of numeric values from a textual value.
+EXTRACTPHONENUMBERS() - List of phone numbers from a textual value.
+EXTRACTPRICES() - List of prices from a textual value.
+EXTRACTTIMES() - List of times from a textual value.
+FIND() - Position of fragment in a textual value.
+INITIALS() - First character of each word in a textual value.
+ISBLANK() - Is value absent?
+ISNOTBLANK() - Is value present?
+LEFT() - Leftmost consecutive characters from a textual value.
+LEN() - Number of characters in a textual value.
+LOWER() - Textual value with all letters lowercase.
+MID() - Consecutive characters from a textual value.
+NUMBER() - Number from textual value.
+RIGHT() - Right-most consecutive characters from a textual value.
+SPLIT() - List from textual value.
+STARTSWITH() - Does text start with fragment?
+SUBSTITUTE() - Textual value with one fragment replaced by another.
+TEXT() - Textual representation of any value.
+TEXT_ICON() - Icon from text.
+TRIM() - Textual value with excess whitespace removed.
+UPPER() - Textual value with all letters uppercase.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Yes/No expressionsWrite expressions where the result is either TRUE or FALSEYes/No expressions produce a result that's either TRUE (Yes) or FALSE (No). These expressions are generally used in AppSheet where you need an IF statement. For example, when you see a Show_IF or Condition field.
+The following shows a Show_If condition:
+
+The following shows a general IF Condition field:
+
+New to expressions and formulas? See also Expressions: The Essentials.
+Yes/No operators
+Yes/No expressions use operators that return a TRUE or FALSE result displayed as a Yes or No in AppSheet. Yes/No operators include:
+
+Comparison operators
+Composition operators
+Other operators
+
+Comparison operators
+AppSheet supports comparison conditions by using comparison operators with two expression parameters that have comparable types. These rely on comparing two or more parameters. The expression will either have a TRUE or FALSE result, depending on whether the comparison is valid. For example, 5 > 2 is valid, but 5 > "Hello" is not valid.
+
+Equals: =
+Not Equals: <>
+Greater Than: >
+Greater Than or Equals: >=
+Less Than: <
+Less Than or Equals: <=
+
+See also Configuring the behavior of comparison operators.
+Composition operators
+This is a powerful way to combine multiple conditions. If you wrap multiple conditions with AND, OR, NOT, you can compare a greater number of things. These rely on the conditions of multiple components and can be used to determine what to do when something is true or false.
+AND({condition 1},{condition 2},{condition 3},..,{condition n})
+If all the conditions in the AND expression are true, then the result of the expression will be TRUE (Yes), if any of the conditions are not true, the result will be FALSE (No). Separate each condition with a comma. Each condition is an expression in itself, so be aware of how the expressions are nested.
+OR({condition 1},{condition 2},{condition 3},..,{condition n}) (OR)
+If any of the conditions in the expression is true then the OR expression will result in TRUE, otherwise it will be FALSE. Each condition is separated by a comma.
+NOT({condition})  (NOT)
+If the condition result is true, then wrapping it in NOT() results in FALSE. If the condition is FALSE, then wrapping it in NOT() results in TRUE.
+Other operators
+AppSheet supports the following additional operators:
+
+ISBLANK({*}) returns TRUE if an expression is empty
+CONTAINS({text_1},{text_2}) returns TRUE if text_1 contains text_2
+IN({*},{List}) returns true if a value is in a list
+
+Common and complex expressions
+These are some examples of commonly used Yes/No expressions in AppSheet.
+Common expressions
+If you wanted to do something when the value of column Color is green and it was completed today, here's the expression you would use:
+AND([Color]="Green",[CompleteDate]>TODAY())
+If you wanted to see whether there are any oranges recorded in the column Fruit, you would use this expression:
+CONTAINS([Fruit],"Oranges")
+Complex expressions
+These are some examples of more complex operations where more parameters are included.
+OR(([Price]*[Quantity])>$10,000.00,[Price]>$100.00)
+OR(CONTAINS([Fruit],"Oranges"),CONTAINS([Fruit],"Apples"),CONTAINS([Fruit],"Bananas"))
+Learn more about expressions
+You can use column names, constants (like dates, names, or other values), and other mathematical operations to build your expression. The only condition is that the result is either TRUE or FALSE (Yes/No).
+Expressions may be used in various AppSheet features - App formulas and initial values, Virtual columns and Column constraints (Valid_If, Show_If, Required_If) - to customize app behavior and provide advanced functionality.
+Expressions in this article align with the Yes/No Expressions section of the Expression Assistant in the Editor.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Other expressionsModify text, create unique IDs, and work with locationExpressions may be used in various AppSheet features - app formulas, column constraints (Valid_If, Show_If, Required_If) - to customize app behavior and provide advanced functionality.
+The expressions described here cover a range of needs and don't fit into any of the other expression types.
+New to expressions and formulas? See also Expressions: The Essentials.
+Functions
+Conditional
+
+IF() - Either/or conditional evaluation
+IFS() - First-match conditional evaluation
+SWITCH() - Choose-one conditional evaluation
+
+Hyperlinks & URLs
+
+HYPERLINK() - New hyperlink
+LINKTEXT() - text component of hyperlink
+
+LINKURL() - URL component of hyperlink
+
+
+Informational
+
+CONTEXT() - Information about the running app
+USEREMAIL() - User's email address
+USERLOCALE() - User's locale
+USERNAME() - User's name
+USERROLE() - Assigned role of approved user
+USERSETTINGS() - Specified user-setting value
+
+LatLong & XY
+
+DISTANCE() - Distance between two locations
+GETX() - X component of XY value
+GETY()- Y component of XY value
+HERE() - Current location
+LAT() - Latitude component of LatLong value
+LATLONG() - LatLong from components
+LONG() - Longitude component of LatLong value
+
+Utility
+
+TEXT_ICON() - Icon from text
+UNIQUEID() - Pseudo-unique ID
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Backward compatibility expressionsExpressions supported for backward compatibilitySince the AppSheet platform is constantly being improved and updated, we've made some changes since we first got started: some expression components used to look a little different. We support the syntax below to accommodate apps that still use them.
+
+@(_HERE) returns the current location as a LatLong value; equivalent to HERE().
+@(_NOW) returns the current date and time as a DateTime value; equivalent to NOW().
+@(_TIMENOW) returns the current time as a Time value; equivalent to TIMENOW().
+@(_TODAY) returns the current date as a Date value; equivalent to TODAY().
+@(_UNIQUE) returns a new unique Text value suitable for use as a key; equivalent to UNIQUEID().
+@(_USEREMAIL) returns the user's email address as an Email value; equivalent to USEREMAIL().
+@(_USERNAME) returns the user's name as a Name value; equivalent to USERNAME(). Note that the user's name may not be reliably available to AppSheet, so this value should not be considered a reliable identifier.
+
+New to expressions and formulas? See also Expressions: The Essentials.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Use column constraintsEvery column definition has a type that specifies what values are allowed in the column, as well as flags that specify if the column is hidden, if it's required for input, and so on. This is adequate for many apps, but sometimes a more dynamic or data-driven mechanism is needed. This is what column constraints provide. 
+A column constraint is an expression that is dynamically computed to determine the behavior of a specific column when the user tries to enter or change its value.
+Three column constraints govern the validity of input values for that column:
+
+Valid_If: What are acceptable values?
+Required_If: Is an empty value acceptable?
+Editable_If: Can it be modified at all?
+
+Two further constraints are related to the presentation of the column:
+
+Show_If: Should the column be shown or hidden?
+
+Suggested values: A list of values to prompt the user with
+
+
+An additional constraint can help influence how records are updated:
+
+
+Reset on edit?: Clear the value whenever that record is edited by a user
+
+
+To add a column constraint, click the Data > Columns tab and click the Edit icon at the left of the corresponding column definition.
+New to expressions and formulas? See also Expressions: The Essentials.
+Get started
+Watch this video to learn more about using column constraints in your app.
+Quick Tip Friday - Conditional Attributes
+Best practices
+Column constraints give you the power to define very subtle or complex conditions, but users will only see the resulting behavior. As an app creator, it's important to provide adequate explanations for the columns affected by these expressions--particularly for Valid_If conditions--so users will know how to proceed if they provide an invalid column value. The best way to do so is by providing meaningful column descriptions.
+When these expressions reference other fields in the row (not just [_THIS]), it's best to ensure they're always "backward" references to fields the user has already seen (meaning columns that come before the column being considered in the spreadsheet and appear above the column being considered in the Columns tab). Conditions containing "forward" references may be confusing to users and may cause problems with multi-page forms.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Check form input validity (Valid_If)Every input in a form is checked for validity based on its type. For example, a column of type Number won't accept Hello as an input. A Valid_If column constraint is a type of expression used in situations where the validity of the input requires richer data-dependent logic.
+A Valid_If constraint is a condition expression that determines if the user input for the associated column is valid. 
+Here are examples of commonly-used Valid_If constraints:
+
+Does the value of the column satisfy a simple condition? For example, comparing the value with a constant (such as, [_THIS] > 5), or comparing the value with another column (such as, [_THIS] > [ColumnA]).
+Is the value of the column in a list? You can accomplish this in one of the following ways:
+    
+Create a drop-down menu from the list, as described in Drop-down from Valid_If 
+Validate the form input without creating a drop-down menu of values. For example:
+        
+AND(TRUE, IN([_THIS], LookupTable[ColumnC]))
+AND(TRUE, IN([_THIS], SELECT(LookupTable[ColumnC], ([ReportDate] > (TODAY() - 7))))
+
+
+
+
+
+Invalid inputs can prevent saving data or progressing to the next page in a form. For data changes made through forms or Quick Edit columns in detail views, Valid_If constraints are only enforced for visible inputs. This is because:
+
+There are many ways columns can be hidden or omitted from the view (for example, excluded from a slice, excluded from column order, or on a different page in a branching form), so it's often unclear whether blocking the user was intended or expected.
+If a user is blocked by a hidden column failing validation, the user generally has no way to fix it and doesn't understand why they're stuck. If the app creator didn't intend them to be blocked there, the user may not understand why either, leading to lost productivity.
+
+Valid_If conditions can still reference values of hidden columns, so if you do want to block the form due to hidden values, just attach the expression to a visible column.
+For updates made through actions, Valid_If conditions are enforced in two cases:
+
+If the column being updated becomes invalid, the update is blocked.
+If the update causes a different column to become invalid, the update is blocked.
+
+This means an action won't be blocked due to preexisting invalid values that are unrelated to the action itself.
+New to expressions and formulas? See also Expressions: The Essentials.
+Valid_If and dependent drop-downs
+Dependent drop-down menus are a common design pattern in apps that capture input. For example, consider an app like  the Lead Tracking template, that asks for a Lead Region (America, Asia, Europe), then for a Country within that region. This actually requires relatively complex logic, but AppSheet tries to make it simple. Dependent drop-down menus are driven by a separate lookup table.
+In the sample, there is a separate Regions lookup table with two columns, Region and Country, which serves to describe the allowed combinations of regions and countries.
+The Lead Region column has a regular Valid_If constraint: Regions[Region]. Therefore, when a new entry is being added, the input for this column shows three choices: America, Asia, and Europe.
+Likewise, the Country column specifies a similar Valid_If constraint: Regions[Country]. However, because it follows the Lead Region column, and because both specify columns from the same lookup table, Regions, AppSheet recognizes the intent and implements a dependent drop-down menu.
+Internally, AppSheet creates an expression to capture the allowed set of values for the Country column. The expression must say (in English!):
+
+Look at the Regions table.
+Filter the rows to make sure the Region column of the table matches the value in the Lead Region column of the row being edited in the form.
+Extract the Country column from those filtered rows.
+Eliminate any duplicates--these are the allowed countries!
+Recompute this list each time Lead Region is changed.
+
+Strictly for the expression aficionado, the full underlying AppSheet expression would be: IN( [_THIS], SELECT(Regions[Country], [_THISROW].[Lead Region] = [Region])) 
+While most app creators will never need to express something this complicated, you could in fact provide this expression as a Valid_If constraint. It's useful to know for advanced use cases. For example, instead of using an equality condition, an app creator could use inequality or richer expressions to build very expressive dynamic drop-down menus.
+Troubleshoot "failed Valid_If condition" for EnumList fields
+The problem occurs when the EnumList field specifies a Valid_If expression containing a list of valid values. If you attempt to store a record containing two or more values in the EnumList field, the Valid_If condition will fail. This is the result of a long standing shortcoming in the server expression system. CSV Import will fail with the message:
+"Error: Row having key '<key value>' in table '<table Name>' containing value '<enumList field value>' failed Valid_If condition"
+For example, the EnumList field might specify the Valid_If expression:
+
+LIST("A", "B", "C", "D")
+The system automatically converts this Valid_If expression into the following equivalent Valid_If expression. Note that [_THIS] refers to the value of the current field. In this case, the EnumList field.
+IN([_THIS], LIST("A", "B", "C", "D")
+When the server expression system evaluates the IN expression, it fails to detect that the EnumList field may contain a list of values. It mistakenly treats the value in the EnumList as a single value which it compares to each value in the LIST. For example, if the EnumList field contains "A , C", it compares "A , C" to the LIST values "A", then "B", then "C", and finally "D". The EnumList value "A , C" does not match any of these values, therefore the Valid_If condition fails.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Conditionally require a column value (Required_If)The Required_If column constraint may be used to require a column value of a row be present before the row may be saved. If a required column value is blank, the row cannot be saved.
+Required_If is commonly used to enforce conditional input requirements, such as:
+
+Requiring a signature if the balance is above a threshold.
+Requiring a card number if paying with credit or debit.
+Requiring completion of prerequisites first.
+
+New to expressions and formulas? See also Expressions: The Essentials.
+The Required_If expression
+The Required_If column constraint is a Yes/No expression. If the expression evaluates as TRUE, the column value may not be blank; if FALSE, the column value may be blank.
+As in all column constraint expressions, the Required_If expression may refer to the current column value using the column value expression, [_THIS]. For instance, if the current column is Employee Name, [Employee Name] and [_THIS] both refer to the same value.
+Examples
+([Subtotal] >= 20.0) - Require a signature if the subtotal is over $20.
+IN([Payment Type], {"Credit Card", "Debit Card"}) - Require a card number if the chosen payment type is a credit or debit card. See also: IN()
+ISNOTBLANK([Address Line 2]) - Require address line 1 if line 2 has been provided already. No address is fine, but if you provide line 2, you must provide line 1.  See also: ISNOTBLANK()
+AND(ISBLANK([Home]), ISBLANK([Mobile]), ISBLANK([Work])) - Require at least one of the three phone numbers. See also: AND(), ISBLANK()
+TRUE - Require always. Equivalent to setting Require? to ON.
+FALSE - Never require. Equivalent to setting Require? to OFF.
+Setting Required_If
+To set a column's Required_If column constraint, go to the Data > Columns tab in the app editor and click on the edit icon next to the desired column:
+
+Scroll down to locate (and, if necessary, expand) the Data Validity section, which contains the Require? setting. Clicking the flask icon to the right will replace the ON/OFF switch with an expression box.
+
+ 
+Click in the expression box to enter your Required_If expression. To remove the Required_If column constraint, click the X to the right of the expression box.
+
+ 
+Scope of Required_If
+The Required_If column constraint is applied any time a row update is attempted, such as when the user interacts with a Form view or with a Quick Edit column (such as, in a Detail or Table view), when app formulas and initial values are applied, and when actions attempt a data-change operation.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Conditionally allow column edits (Editable_If)The Editable_If column constraint may be used to limit the user's ability to edit a column value for a row.
+Editable_If is commonly used to only allow column value changes:
+
+By administrators or specific users, but not others.
+When another column has a specific value.
+When adding a new row, but not when editing an existing one.
+When no value has yet been provided.
+
+New to expressions and formulas? See also Expressions: The Essentials.
+The Editable_If Expression
+The Editable_If column constraint is a Yes/No expression: if the expression evaluates as TRUE, the user is allowed to edit the column value; if FALSE, the user is not allowed.
+As in all column constraint expressions, the Editable_If expression may refer to the current column value using the column value expression, [_THIS]. For instance, if the current column is Employee Name, [Employee Name] and [_THIS] both refer to the same value.
+Examples
+("Admin" = USERROLE()) - Allow only designated app admins. See also: USERROLE()
+IN(USEREMAIL(), LIST("joe@example.biz", "mary@example.biz")) - Allow only specific users. See also: LIST(), USEREMAIL()
+(USEREMAIL() = [Email]) - Allow only if the Email column value matches the current user. See also: USEREMAIL()
+NOT(IN([Employee ID], Employees[Employee ID])) - Allow only for a new row, but not an existing row. See also: IN(), NOT()
+ISBLANK(LOOKUP([_THISROW].[Employee ID], "Employees", "Employee ID", "Name")) - Allow only if the Name has not been previously set for this Employee ID. See also: ISBLANK(), LOOKUP()
+(NOW() < ([Timestamp] + "024:00:00")) - Allow only if the row is less than a day old. See also: NOW()
+AND((TIMENOW() >= "08:00:00"), (TIMENOW() < "18:00:00")) - Allow only during business hours. See also: AND(), TIMENOW()
+(WEEKDAY(TODAY()) = 2) - Allow only on Mondays. See also: TODAY(), WEEKDAY()
+FALSE : Prohibit all user changes while allowing changes by app formulas and initial values, and actions.
+Setting Editable_If
+To set a column's Editable_If column constraint, go to the Data > Columns tab in the app editor and click on the edit icon next to the desired column:
+
+Scroll down to locate (and, if necessary, expand) the Update Behavior section, which contains the Editable? setting. Clicking the flask icon to the right will replace the ON/OFF switch with an expression box.
+
+Click in the expression box to enter your Editable_If expression. To remove the Editable_If column constraint, click the X to the right of the expression box.
+
+Scope of Editable_If
+The Editable_If column constraint only affects the user's access to the column value, such as when the user interacts with a Form view containing the column. The constraint is also checked before allowing access to Quick Edit columns (such as, in a Detail or Table view).
+Editable_If does not affect the application of app formulas and initial values, the performance of actions, or any other app behaviors.
+Editable_If is consulted only if all of the following are true:
+
+The table containing the column allows adds or updates.
+The slice containing the column (if applicable) allows adds or updates.
+The column has an Editable_If expression set.
+
+Editable_If can only be used to reduce access; it cannot be used to expand access beyond that allowed by the underlying slice or table.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Conditionally show or hide a column value (Show_If)A Show_If column constraint may be used to show or hide a column value according to a condition. This column constraint doesn't control whether or not the column is displayed, just the value for a particular row.
+Show_If is commonly used to:
+
+Hide columns that aren't intended for forms.
+Show only non-zero values in a column of numeric values.
+Hide sensitive values, such as email addresses, from most users while showing them to administrators.
+Show action buttons in only select views.
+
+New to expressions and formulas? See also Expressions: The Essentials.
+The Show_If expression
+The Show_If column constraint is Yes/No expression: if the expression evaluates as TRUE, the column value will be shown; if FALSE, the column value will be hidden.
+As in all column constraint expressions, the Show_If expression may refer to the current column value using the column value expression, [_THIS]. For instance, if the current column is Employee Name, [Employee Name] and [_THIS] both refer to the same value.
+Scope of Show_If
+The Show_If column constraint is applied any time the column itself is displayed. The column constraint is not applied to the column value when used in an expression.
+Show_If conditions can enabled for only form views or for the entire app. To control this behavior, set the Apply show-if constraints universally when configuring form view type settings.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Configure suggested values for a columnEvery column input in a form can prompt the user with a list of suggested values. For example, a column Industry of type Text could have Tech, Media and Construction as suggested values. 
+The list of suggested values is optionally defined by an expression in the column definition. The expression could be a constant (such as, LIST("Tech", "Media")) or a dynamic expression (such as, SELECT(LookupTable[Option], [Category] = [_THISROW].[Category]).
+Note: The suggested values constraint is a "soft" constraint: the list is not meant to be exhaustive or constraining. The user will be able to enter any other value that conforms to the column type (and the Valid_If constraint if one has been defined).
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Combine lists
+The contents of two lists can be combined to construct a new list using the list-add operator (+). The items in the resulting list will be in the order they occurred in the original lists. Duplicate entries will be preserved.
+
+({1, 2, 3} + LIST(2, 3, 4)) produces a list of Number values: 1, 2, 3, 2, 3, 4. See also LIST().
+(Employees[Office Phone] + Employees[Home Phone]) produces a list of all employee office and home phone numbers.
+
+The list resulting from list addition will adopt the data type of the left-side list. If the right-side list is of a different data type, this may change how the values taken from it are interpreted.
+
+({3} + {3.14}) produces a list of Number values from a list of one Number value (3) and a list of one Decimal value (3.14).
+(LIST() + {3.14}) produces a list of one Text value from an empty list (Text by default) and a list of one Decimal value (3.14)
+
+See also
+Construct a list using the LIST() expression
+Construct a list of values
+Subtract values from a list
+INTERSECT()
+LIST()
+UNIQUE()
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Build list dereferencesA column value of type List or EnumList with a base type of Ref can be dereferenced to produce a new list of the values from dereferencing each individual reference, an operation called a list dereference.
+A list dereference is performed by enclosing the Ref list column name (such as Related Orders) and the column name of the desired column value (such as Order Date) each in square brackets ([ ]) and placing them adjacent to each other.
+For example: 
+
+[Related Orders][Order Date]
+
+The result will be a list of Order Date column values from the rows identified by the list in the Related Orders column value.
+
+Note: The result is similar to the following SELECT() expression (assuming the referenced table is Orders and its key column is Order ID):
+
+SELECT(
+     Orders[Order Date],
+     IN([Order ID], [_THISROW].[Related Orders])
+    )
+
+Sort by another column
+To gather a list of column values sorted by a different column value, use the App formula expression of a column to generate a list of row references in the desired order.
+For example, for a column named Next Two Weeks, gather the list of rows from the Events table with a Date within the next 14 days, and order the rows by Date from earliest to latest:
+
+ORDERBY(
+  FILTER(
+    "Event",
+    ([Date] < (TODAY() + 14))
+  ),
+  [Date]
+)
+A list dereference can then be used to get the desired list of column values in that same order:
+
+[Next Two Weeks][Event Name]
+The resulting list of dereferenced values will be in the same order as the original reference list.
+See also: Date and time expressions, FILTER(), ORDERBY(), TODAY()
+See also
+Dereference expressions
+List expressions
+SELECT()
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Build expressions that return a list
+The following expressions return lists as their result:
+
+EXTRACT() - List of recognizable elements from textual value.
+EXTRACTDATES() - List of dates from textual value.
+EXTRACTDATETIMES() - List of date-times from textual value.
+EXTRACTDURATIONS() - List of durations from textual value.
+EXTRACTEMAILS() - List of email addresses from textual value.
+EXTRACTHASHTAGS() - List of hashtags from textual value.
+EXTRACTMENTIONS() - List of mentions from textual value.
+EXTRACTNUMBERS() - List of numeric values from textual value.
+EXTRACTPHONENUMBERS() - List of phone numbers from textual value.
+EXTRACTPRICES() - List of prices from textual value.
+EXTRACTTIMES() - List of times from textual value.
+FILTER() - List of select rows in table.
+INTERSECT() - List of items common to two lists.
+LIST() - New list of values.
+ORDERBY() - List of rows in custom order.
+REF_ROWS() - List of rows referencing this row.
+SELECT() - List of column values from select rows.
+SORT() - List of items in order.
+SPLIT() - List of elements from textual value.
+TOP() - List of initial items of list.
+UNIQUE() - List of items with duplicates removed.
+
+See also
+List expressions
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Construct a list using the LIST() function
+The LIST() expression constructs a list from any combination of raw values, column values, and expressions. The values in the resulting list will be in the order they were given to the LIST() expression.
+
+
+LIST("Apple", "Banana", "Cherry") produces a list of Text values: Apple, Banana, Cherry.
+
+
+
+
+LIST([Mobile Phone], [Office Phone], [Home Phone]) produces a list of phone numbers from three column values of the current row.
+
+
+
+
+LIST(1, (1 + 1), (6 / 2), ROUND(POWER(2, 2)), ROUND(SQRT(25))) produces a list of Number values: 1, 2, 3, 4, 5. See also: POWER(), ROUND(), SQRT()
+
+
+
+
+LIST() produces an empty list.
+
+
+See also
+Expressions: The Essentials
+List expressions
+Construct a list from table-column references
+Construct a list of values
+LIST()
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Construct a list from table-column references
+Referencing a table and column together (a table-column reference) constructs a list of all values in that column of that table. Note that if the column itself contains duplicate values, so will the list.
+
+
+Fruits[Name] produces a list of all Name column values from the Fruits table. This is equivalent to SELECT(Fruits[name], TRUE, FALSE). See also: SELECT()
+
+
+
+
+Orders[Customer] produces a list of all Customer column values from the Orders table. Equivalent to SELECT(Orders[Customer], TRUE, FALSE).
+
+
+
+
+Order Details[SKU] produces a list of all SKU column values in the Order Details table. Equivalent to SELECT(Order Details[SKU], TRUE, FALSE).
+
+
+A table-column reference to a column of type List or EnumList will produce a list of lists. To "flatten" the list-of-lists into a single list composed of the values of the component lists, wrap the table-column reference with SPLIT().
+
+
+SPLIT(Employees[Vacation Dates], ",") produces a list of all employee vacation dates.
+
+
+
+
+SPLIT(Events[Notification Emails], ",") produces a list of all notification email addresses.
+
+
+See also
+List expressions
+Construct a list using the LIST() function
+Construct a list of values
+Subtract values from a list
+SELECT()
+UNIQUE()
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Construct a list of valuesA list can be constructed from raw values by enclosing the raw values in curly braces ({, }). The list must have at least one value. Multiple raw values should be separated by a comma (,). All raw values within the list must be of the same data type.
+
+{ "Apple", "Banana", "Cherry" } constructs a list of Text values: Apple, Banana, Cherry.
+{ 1, 2, 3 } constructs a list of Number values: 1, 2, 3.
+
+Within curly braces, expressions are loosely recognized but may be evaluated in unexpected ways or not evaluated at all. Using expressions within curly braces is strongly discouraged! To use a raw value that might be interpreted as an expression, enclose the raw value in double quotes (").
+
+{ [Mobile Phone], [Office Phone], [Home Phone] } produces a list of Text values: [Mobile Phone] , [Office Phone] , [Home Phone]. Because the raw values appear to be expressions, the expressions will be checked for validity and may produce errors (e.g., if a column doesn't exist), but these apparent expressions will not be evaluated!
+{ 1, (1 + 1), (6 / 2), ROUND(POWER(2, 2)), ROUND(SQRT(25)) }  produces a list of Number values: 1, 1, 1, 6, 2, 4, 5. Note that these expressions are recognized but do not produce the expected results! See also: POWER(), ROUND(), SQRT()
+{ "(1 + 1)", "(6 / 2)" } produces a list of Text values: (1 + 1), (6 / 2). Note the apparent expressions are not recognized as expressions within the quotes.
+
+See also
+List expressions
+Construct a list using the LIST() function
+Construct a list from table-column references
+LIST()
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Subtract values from a listThe list-subtract operator (-) will produce a new list with the values of the left-side list that are not present in the right-side list. The values of the resulting list will be in the order they occurred in the original left-side list.
+
+Duplicate result entries will be omitted.
+
+
+({ 1, 2, 3 } - LIST(2, 3, 4)) produces a list of one Number value: 1. See also: LIST()
+
+
+({ "Bob", "Mary", "Bob", "Alice" } - { "Alice" }) produces a list of Text values: Bob, Mary. In addition to the requested removal of Alice, note the duplicate occurrence of Bob was also omitted from the result.
+
+
+({ "Bob", "Mary", "Bob", "Alice" } - LIST()) produces a list of Text values: Bob, Mary, Alice. Note that the duplicate occurrence of Bob was omitted from the result. Equivalent to UNIQUE({ "Bob", "Mary", "Bob", "Alice" }). See also: UNIQUE()
+
+
+({ "Bob", "Mary", "Bob", "Alice" } - { "Bob" }) produces a list of Text values: Mary, Alice. Note that although Bob only occurs once in the right-side list, both (all) occurrences of Bob from the left-side list are removed in the result.
+
+See also
+Combine lists
+List expressions
+INTERSECT()
+UNIQUE()
+ 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ AppSheet function listHere's a list of all the AppSheet functions available by category that can be used when building expressions. See also Expressions: The Essentials.Narrow by ...ConditionalDate and timeImageInformationalLinkListLocationLogicalMathTableTextYes/NoTypeNameSyntaxReturnsConditionalIFIF(logical-expression, value-if-true, value-if-false)Either/or conditional evaluation. Learn moreConditionalIFSIFS(condition1, value1, [condition2, value2 ...])First-match conditional evaluation. Learn moreConditionalSWITCHSWITCH(expression, case1, value1, [case2, value2 ...], default)Choose-one conditional evaluation. Learn moreDate and timeDATEDATE(when)Date from Date, DateTime, or Time. Learn moreDate and timeDATETIMEDATETIME(when)DateTime from Date, DateTime, or Time. Learn moreDate and timeDAYDAY(when)Day of month from Date, DateTime, or Time. Learn moreDate and timeEOMONTHEOMONTH(when, offset-months)Date of last day of a month from Date or DateTime. Learn moreDate and timeEOWEEKEOWEEK(when)Date of last day of a week from Date or DateTime. Learn moreDate and timeEWOMONTHEWOMONTH(when, offset-months)Date of last weekday of a month Date or DateTime. Learn moreDate and timeEXTRACTDATESEXTRACTDATES(text-to-extract-from)Extract list of dates within a textual value. Learn moreDate and timeEXTRACTDATETIMESEXTRACTDATETIMES(text-to-extract-from)Extract list of DateTime values within a textual value. Learn moreDate and timeEXTRACTDURATIONSEXTRACTDURATIONS(text-to-extract-from)Extract list of Duration values within a textual value. Learn moreDate and timeEXTRACTTIMESEXTRACTTIMES(text-to-extract-from)Extract list of Time values within a textual value. Learn moreDate and timeHOURHOUR(duration)Hour of day from Duration. Learn moreDate and timeISOWEEKNUMISOWEEKNUM(date)Number of the ISO week of the year for the specified date. Learn moreDate and timeMINUTEMINUTE(duration)Minute of hour from Duration. Learn moreDate and timeNOWNOW()Current date and time. Learn moreDate and timeMONTHMONTH(when)Month of year from Date, DateTime, or Time. Learn moreDate and timeSECONDSECOND(duration)Second of minute from Duration. Learn moreDate and timeTIMETIME(when)Time from Date, DateTime, or Time. Learn moreDate and timeTIMENOWTIMENOW()Current time. Learn moreDate and timeTODAYTODAY()Current date. Learn moreDate and timeTOTALHOURSTOTALHOURS(duration)Count of hours in Duration. Learn moreDate and timeTOTALMINUTESTOTALMINUTES(duration)Count of minutes in Duration. Learn moreDate and timeTOTALSECONDSTOTALSECONDS(duration)Count of seconds in Duration. Learn moreDate and timeUSERTZOFFSETUSERTZOFFSET()User's local time offset from UTC. Learn moreDate and timeUTCNOWUTCNOW()Current time and date in UTC. Learn moreDate and timeWEEKDAYWEEKDAY(when)Day of week from Date or DateTime. Learn moreDate and timeWEEKNUMWEEKNUM(when)Week of year from Date or DateTime. Learn moreDate and timeWORKDAYWORKDAY(when, days, [holidays])Computed date excluding non-work days. Learn moreDate and timeYEARYEAR(when)Year from Date, DateTime, or Time. Learn moreImageSNAPSHOTSNAPSHOT(deep-link)Take a snapshot of a view. Learn moreImageTEXT_ICONTEXT_ICON(text)Icon from text. Learn moreInformationalCONTEXTCONTEXT(option)Information about the running app. Learn moreInformationalINPUTINPUT(input-name, default)Dynamic input assigned by the user or an action. Learn moreInformationalUSEREMAILUSEREMAIL()User's email address. Learn moreInformationalUSERLOCALEUSERLOCALE()User's locale. Learn moreInformationalUSERNAMEUSERNAME()User's name. Learn moreInformationalUSERROLEUSERROLE()User's role. Learn moreInformationalUSERSETTINGSUSERSETTINGS("user-setting")Specified user setting value. Learn moreLinkENCODEURLENCODEURL(text)Encode text for use in URL. Learn moreLinkHYPERLINKHYPERLINK(url, text)New hyperlink. Learn moreLinkLINKTEXTLINKTEXT(hyperlink)Text component of hyperlink. Learn moreLinkLINKTOAPPLINKTOAPP(app-id)Constructed deep link to an app. Learn moreLinkLINKTOFILTEREDVIEWLINKTOFILTEREDVIEW(view, filter)Constructed deep link to a filtered view. Learn moreLinkLINKTOFORMLINKTOFORM(view, column, value, [column, value...], [app-id])Constructed deep link to a form. Learn moreLinkLINKTOPARENTVIEWLINKTOPARENTVIEW()Constructed deep link to the parent view. Learn moreLinkLINKTOROWLINKTOROW(key, view, [app-id])Constructed deep link to a row. Learn moreLinkLINKTOVIEWLINKTOVIEW(view, [app-id])Constructed deep link to a row. Learn moreLinkLINKURLLINKURL(hyperlink)URL component of hyperlink. Learn moreListANYANY(list)One arbitrary list item. Learn moreListCOUNTCOUNT(list)Number of list items. Learn moreListININ(text-to-search-for, list-to-search)Is item in list? Learn moreListINDEXINDEX(list, which-one)One specific line item. Learn moreListINTERSECTINTERSECT(list1, list2)Items common to two lists. Learn moreListLISTLIST([value...])New list. Learn moreListMAXMAX(list)Highest item in a list. Learn moreListMINMIN(list)Lowest item in a list. Learn moreListSORTSORT(list, [descending?])Sorted list of items. Learn moreListSPLITSPLIT(text, delimiter)List from text. Learn moreListTOPTOP(list, how-many)Initial list of items. Learn moreListUNIQUEUNIQUE(list)Unique items in list. Learn moreLocationDISTANCEDISTANCE(location1, location2)Distance between locations. Learn moreLocationHEREHERE()Current location. Learn moreLocationLATLAT(where)Latitude component of location. Learn moreLocationLATLONGLATLONG(latitude, longitude)LatLong from components. Learn moreLocationLONGLONG(where)Longitude component of location. Learn moreLocationXYXY(x, y)XY value based on the coordinates. Learn moreLogicalANDAND(condition1, condition2, [condition3 ...])Answer: Are all true? Learn moreLogicalNOTNOT(condition)Is it false? Learn moreLogicalOROR(condition1, condition2, [condition3 ...])Are any true? Learn moreMathABSABS(x)Arithmentic absolute value. Learn moreMathAVERAGEAVERAGE(list)Arithmetic average of list of numeric values. Learn moreMathCEILINGCEILING(x)Round up to nearest integer. Learn moreMathDECIMALDECIMAL(x)Decimal from any value. Learn moreMathFLOORFLOOR(x)Round down to nearest integer. Learn moreMathLNLN(x)Natural logarithm of a numeric value. Learn moreMathLOGLOG(x, [base])Logarithm of a numeric value. Learn moreMathLOG2LOG2(x)Base 2 logarithm of a numeric value. Learn moreMathLOG10LOG10(x)Base 10 logarithm of a numeric value. Learn moreMathMODMOD(dividend, divisor)Arithmetic remainder from integer division. Learn moreMathNUMBERNUMBER(value)Number from any value. Learn moreMathPOWERPOWER(x, y)Arithmetic exponentiation. Learn moreMathRANDBETWEENRANDBETWEEN(lower-bound, upper-bound)Random integer from range. Learn moreMathROUNDROUND(x)Nearest integer. Learn moreMathSQRTSQRT(x)Arithmetic square root. Learn moreMathSTDEVPSTDEVP(list)Arithmetic standard deviation of list items. Learn moreMathSUMSUM(list)Arithmetic sum of list items. Learn moreTableFILTERFILTER(dataset, select-row?)Select rows of table or slice. Learn moreTableLOOKUPLOOKUP(value, dataset, column, return-column)Get column value from row in table or slice. Learn moreTableMAXROWMAXROW(dataset, column, [select-row?])Row with greatest value in column. Learn moreTableMINROWMINROW(dataset, column, [select-row?])Row with lowest value in column. Learn moreTableORDERBYORDERBY(keys, sort-key, [descending-order?, [sort-key]]...)Sort row references. Learn moreTableREF_ROWSREF_ROWS(dataset, ref-column)Gather related rows from table or slice. Learn moreTableSELECTSELECT(dataset-column, select-row?, [distinct-only?])Select rows from a table or slice. Learn moreTableUNIQUEIDUNIQUEID([type])Pseudo-unique ID. Learn moreTextCONCATENATECONCATENATE(part, [part ...])Merged text from parts. Learn moreTextDOMAINOFDOMAINOF(email)Extract domain from an email address. Learn moreTextENDSWITHENDSWITH(text-to-search, text-to-search-for)Does text end with fragment? Learn moreTextEXTRACTEXTRACT("text", text-to-extract-from)Extract values from text. Learn moreTextEXTRACTDOMAINSEXTRACTDOMAINS(text-to-extract-from)Extract list of domain values within a textual value. Learn moreTextEXTRACTEMAILSEXTRACTEMAILS(text-to-extract-from)Extract list of Email values within a textual value. Learn moreTextEXTRACTHASHTAGSEXTRACTHASHTAGS(text-to-extract-from)Extract list of hashtags within a textual value. Learn moreTextEXTRACTMENTIONSEXTRACTMENTIONS(text-to-extract-from)Extract list of mentions within a textual value. Learn moreTextEXTRACTNUMBERSEXTRACTNUMBERS(text-to-extract-from)Extract list of numeric values within a textual value. Learn moreTextEXTRACTPHONENUMBERSEXTRACTPHONENUMBERS(text-to-extract-from)Extract list of phone numbers within a textual value. Learn moreTextEXTRACTPRICESEXTRACTPRICES(text-to-extract-from)Extract list of price values within a textual value. Learn moreTextFINDFIND(text-to-search-for, text-to-search)Position of fragment in text. Learn moreTextINITIALSINITIALS(text)First character of each word. Learn moreTextLEFTLEFT(text, how-many)Left-most characters of text. Learn moreTextLENLEN(text)Number of characters in textual value. Learn moreTextLOWERLOWER(text)Convert text to lowercase. Learn moreTextMIDMID(text, begin-at, length)Segment of a string. Learn moreTextOCRTEXTOCRTEXT([image-column])Extract all text from an image. Learn moreTextRIGHTRIGHT(text, how-many)Right-most consecutive characters from a textual value. Learn moreTextSTARTSWITHSTARTSWITH(text-to-search, search-for)Does text begin with fragment? Learn moreTextSUBSTITUTESUBSTITUTE(text-to-search, search-for, replace-with)Text with replacements Learn moreTextTEXTTEXT(value, [format])ormatted text from the first argument.. Learn moreTextTRIMTRIM(value)Format as text. Learn moreTextUPPERUPPER(text)Convert text to uppercase. Learn moreYes/NoCONTAINSCONTAINS(text-to-search, text-to-search-for)Does text contain fragment? Learn moreYes/NoEXTRACTCHOICEEXTRACTCHOICE(text-to-extract-from)Extract one Yes/No value within textual value. Learn moreYes/NoISBLANKISBLANK(value)Is value absent? Learn moreYes/NoISNOTBLANKISNOTBLANK(value)Is value present? Learn moreTry your keywords on Google Web Search. 
+

@@ -1,0 +1,1939 @@
+ Organization and teams: The Essentials
+Organizations are only supported for Google Workspace users with AppSheet Enterprise accounts. See AppSheet pricing.
+
+An organization enables you to maintain centralized governance, but delegate team management responsibilities to team administrators.
+
+About the organization and teams
+Supported roles for an organization and teams
+
+
+An organization is not provided by default and is not required. If you have a Google Workspace account and an AppSheet Enterprise plan, you can reach out to your AppSheet sales representative to request an organization.
+
+About the organization and teams
+An AppSheet organization provides organization administrators with a centralized tool to manage all of the teams in the organization and delegate team management responsibilities to team administrators. An AppSheet organization is based on a Workspace organization and is tied to the primary domain associated with your Workspace account.
+One organization can contain multiple teams based on Google groups and Workspace organizations.
+An AppSheet team is a group of AppSheet users who are members of a business unit. Teams provide team root and administrator accounts with centralized tools for managing governance, security, policies, analytics, and billing of team members to ensure that AppSheet is compliant with the business unit's requirements. Common assets like data sources and user domains can be defined once by the team root or administrator and used by all app creators in the team. 
+The following figure shows the hierarchical relationship between an organization, and its teams and members. As shown, there can be multiple organization admins, team admins, and team members; however, there can only be one team root account.
+
+Supported roles for an organization and teams
+Supported roles and permissions for an organization and its teams are summarized in the following table.
+ 
+
+
+
+
+
+
+Role
+
+
+How many?
+
+
+Permissions
+
+
+
+
+Organization administrator
+
+One or many per organization
+
+
+View all teams and team members in an organization
+Add a team to the organization that is based on an existing Google Group
+See the number of apps created by app creators on any team
+Update the team member roles for any team to delegate team administration
+Delete teams in an organization
+Define organization, team, and account governance policies
+
+
+
+
+
+Team root
+
+One per team
+
+
+Define, remove, and delete team members in your current team 
+View team member account details, including number of apps
+View team app details and receive an emailed app summary report
+View and share resources with team members (sample apps, databases, data stores, and so on)
+View security for your team
+Monitor your team app activity, usage, and billing information, and download membership data
+Configure team settings including:
+            
+Restrict who can create apps
+Restrict the recipient list for outgoing email
+Set the public app owner
+Set the AppSheet session length 
+
+
+Define team and account governance policies, and view organization governance policies.
+Export team audit logs to Big Query
+Transfer apps and databases between team members
+Automate the removal of team user accounts
+
+
+
+
+
+Team administrator
+
+One or many per team
+
+
+Define and remove team members in your current team 
+View team member account details, including number of apps
+View team app details and receive an emailed app summary report
+View and share resources with team members (sample apps, databases, data stores, and so on)
+View security for your team
+Monitor your team app activity, usage, and billing information, and download membership data
+Define team and account governance policies, and view organization governance policies.
+Export team audit logs to Big Query
+
+
+
+
+
+Team member
+
+One or many per team
+
+
+Use AppSheet to create apps
+View team member account details
+View and share resources with team members
+View your organization and team governance policies
+Define governance policies for your account
+
+
+
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Request an organization
+Organizations are only supported for Google Workspace users with AppSheet Enterprise accounts. See AppSheet pricing.
+
+An organization is not provided by default and is not required. If you are a Google Workspace customer and an AppSheet Enterprise account, you can reach out to your AppSheet sales representative to request an organization.
+To request an organization for your Enterprise account:
+
+Ensure that you have the following accounts:
+    
+AppSheet Enterprise account
+Google Workspace account
+
+
+Contact your AppSheet sales representative with:
+    
+Your Google Workspace account information.
+Name and email address to assign as the first organization administrator. This user must be:
+        
+A Workspace administrator
+An existing AppSheet user (or added as one)
+
+
+
+
+
+Based on the information provided, your organization and initial organization administrator will be set up for you by AppSheet.
+
+Note: Once an initial organization administrator user has been assigned, they can then sign in to AppSheet and assign additional organization administrators and other roles, as needed.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Add, update, or delete the teams in an organization
+Organizations are only supported for Google Workspace users with AppSheet Enterprise accounts. See AppSheet pricing.
+
+As an organization administrator, you can add, update, or delete the teams in an organization using the Manage organization page.
+Explore the Manage organization page
+
+Note: You need to be an organization administrator to access the Manage organization page.
+
+To access My team to manage your team, select:
+
+Admin > My organization in the top navigation
+My organization from the account profile drop-down
+
+The Manage organization page displays.
+
+As highlighted in the figure above, the Manage organization page enables an organization administrator to:
+
+View all teams in the organization
+Add and delete teams in an organization
+View and manage team members for the selected team, including:
+    
+View team member information, including email address, last active date, status (app creator or user), number of apps created by an app creator, and current role
+Update team member roles
+
+
+
+Add teams to an organization
+Add a team to an organization using a Google group.  
+
+Note: Google Workspace admins manage Google groups for an organization. 
+
+  To add a team to an organization:
+
+
+Access the Manage organization page.
+In the left navigation panel, select + > Add team from Google group.
+Select the Auth domain that defines the Google group.
+    Alternatively, you can add a new Auth domain to your account.
+Select the Google Group from the list of available groups.
+Click See Team Changes.
+Confirm the team changes.
+Click Create and update memberships.
+
+See also Define your team membership.
+
+Update team member roles in an organization
+Update team member roles to delegate the administration of each team to team administrators (team root and admin).  
+
+Note: Each team must have one team member assigned as team root.
+
+  To update team member roles in an organization:
+
+
+Access the Manage organization page.
+Select the team you want to update in the left navigation panel.
+In the Role column, select the new role from the drop-down list for one or more members of the team. See Supported roles for organization and teams.
+
+Delete teams in an organization
+
+Note: A team must be empty in order for it to be deleted from an organization.
+
+  To delete a team in an organization:
+
+
+Access the Manage organization page.
+Select the team you want to delete in the left navigation panel.
+In the team header, select  More > Delete.
+Confirm the delete operation at the prompt.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Explore the My team page
+Note: Teams are supported for Enterprise plans only.
+
+The My team page lets you manage and monitor your team. To access the page, select:
+
+Admin > My team in the top navigation
+My team from the account profile drop-down
+
+
+To view and manage policies for your team, see Manage governance policies​​.
+
+The My team page has the following tabs:
+
+
+
+Tab
+Description
+
+
+Members
+
+Manage team membership. Get answers to questions like:
+
+How many app creators are in my organization for a specified time period?
+How many app users for a specified time period?
+When was the last time an app creator was active?
+How many apps has each team member created?
+
+See Manage team membership.
+
+
+
+Shared Apps
+
+Share apps with your team. Get answers to questions like:
+
+How do I share samples with the team?
+Which apps have been shared with everyone on the team?
+Which public templates are available to the team? 
+
+See Share resources with your team.
+
+
+
+Shared Data
+
+Share data with your team. Get answers to questions like:
+
+Which data sources have been shared with my team?
+Which domains are associated with my team?
+
+See Share resources with your team.
+
+
+
+
+
+Security
+
+View security summary for team members. Get answers to questions like:
+
+Which authentication methods have app creators allowed?
+Which data sources are app creators using and which apps are using the data?
+
+See View security for your team.
+Note: Team root or admin only.
+
+
+
+Usage
+
+Monitor team usage. Get answers to questions like:
+
+How many apps has my team created?
+How many apps are being used (by user or email)?
+How many monthly active users of an app?
+
+See Monitor your team.
+Note: Team root or admin only.
+
+
+
+Billing
+
+Monitor detailed user information for billing purposes. Get answers to questions like:
+
+Who has accessed apps owned by members of my team?
+What apps have they accessed?
+When was the last time that a user accessed those apps?
+
+See Monitor your team.
+Note: Team root or admin only.
+
+
+
+Settings
+
+Configure team settings, such as app creation restrictions and public app owner. Get answers to questions like:
+
+How do I restrict who can create apps in my team?
+How do I restrict the recipient list for outgoing emails sent by apps in my team?
+
+See Configure team settings.
+Note: Team root or admin only.
+
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Manage team membership 
+
+Note: Teams are supported for Enterprise plans only.
+
+
+Use the Members page to view current team member details and usage, and manage team membership.
+To access the Members page:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Members tab.
+
+
+As shown in the figure above, the Members page allows you to:
+
+View total counts for the following:
+    
+App creators: all users that have created an app
+Other accounts: all users that have opened an AppSheet app
+
+
+
+Click Manage team to define your team membership.
+
+View the sum total of app creators and app users (that is, other members) by month that have created an app or opened an app created by an existing member. 
+    
+The members sum indicated in the chart represents a running total of users and does not represent “active users” in the given month/year.
+
+
+
+Click Download membership data to download membership data for all team apps as a CSV file. See Monitor team membership.
+
+Under App Creators, expand a panel to view more information about an app creator. 
+In the expanded panel, you can:
+    
+View account creation date, number of apps, primary authentication source, last active date, subscription plan, and number of licenses. For AppSheet Core subscription plans, you can also view whether the AppSheet Core security setting is enabled.
+Click Details to view more details for a team member. See View team member details.
+Click Transfer app ownership or Transfer AppSheet database ownership to transfer app or database ownership to another team member. See Transfer apps and databases between team members.
+Click Delete to delete a team member account. Alternatively, you can remove team members from the Google Group.
+
+
+
+Under Other Accounts, view the email addresses of all app users that have used an app created by an app creator on the team.
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Define your team membershipDefine your team membership based on the following:
+
+Google Workspace organization - All users in a Google Workspace account, regardless of organizational unit, domain, or group, are team members. 
+Private domain - All users in a private domain (such as @mycompany.com). Note: Only private domains are supported at this time; adding a public domain to a team is not supported.
+Google Group - Users in a Google Group within your organization are team members.
+    
+Note: You must have team root permissions to define your team membership using a Google Group.
+
+
+
+Define team membership using a Google Workspace organization or private domain
+If your team membership is defined using a Google Workspace organization or private domain, it will be set up automatically for you and at least one user will be assigned as team root. No further action is required.
+Define team membership using a Google Group
+
+Each team must have at least one user assigned as team root. When you create a new team, your account is automatically moved to the new team and assigned as team root. If you are the only team root account on the existing team, before you define a new team you need to contact support and request a second user be assigned as team root. Otherwise, you will be prevented from defining a new team and the following message will be displayed: 
+
+Creating a new team is not allowed because it would leave your current team without a root user.
+
+To define team membership using a Google Group:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Members tab.
+Click Manage Team.
+Select Create team from group.
+Select your Auth Domain (or add a new source).
+Select the Google Group from the list of available groups.
+Click See Team Changes.
+Confirm the team changes.
+Click Create and update memberships.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Remove team membersRemove a team member by removing them from the Google group, as described in Remove members from a group. 
+
+It can take up to 24 hours before the AppSheet Members page shows the removal of the team member. 
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Delete team member accounts
+Important:
+Deleting a user account is permanent and non-recoverable. If you do not want to delete the apps or databases owned by this account, transfer them before deleting the account. 
+
+
+Note: You must have team root permissions to delete a team member.
+
+To delete a team member:  
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Members tab.
+Expand the user section.
+Click Delete.
+At the prompt, confirm the deletion.
+
+
+To automate the removal of team members using the API, see Automate the removal of team user accounts.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Configure team settings
+Note: Teams are supported for Enterprise plans only.
+
+Configure the following team settings:
+
+Restrict who can create apps
+Restrict the recipient list for outgoing email
+Set the public app owner
+Set the AppSheet session length
+
+Restrict who can create apps
+You can restrict app creation to a specific Google Group. 
+Note: Before you can restrict who can create apps, you must create an Auth Domain and share it with your team.
+To restrict who can create apps:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Settings.
+
+
+     
+Select a Google Group from the drop-down.
+Click Save.
+
+Restrict the recipient list for outgoing email
+Define the outgoing email allowlist that specifies the domains or email addresses that AppSheet is allowed to send emails to. 
+You can define a maximum of 20 domains or email addresses. To enable emails to be sent back to AppSheet, include appsheet.com in the allowlist.
+
+An empty allowlist enables outgoing email to be sent to any domain or email address.
+
+If an email is directed to a domain or email address that is  restricted (not defined in the allowlist), it is removed before the email is transmitted to the AppSheet email provider. Email violations in automations are logged in the Audit History as an OutgoingEmailAllowListViolations property.
+To restrict the recipient list for outgoing email:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Settings.
+Enter a comma-separated list of domains or email addresses in the Outgoing email allowlist field.
+    
+Note: Do not enclose values in quotes.
+
+
+     
+Click Save.
+
+The setting take effect immediately.
+Set the public app owner
+Note: This feature is available in the Enterprise Standard and Enterprise Plus plans.
+App users can identify the app owner when reviewing the app Terms and Privacy Policy. As an admin of an organization, you might identify scenarios where you'd rather not expose the app creator's individual email, especially if the app is used by an external audience or by a large audience within your company.  
+To set the public app owner:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Settings.
+
+
+     
+Enter the email address of a team member in the Public App Owner field.
+Click Save.
+
+After enabling the Public App Owner setting for your team, app creators on your team can toggle the Use Public Owner setting in their apps. When enabled, the public app owner will be displayed to users of that app. By default, this setting is set disabled. 
+
+Open an app in the app editor.
+Select Info > Properties.
+Expand the Information for App Users section.
+Enable Use Public Owner.
+Note: The Use Public Owner property appears only if you have set the public app owner, as described above. 
+
+
+Set the AppSheet session length
+Control how long users can access AppSheet services without having to authorize AppSheet every time they are using the service. This setting applies to web (app editors and app users) and mobile app users.
+
+Note: This setting will take effect the next time the user needs to refresh their credentials.
+
+To set the AppSheet session length:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Settings.
+Enter a duration value that is suitable for the team in the User session duration field.
+    The default is 90 days. The minimum value is 1 hour and the maximum value is 90 days.
+Click Save.
+
+
+It is recommended that you set the Google services session length in Google Workspace (or an equivalent setting for your specific ID Provider, if available) to a value that is equal to or less than the AppSheet user session duration. In this case, when the AppSheet session expires the user will need to re-authenticate with Google services. 
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ View team member detailsTo view team member details:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Members tab.
+Expand the panel for a team member.
+Click Details.
+
+The Team Dashboard: User View is displayed, as shown below.
+
+View the following details for a team member:
+
+Subscription plan, status, and number of licenses. If the team member has an Enterprise account, the status is Active.
+App summary information including:
+    
+App icon
+Links to live and editable version of the app
+Status of the app (icon meanings described below)
+Total number of monthly users with links to app usage statistics and Audit History logs for monitoring app activity
+Minimal subscription plan needed for the app based on the features used
+
+
+Status icons for an app can include one or more of the following:
+    
+
+
+Icon
+Description
+
+
+
+App is runnable.
+
+
+
+App is not runnable.
+
+
+
+App is a prototype.
+
+
+
+App is deployed.
+
+
+
+App is secure.
+
+
+
+App is not secure.
+
+
+
+App is marked for personal use.
+
+
+
+
+Click Email me an app summary report to recieve a report that includes a list of all the apps owned by the creator, the number of monthly users for each app, and links to the app.
+Authentication, integration services, and data sources enabled by the app creator. App creators can use sources shared with their team, and also define sources at the individual account level. Policies can be created to restrict the authentication, integration services, or data sources available to app creators.
+All apps owned by the app creator including links to the live and editable version of the app, status of the app (icon meanings described above), and action and info links (described below).
+Actions links to install the app on your device or copy the app and open it in the AppSheet app editor.
+Note: If you don't have access to the data sources used by the app creator, then copying an app will result in an error.
+
+Monitoring links to view: 
+
+Audit History. See Monitor app activity using Audit History.
+App performance. See Monitor app performance using the Performance Profile.
+App versions. See View or restore a version of your app.
+App usage. See Monitor app usage statistics. 
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Share resources with your team
+Note: Teams are supported for Enterprise plans only.
+
+Share the following resources with your team:
+
+Share authoring of apps
+Share authoring of databases
+Share sample apps with your team
+Share data sources with your team
+Share integrations with your team
+Work with Shared Drive
+
+See also Share sample apps in your public portfolio.
+Share authoring of apps
+
+Team root and admin accounts can access all team apps regardless of whether or not they are shared.
+
+AppSheet app creators can share app authoring with individual team members. For details, see Share: The Essentials.
+Share authoring of databases
+AppSheet database creators can share database authoring with individual team members. For details, see Share databases.
+Share sample apps with your team
+You can share sample apps with your team configuring your team or your app. Your team sample apps can be viewed or copied (but not modified) on the My Team page by anyone on the team.
+Note: Apps must be deployed before you can share them with your team.
+Share sample apps when configuring your team
+To share a sample app with your team when configuring your team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Shared Apps.
+Click Add a team sample.
+
+
+Click the sample that you want to share with your team.
+
+Share sample apps when configuring your app
+To share a sample app with your team when configuring your app:
+
+Sign in to AppSheet.
+Open the app in the app editor.
+Select Manage > Author.
+Expand the Team Work section.
+Turn on Make this a team sample?
+To hide the app definition details from team members in the team portfolio, turn on Hide app definition. In this case, team members won't have the option to view the app details.
+Click Change visibility.
+
+Share data sources with your team
+To share a data source with your team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Shared data.
+Click + New Data Source and follow the prompts to add a new data source.
+After the data source is added, select  More > Share with my team in the More menu.
+Note: To hide a shared data source from your team, select Hide from Team in the More menu.
+
+
+
+    A copy of the data source appears under Team Sources. For example:
+
+
+
+Team members can view all shared data sources by selecting My team > Shared Data.
+ 
+
+
+Share integrations with your team
+When adding integration points on the My account > Integrations tab, such as auth domains, object stores, inbound and outbound channels, or app services, you can share those integrations with your team by selecting    More > Share with team after you add the integration.
+
+
+In addition, you can set an auth domain as the team default by selecting   More > Make team default after you share the auth domain with your team.
+
+See also:
+
+Domain integration: The Essentials
+Understand Cloud Object Stores
+API integration points in AppSheet
+
+Work with a shared drive
+Many AppSheet users use a Google Drive as their cloud file system. 
+Google Drive has a feature called a shared drive that allows a team of users to share a common cloud folder hierarchy. When appropriately configured, each user sees not only My Drive, but also one or more shared drives. AppSheet apps can also utilize data from a shared drive.
+Use a spreadsheet from a shared drive
+When choosing to add a spreadsheet as a table in your app, the Google file picker will automatically show you any available shared drives in addition to My Drive. Simply browse into a shared drive and select a spreadsheet. AppSheet will work seamlessly with that data.
+Use a shared drive as the root folder of an account
+Every AppSheet account has a Default folder path, which is defined on the My account > Settings page. The root folder path defaults to /appsheet/data. 
+Every app created by your account results in a subfolder created within that root folder. For example, an application called MySales for user 123456 will result in a folder of the form /appsheet/data/MySales-123456.
+This root folder path can be configured to use a shared drive. This is useful for managing many apps in a team. By ensuring that the application folders live in a shared drive, the organization can ensure that apps can be easily transferred and will continue to run, even if the original app creator leaves the organization.
+
+  For example, let us assume that there is a shared drive called MyTeamDrive associated with the Google Drive of the AppSheet account. The AppSheet root folder path can be configured as /[TeamDrive]MyTeamDrive/appsheetdata. When a new app is created in this account, it will have a folder called /appsheetdata/MySales-123456 created within the MyTeamDrive shared drive.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ View security for your team
+Notes:
+
+Teams are supported for Enterprise plans only.
+You must have team root or admin permissions to view security for your team.
+
+
+View primary authentication method and data sources used by team members.
+To view security for your team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Security tab.
+Expand the section for a member to view more details.
+
+For example:
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Monitor your team
+Note: Teams are supported for Enterprise plans only.
+
+Monitor your team as described in the following sections:
+
+Monitor team app activity by using Audit History
+Monitor AppSheet database activity
+Monitor team app usage by email
+Monitor team app usage by user
+Monitor team membership
+
+Monitor team app activity by using Audit History
+To monitor team app activity using Audit History:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Usage.
+Expand the details for a specific user.
+Click Log for an app to view related activity by using Audit History.
+
+See also Monitor app activity using Audit History.
+
+As the team root or admin, you can export Audit History logs for your team to BigQuery as described in Export team audit logs to BigQuery.
+
+Monitor AppSheet database activity
+To monitor AppSheet database activity:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Usage.
+Expand the details for a specific user.
+Click Log for an AppSheet database to view related activity in the database audit log.
+
+See also Manage and monitor databases in your account.
+Monitor team app usage by email
+Monitor team app usage by email. See also Monitor app usage statistics.
+In this report, if a user signs in to AppSheet using multiple identity providers, app usage for each email is logged separately.
+
+Note: You must have team root or admin privileges to access team app usage by email.
+
+
+Use the UI
+
+
+To monitor team app usage by email using the AppSheet UI:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Usage.
+To download usage data for all team apps as a CSV file, click Download usage data.
+To view usage data for a specific app:
+          
+Expand the app details for a specific user.
+Click x monthly users under the Usage column for an app to view relevant usage details.
+
+
+
+
+
+
+Use the API
+
+
+To monitor your team app usage by email using the API, issue a GET request to:
+https://www.appsheet.com/api/v2/admin/reports/usage
+Headers
+You must pass the AccessKey and UserId headers, as described in Manage and monitor your team using the API.
+Example
+For example:
+curl https://www.appsheet.com/api/v2/admin/reports/usage \
+          -X GET \
+          -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte" \
+          -H "UserId: 1234567"
+If successful, the API call returns 200 OK and the CSV is downloaded to your local drive in the current directory.
+
+
+
+The team app usage CSV file contains the following columns.
+
+
+
+
+Column
+
+
+Description 
+
+
+Example
+
+
+
+
+User Id
+
+
+User account ID for the team member that accessed the app.
+The total number of User Ids in a report is equivalent to the total number of AppSheet app owners (different from billable users).
+
+
+1234567
+
+
+
+
+User Email
+
+
+Email for the team member that accessed the app.
+The total number of User Emails in a report is equivalent to the total number of AppSheet app owners (different from billable users).
+
+
+user@example.com
+
+
+
+
+App ID
+
+
+ID of the app that was accessed.
+The total number of App Ids in a report is equivalent to the total number of AppSheet apps in the team account, regardless of their deployment status.
+
+
+6fb80a26-04ae-4b96-8d27-4bc851e0cf2c
+
+
+
+
+App Internal Name
+
+
+Internal name of the app that was accessed.
+The total number of App Internal Names in a report is equivalent to the total number of AppSheet apps in the team account, regardless of their deployment status.
+
+
+MyFirstApp
+
+
+
+
+Install link
+
+
+Link to install app on mobile device.
+
+
+https://www.appsheet.com/newshortcut/6fb80a26-04ae-4b96-8d27-4bc851e0cf2c
+ 
+
+
+
+
+Browser link
+
+
+Link to access app in a browser.
+
+
+https://www.appsheet.com/start/6fb80a26-04ae-4b96-8d27-4bc851e0cf2c
+
+
+
+
+Runnable?
+
+
+Flag that specifies whether the app is able to run. For example, if there is an error in your app preventing it from being run, this flag is set to FALSE.
+
+
+TRUE
+
+
+
+
+Deployed?
+
+
+Flag that specifies whether the app is deployed. See Deployment.
+
+
+TRUE
+
+
+
+
+Public Sample?
+
+
+Flag that specifies whether the app is a public sample. See Share sample apps in your public portfolio.
+
+
+TRUE
+
+
+
+
+Team Sample
+
+
+Flag that specifies whether the app is a team sample. See Share team sample apps.
+
+
+TRUE
+
+
+
+
+Secure
+
+
+Flag that specifies whether the app is secure. See How to require user sign-in.
+
+
+TRUE
+
+
+
+
+Auth Provider
+
+
+Authorization provider used by the app. See How to require user sign-in.
+
+
+google
+
+
+
+
+Allow all signed-in users
+
+
+Flag that specifies whether all signed-in users are able to access the app. See Share your app with all signed-in users.
+
+
+FALSE
+
+
+
+
+Monthly users
+
+
+Total active users in current monthly billing cycle. An active user is anyone who accessed your app within the last 30 days. See also What is an active user?
+
+
+10
+
+
+
+
+Most recently used
+
+
+Date and timestamp that the app was most recently used in the last month. Useful for time-based reporting such as confirming that an app is no longer being accessed after it is deprecated.
+
+
+12/2/2021 10:33:56 AM
+
+
+
+
+Least recently used
+
+
+Date and timestamp that the app was first used in the last month. Useful for time-based reporting such as determining when a new app was first accessed.
+
+
+11/11/2021 2:19:36 PM
+
+
+
+
+App Public Name
+
+
+Public name of app. See Customize the About page.
+
+
+My App
+
+
+
+
+Version
+
+
+Version of app. See Customize the About page.
+
+
+1.000005
+
+
+
+
+Short description
+
+
+Short description of the app. See Customize the About page.
+
+
+Sample App
+
+
+
+
+Description
+
+
+Description of the app. See Customize the About page.
+
+
+A sample app with sample data
+
+
+
+
+User Guidance
+
+
+App user guidance. See Customize the About page.
+
+
+Some user guidance
+
+
+
+
+About Url
+
+
+URL for about app information. See Customize the About page.
+
+
+about.example.com
+
+
+
+
+Privacy policy Url
+
+
+URL for app privacy policy. See Customize the About page.
+
+
+privacy-policy.example.com
+
+
+
+
+Category
+
+
+Category of the app. See Customize the About page.
+
+
+Tracking Apps
+
+
+
+
+Function
+
+
+Function of the app. See Customize the About page.
+
+
+Inventory Management
+
+
+
+
+Industry
+
+
+Industry for the app. See Customize the About page.
+
+
+Retail
+
+
+
+
+Purpose
+
+
+Purpose of the app. See Customize the About page.
+
+
+Track item details and log incoming and outgoing inventory amounts.
+
+
+
+
+Design Details
+
+
+App design details. See Customize the About page.
+
+
+Some design details
+
+
+
+
+Reference Url
+
+
+URL for app reference information. See Customize the About page.
+
+
+reference-url.example.com
+
+
+
+
+Owner Id
+
+
+Account ID of app owner.
+
+
+1899830
+
+
+
+
+Monitor team app usage by user
+Monitor team app usage by user.
+In this report, if a user signs in to AppSheet using multiple identity providers, app usage for each email is grouped together and logged as a single user. In this way, the team app usage accurately reflects the total usage by a single user.
+
+Notes:
+
+You must have team root or admin privileges to access team app usage by user.
+You can access up to 30 days of billing information.
+You can disregard the User ID column that is returned in this report. It has no relevance and does not equate to the number of licenses required.
+
+
+
+Use the UI
+
+
+To monitor team app usage by user:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Usage.
+To download billing information for all team apps as a CSV file, click Download billing data.
+Expand the plan details for a specific user to view more information.
+
+
+
+
+Use the API
+
+To monitor team app usage by user using the API, issue a GET request to:
+https://www.appsheet.com/api/v2/admin/reports/billing
+Query parameters
+Optionally, you can pass the following as query parameters. If not specified, billing information is returned for the last 30 days.
+
+
+
+
+Query parameter
+
+
+Description
+
+
+
+
+startDate
+
+
+Start date for the billing information. The value must be in the following URL-encoded form: M%2FD%2FYYYY 
+For example:
+1%2F1%2F2021 (1/1/2021)
+
+
+
+
+endDate
+
+
+End date for the billing information. The value must be in the following URL-encoded form: M%2FD%2FYYYY 
+For example:
+1%2F1%2F2021 (1/1/2021)
+
+
+
+
+Headers
+You must pass the AccessKey and UserId headers, as described in Manage and monitor your team using the API.
+Example
+For example:
+curl https://www.appsheet.com/api/v2/admin/reports/billing \
+        -X GET \
+        -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte" \
+        -H "UserId: 1234567"
+If successful, the API call returns 200 OK and the CSV is downloaded to your local drive in the current directory.
+
+
+The team app usage CSV file contains the following columns.
+
+
+
+
+Column
+
+
+Description 
+
+
+Example values
+
+
+
+
+User Id
+
+
+
+Note: You can disregard the User ID column that is returned in this report. It has no relevance and does not equate to the number of licenses required.
+
+
+
+1234567
+
+
+
+
+User Email
+
+
+Email for the team member that accessed the app.
+The total number of User Emails in a report is equivalent to the total number of AppSheet users for the billing period.
+
+
+user@example.com
+
+
+
+
+App Count
+
+
+Number of apps that the user has accessed or edited.
+
+
+10
+
+
+
+
+Deployed App Count
+
+
+Number of deployed apps that the user has accessed or edited.
+
+
+9
+
+
+
+
+App Names
+
+
+Comma-separated list of apps that the user has accessed.
+
+
+App1, App2, App3, …
+
+
+
+
+Last access
+
+
+Date and timestamp of the user's last access. Useful for time-based reporting.
+
+
+12/2/2021 10:33:56 AM
+
+
+
+
+Monitor team membership
+Monitor detailed team membership information for governance and management purposes.
+
+Note: You must have team root or admin privileges to monitor team membership.
+
+
+Use the UI
+
+To monitor team membership using the AppSheet UI:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click Members.
+To download membership data for all team apps as a CSV file, click Download membership data.
+To view details for a specific team member, expand the associated section
+
+
+
+Use the API
+
+
+To monitor your team membership by using the API, issue a GET request to:
+https://www.appsheet.com/api/v2/admin/reports/membership
+Headers
+You must pass the AccessKey and UserId headers, as described in Manage and monitor your team using the API.
+Example
+For example:
+curl https://www.appsheet.com/api/v2/admin/reports/membership \
+          -X GET \
+          -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte" \
+          -H "UserId: 1234567"
+If successful, the API call returns 200 OK and the CSV is downloaded to your local drive in the current directory.
+
+
+
+The monitor team membership CSV file contains the following columns.
+
+To distinguish between app creators and app users, note that app users won't ever have an entry for Last App Edit or an app count of 0.
+
+
+
+
+
+Column
+
+
+Description 
+
+
+Example values
+
+
+
+
+User Id
+
+
+User account ID for the team member that accessed the app.
+The total number of User Ids in a report is equivalent to the total number of AppSheet team members (different from AppSheet users).
+
+
+1234567
+
+
+
+
+User Email
+
+
+Email for the team member that accessed the app.
+The total number of User Emails in a report is equivalent to the total number of AppSheet team members (different from AppSheet users).
+
+
+user@example.com
+
+
+
+
+User Name
+
+
+Name of the user.
+If a recipient is sent an email team invitation and they manually accept it in the email, their display name will appear in this column. If, however, the admin use the Adopt my entire domain feature, then this column is empty for signed-in users.
+
+
+ 
+
+
+
+
+User Plan
+
+
+Subscription plan.
+
+
+Core (Google Workspace)
+
+
+
+
+User Role
+
+
+Role of user, such as Member, Admin, Root.
+
+
+Member
+
+
+
+
+Date Created
+
+
+Date and timestamp that the user was created.
+
+
+12/2/2020 10:33:56 AM
+
+
+
+
+Last App Edit
+
+
+Last time an app was edited by the user.
+
+
+11/11/2021 2:19:36 PM
+
+
+
+
+App Count
+
+
+Number of apps owned by the user.
+
+
+10
+
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Export team audit logs to BigQuery
+ Notes:
+
+Teams are supported for Enterprise plans only.
+Only team root or admin can export team audit logs to BigQuery
+
+
+To monitor recent activity for a team app, you can use AppSheet's Audit History, as described in Monitor team app activity using Audit History.
+Alternatively, you can export the Audit History logs for your team to BigQuery to manage and analyze the data.
+Benefits of using BigQuery include:
+
+Monitor recent activity across multiple team apps 
+Use your existing monitoring tools to analyze the data
+Query the Audit History logs for specific data across team apps
+Extend the retention period for your AppSheet audit logs
+
+Export your team audit logs to BigQuery as described in the following sections:
+
+Configure the export of team audit logs to BigQuery
+Run a query on the exported data
+View and edit a team connection
+Delete a team connection
+
+Configure the export of team audit logs to BigQuery
+To configure the export of team audit logs to BigQuery, perform the following steps:
+
+Step 1: Create a BigQuery dataset in your Google Cloud project
+Step 2: Connect to the BigQuery dataset from your AppSheet team
+Step 3: Update the BigQuery dataset permissions in the Google Cloud console
+Step 4: Test the connection to the BiqQuery dataset
+
+Step 1: Create a BigQuery dataset in your Google Cloud project
+To create a BigQuery dataset in your Google Cloud project:
+
+In the Google Cloud console, on the project selector page, select or create a Google Cloud project.
+
+Go to Google Cloud console
+     
+Open the BigQuery page in the console.
+
+Go to the BigQuery page
+     
+Create a new dataset for your AppSheet data, as described in Creating datasets.
+    For example:
+
+
+
+Step 2: Connect to the BigQuery dataset from your AppSheet team
+To connect to the BigQuery dataset from your AppSheet team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Settings tab.
+Under Configure Audit Log Export, click Add a new export.
+Enter values for the following fields:
+     
+    
+
+
+
+
+Field
+
+
+Description
+
+
+
+
+GCP Project ID
+
+
+ID of your Google Cloud project. 
+
+
+
+
+BigQuery Dataset Name
+
+
+Name of the BigQuery dataset to connect to. For example: appsheet_logs
+
+
+
+
+Table Name
+
+
+Name of the table. Defaults to audit_log_export.
+
+
+
+
+
+
+Click Save.
+    AppSheet generates a new service account in an AppSheet-owned Google Cloud project. This service account is associated with your AppSheet team account. 
+Click Copy  to copy the service account name. It is needed in the next step.
+
+Step 3: Update the BigQuery dataset permissions in the Google Cloud console
+To update the BigQuery dataset permission in the Google Cloud console:
+
+Open the BigQuery page in the console.
+ 
+Go to the BigQuery page
+     
+Select the new BigQuery dataset in the Explorer panel.
+Select Sharing > Permissions.
+Click +Add principal.
+In the New Principals field, paste the service account name that you copied in the last step.
+In the Role drop-down, select BigQuery Data Editor.
+    Type the role name in the Filter Type to filter field to easily locate it in the list of roles.
+Click Save.
+
+After the BigQuery dataset permissions are updated, a new table, audit_log_export, is created for your dataset.
+ 
+
+Step 4: Test the connection to the BiqQuery dataset
+To test the connection to the BigQuery dataset:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Settings tab.
+Under Configure Audit Log Export, click Test associated with the configured export that you want to test.
+
+The following message displays if the connection is successful: Connection successful
+If an error is returned, ensure that the BigQuery dataset has been created and the appropriate permissions have been set.
+Run a query on the exported data
+
+AppSheet exports to BigQuery the Audit History logs for your team approximately every hour starting from the time the connection is configured between AppSheet and BigQuery.
+
+After you have configured the export of team audit logs to BigQuery, you can run an interactive or batch query on the dataset. 
+
+Rows added to BigQuery initially have a _PARTITIONTIME of null. If you use the default query set by BigQuery, you will not get results. 
+
+To run an interactive query:
+
+ Open the BigQuery page in the console.
+ 
+Go to the BigQuery page
+     
+Select the audit_log_export table for the BiqQuery dataset in the Explorer panel.
+Click Query > In new tab or Query > In split tab.
+Update the query details. (See the sample query below.)
+Click Run.
+
+Sample query
+The following sample query:
+
+Selects all columns from the audit_log_export table in the dataset-id dataset in the project-id project that have no _PARTIONTIME (new logs) or that were logged before the current date.
+
+    
+To populate project-id.dataset_id, you can copy the string by selecting More  > Copy ID for the dataset in the BigQuery Explorer panel. The result will include both values in the proper format.
+
+
+Orders the events so that the most recent are first.
+Limits the results to 1000 events. 
+
+
+
+SELECT
+       *
+      FROM
+       `project-id.dataset-id.audit_log_export`
+      WHERE
+       _PARTITIONTIME IS NULL OR DATE(_PARTITIONTIME) <= CURRENT_DATE()
+      ORDER BY OperationTimestamp DESC 
+      LIMIT 1000;
+
+
+Sample query results 
+The following shows the Query results: 
+
+View and edit the audit log export configuration for a team
+To view and edit the audit log export configuration for a team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Settings tab.
+Under Configure Audit Log Export, click the configured export that you want to edit.
+    The Edit audit log export dialog displays. 
+Edit the configured export details.
+Click Save.
+
+Delete an audit log export configuration for a team
+To delete an audit log export configuration for a team:
+
+Sign in to AppSheet.
+Select My team in the account profile drop-down.
+Click the Settings tab.
+Under Configure Audit Log Export, click Delete  associated with the configured export that you want to delete.
+When prompted, confirm the action.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Transfer apps and databases between team members
+Note: Teams are supported for Enterprise plans only.
+
+As a team root, you can transfer apps and databases between team members. For example, you might need to do this when a user leaves an organization before deleting their account. 
+See also Automate the removal of team user accounts using the API.
+Transfer apps between team members
+
+Note: You must have team root permissions to transfer apps between team members.
+
+To transfer apps between team members:
+
+Sign in to AppSheet using your team root account.
+Select My team in the account profile drop-down.
+Click the Members tab.
+Expand the team member whose apps you want to transfer.
+Click Transfer app ownership.
+    The Transfer apps dialog displays. 
+Select the account that the apps will be transferred to in the Transfer apps to drop-down.
+Click Transfer.
+
+Transfer databases between team members
+
+Note: You must have team root permissions to transfer apps between team members.
+
+To transfer databases between team members:
+
+Sign in to AppSheet using your team root account.
+Select My team in the account profile drop-down.
+Click the Members tab.
+Expand the team member whose databases you want to transfer.
+Click Transfer AppSheet database ownership.
+    The Transfer AppSheet databases dialog displays. 
+Select the account that the databases will be transferred to in the Transfer AppSheet databases to drop-down.
+Click Transfer.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Organize data for teams
+Note: Teams are supported for Enterprise plans only.
+
+This section describes best practices for organizing application data across a team of app creators. It provides recommendations for two commonly used data sources: Google Drive and Microsoft O365. Both scenarios share the same common objectives:
+
+Ensure data is retained independently of individual accounts
+Control who can directly access data
+Minimize disruption when an app is transferred to a new owner
+Enable collaboration on applications between multiple app creators
+
+There are two main factors to consider: 1) Where to store data; 2) Who can own applications. Using a shared data source ensures data will be available regardless of an individual’s account status.
+Apps can be owned by individuals or by a central service account. In both cases, the app owner can add co-authors. Co-authors access shared apps from their individual accounts and have full access to the shared app definitions. 
+Maintaining ownership of apps in a central service account can be advantageous if the app contributors change frequently. However, it introduces additional steps when making new applications and requires an additional account to be created.
+Applications owned by an individual can be transferred to a new owner when necessary. By using a shared data source, transferring applications between owners is easy and does not require migration of any data. This is generally more efficient, but the AppSheet admin must transfer apps before closing an app owner’s account.
+Example organization of applications and data
+
+Google Sheets
+The following section describes how to configure an AppSheet account to use a Shared Drive as the default file storage location.
+Create a Shared Drive
+Create a Shared Drive where you will store data used by AppSheet applications. Add members that will create and own applications. End users do not need to be added. Access for end users will be via the app and controlled by settings chosen by the app creator. 
+Set the default file storage location
+The default file storage location can be set for an individual user’s account. When a user creates a new app, AppSheet creates a folder in this location to store files associated with the app (such as uploaded image or  email templates). After the app is created, the file storage location can be modified for the app independently of the account default.
+To set the default file storage location for a user’s account, navigate to My account > Settings > Default folder path. 
+To set the default file storage location for an individual app, open the app and navigate to Info > Properties > App Properties > Default app folder .
+Working with Google Drive describes how to set a Shared Drive as the default file storage location for a user’s account. The same general process can be used to set the default location for an individual app.
+Update existing applications
+Google does not currently support moving folders from an individual My Drive location to a Shared Drive location. A work-around if you already have apps based on data in My Drive is as follows:
+
+Follow the steps above to update the app owners default file storage location to the Shared Drive.
+Open the app to be moved and navigate to Manage > Author.
+Click Copy App and set the Save app to dropdown to Google.
+
+AppSheet will create a copy of the app definition and the associated data. The data will be saved to the default file storage location for the user’s account. 
+The process can be combined with an app upgrade if it is important to maintain the same links for end-users to access the application.
+Microsoft O365
+The following section describes how to configure an AppSheet account to use a SharePoint site as the default file storage location.
+Create a SharePoint location
+Create a SharePoint location where you will store data used by AppSheet applications. Add members that will create and own applications. End users do not need to be added. Access for end users will be through the app and controlled by settings chosen by the app creator. 
+Get the SharePoint Site ID
+To determine the SharePoint Site ID for the target folder, see Archive email attachments to MicroSoft Powerpoint.
+Note: the SharePoint Site ID will have double forward slashes //.
+Set the default file storage location
+The default file storage location can be set for an individual user’s account. When a user creates a new app, AppSheet creates a folder in this location to store files associated with the app (e.g. uploaded images, email templates). After the app is created, the file storage location can be modified for the app independently of the account default.
+To set the default file storage location for a user’s account, navigate to My account > Settings > Default folder path. 
+To set the default file storage location for an individual app, open the app and navigate to Info > Properties > App Properties > Default app folder.
+Copy the SharePoint Site ID obtained above and paste into the desired location.
+Update existing applications
+There are two methods to move an app’s data from OneDrive to SharePoint.
+Move the data and update each table with the new data location:
+
+Navigate to the app’s folder in OneDrive.
+Right click the folder and select Move to.
+Specify the new folder in SharePoint and click Move here.
+After the data is moved, open the app and navigate to Data > Tables.
+For each table
+    a) Expand the Storage section.
+    b) Click Source Path and locate the spreadsheet in its new SharePoint location.
+    c) Click Worksheet Name/Qualifier and specify the correct worksheet for the table.
+
+Update the app owners default file storage location and copy the app:
+
+Follow the steps in this section to update the app owner’s default file storage location to SharePoint
+Open the app to be moved and navigate to Manage > Author.
+Click Copy App and set the Save app to drop-down to office365.
+
+AppSheet will create a copy of the app definition and the associated data. The data will be saved to the default file storage location for the user’s account. 
+The process can be combined with an app upgrade if it is important to maintain the same links for end users to access the application.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Manage and monitor your team using the API
+
+Notes:
+
+Teams are supported for AppSheet Enterprise accounts only.
+You must be team root or admin to manage and monitor your team using the API.
+
+
+You can use the AppSheet API to to perform the following tasks:
+
+Monitor app usage by email
+Monitor app usage by user
+Monitor team membership
+Automate the removal of team users accounts
+
+If your team user accounts are managed by your Google Workspace organization, don't use the API to automate the removal of team users accounts. To control access to AppSheet by users in the organization, see Turn AppSheet on or off for users.
+
+
+
+The following sections provide general guidance for using the AppSheet API to monitor and manage teams:
+
+Required headers
+Use curl
+
+Required headers
+To call the AppSheet team APIs, you need to pass the following headers:
+
+
+
+
+Header
+
+
+Description
+
+
+
+
+AccessKey
+
+
+API key.
+To generate an API key:
+
+Navigate to My Account > Settings.
+Under API Settings click Generate Api Key.
+Click Save.
+
+
+
+
+
+UserId
+
+
+Your user account ID.
+
+
+
+
+Use curl
+The examples throughout the documentation use curl to demonstrate how to use the AppSheet API. curl is an open source, command-line tool for transferring data with URL syntax, supporting common protocols such as HTTP and HTTPS.
+The following table summarizes the curl command-line options used in the examples.
+
+
+
+
+Option
+
+
+Description
+
+
+
+
+-H
+        --header
+
+
+Defines a request header. See Required headers.
+
+
+
+
+-X
+
+
+Specifies the type of request (GET, POST, and so on).
+
+
+
+
+The following provides an example AppSheet API call using curl:
+curl https://www.appsheet.com/api/v2/admin/reports/usage \
+    -X GET \
+    -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte" \
+    -H "UserId: 1234567"
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Automate the removal of team user accounts
+
+If your team user accounts are managed by your Google Workspace organization, do not use the API to automate the removal of team users accounts. To control access to AppSheet by users in the organization, see Turn AppSheet on or off for users.
+ 
+If your app is connected to one or more AppSheet databases, you'll need to transfer the database to a new owner using the app editor, as described in Transfer databases between team members.  This step cannot be automated using the API at this time. 
+
+When a user leaves the organization, you can automate the removal of their user account using the AppSheet API to transfer app ownership and delete the user account as described in the following sections.
+
+Notes:
+
+Teams are supported for AppSheet Enterprise accounts only.
+You must have team root or admin permissions to use the APIs and be on the same team as the referenced user accounts.
+
+
+Transfer app ownership
+To transfer ownership of all apps owned by a user account to another user account within a team issue a POST request to the following API:
+https://www.appsheet.com/api/v2/admin/apps/transferall?oldOwnerId=id&newOwnerId=id
+Query parameters
+You must pass the following as query parameters:
+
+
+
+
+Query parameter
+
+
+Description
+
+
+
+
+oldOwnerId
+
+
+User account ID for the current owner.
+
+
+
+
+newOwnerId
+
+
+User account ID to which you want to assign all apps.
+Note: The users must be members of the same team.
+
+
+
+
+Headers
+You must pass the AccessKey and UserId headers, as described in Manage and monitor your team using the API.
+Example
+For example:
+curl https://www.appsheet.com/api/v2/admin/apps/transferall?oldOwnerId=14853665&newOwnerId=14853667 \
+    -X POST \
+  -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte" \
+    -H "UserId: 1234567"
+If successful, the API call returns 200 OK.
+Delete the user account
+
+Note: Deleting a user account is permanent and non-recoverable. If you do not want to delete the apps owned by this account, transfer them before deleting the account.
+
+To delete a user account issue a POST request to the following API:
+https://www.appsheet.com/api/v2/admin/users/delete?userId=id
+Query parameter
+You must pass the following as query parameters:
+
+
+
+
+Query parameter
+
+
+Description
+
+
+
+
+userId
+
+
+User account ID that you want to delete.
+
+
+
+
+Headers
+You must pass the AccessKey and UserId headers, as described in Manage and monitor your team using the API.
+Example
+For example:
+curl https://www.appsheet.com/api/v2/admin/users/delete?userId=14853665 \
+    -X POST \
+    -H "AccessKey: DcTx1-TFq3c-7ka6t-PcnnI-7d0dO-M4wTm-vWwx0-1KBte"
+    -H "UserId: 1234567"
+If successful, the API call returns 200 OK.
+   Was this helpful?How can we improve it?YesNoSubmit   
+

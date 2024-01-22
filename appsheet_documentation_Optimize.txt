@@ -1,0 +1,808 @@
+ App performance: Core conceptsIn order to make apps run faster, you need to first understand some core concepts.
+Ideally, the users of an app should never need to wait for the app to sync data or react to inputs. A well-tuned AppSheet app can come close to achieving this ideal.
+AppSheet apps run on a mobile device or browser. All the table data used in the app is maintained in a local copy on the device or browser. This local copy allows the app to be interactive, responsive, and run offline. The platform needs to ensure that this local data copy stays in Sync with the true source of the data which is in a cloud data provider (like Google Drive or Office365 or SQLServer). 
+The following sections provide considerations for improving app performance:
+
+Latency versus throughput
+Improve the speed of sync
+Improve app performance
+Performance considerations for common data sources
+
+Latency versus throughput
+When we refer to the performance of the app, we typically mean the responsiveness of the app as perceived by the end users of the app. The term latency means time spent waiting. App responsiveness is directly related to perceived latency. Our goal is to minimize latency perceived by end-users.
+As you understand how AppSheet apps work, you'll see that there are different systems communicating with each other. Each communication involves the transfer of data between the systems. In this context, latency refers to the time a system takes to initially respond to a request. The term throughput refers to the amount of data that can be transferred per second. So for example, to fetch a spreadsheet from Google Drive, the overall latency is the sum of the initial latency to respond to the request and then the time taken to make the actual data transfer. 
+Improve the speed of sync
+The AppSheet app cannot directly connect to the cloud data provider. Instead, it communicates to the AppSheet backend service (the AppSheet server in the figure below) which then acts as an intermediary to communicate with the cloud provider. This tiering is necessary for the sake of security but also has performance benefits. 
+Initially, let's consider the case of Sync in a read-only app. This behavior also occurs during initial launch of any app and in any app that has the Sync-On-Start option enabled.
+
+
+Read Step 1: When the app on the mobile device starts a sync, it requests data from the AppSheet Server. The AppSheet Server in turn requests data from the Cloud Provider. 
+Read Step 2: Once the AppSheet Server receives the data from the Cloud Provider, it computes any virtual columns defined and then returns the data to the app on the mobile device. The app stores the data on the mobile device. 
+
+Note that in step 1, the AppSheet Server may have to fetch many tables from the same or different Cloud Providers. In step 2, all the data is sent together to the app. Later, we will discuss various optimizations that can reduce the data transferred and the time taken in these steps.
+Now let's consider the case of an app that has made some data changes (to its local data copy) and is then invoking Sync. The app first sends each of the data updates in order to the AppSheet Server (steps 3 and 4 in the figure) and after that, it performs a read-only sync. 
+
+Write Step 3: the app sends each of the added, updated, and deleted data rows to the AppSheet Server. If you captured photos, drawings, or signatures, they are sent along with the data rows.
+Write Step 4: When the AppSheet Server receives this information, it writes the data back to the Cloud Provider. If there are any automations defined, they are also run (these will typically require that the updated rows be re-read from the Cloud Provider before executing the action).
+
+As an app creator, you can improve the speed  and performance of Sync. See:
+
+Improve the speed of Sync
+Improve the speed of Sync with data updates
+
+It might also be useful to review this community article: Obstacles with AppSheet for business due to large data
+Improve app performance
+In addition to optimizing sync performance, there are other key concepts and technical features to be familiar with when designing a performant app that can scale to many concurrent users:
+
+Format rules - Define rules to customize icons, text, and more. Format rules may require a lot of computation each time a screen is scrolled which directly affects interactivity. 
+Virtual columns - Automatically compute columns using an app expression. Since these are computed for each column and row and the expressions can be complex, there is usually a significant cost in performance if an app has a very high number of virtual columns. In general, it's best to minimize the number of virtual columns if possible.
+References - Data references are very useful for most applications for usability and to avoid data replication. However they can have a negative impact on performance if they are used excessively because each reference requires a virtual column and additional reads of the referenced data. Consider whether a reference is truly needed in the application before adding them.
+Data partitioning - Partitioning (dividing) your app’s data into multiple tables can have a positive effect on overall performance, regardless of backend data source type.
+
+
+Security filters - Provide a way to limit either user access or in general the amount of data being fetched from the back end data source. This can usually have positive effects on overall performance, but special considerations must be taken depending on the back end technology used:
+
+    
+Google Sheets - Apps with Sheets fetch the entire Sheet data and apply a filter on the server. If dealing with large amounts of data the performance impact could be negative because the security filter executes on a row-by-row basis.
+Cloud SQL - Security filters will be converted into a SQL statement and sent to the database. This can usually improve the performance, but if the expression is very complex the performance gains could be negligible because AppSheet converts whatever it can on the database and then the filter is (re)applied at the server.
+AppSheet databases - Security filters on AppSheet databases should typically improve the performance.
+
+
+Offline data and image caching - When dealing with large datasets, it’s also helpful to consider that offline caching can be affected, and even cause, the client device to crash if the device is limited on storage and memory.
+
+Performance considerations for common data sources
+In general the AppSheet platform dynamically scales horizontally to serve any size audience. Although the Google infrastructure on which AppSheet runs is equipped to handle extremely high levels of concurrent requests, including millions, the number of concurrent users that AppSheet can support is strictly governed by the scalability of the data source used in the app. 
+As an analogy, imagine a restaurant that could hypothetically allow unlimited patrons into the waiting area (AppSheet platform), but the kitchen and server staff and other resources, such as dining tables, and how much food available to cook (data source), is what dictates the overall restaurant capacity (that is, how many concurrent customers can be served at one time).
+
+  The following table provides performance considerations for the most common AppSheet data sources.
+
+
+
+
+
+Data source
+
+
+App performance considerations
+
+
+
+
+AppSheet databases
+
+
+AppSheet apps with an AppSheet database data source are:
+
+Easy to provision. It's as easy as creating a spreadsheet.
+Can potentially scale to higher capacities than Google Sheets.
+High concurrency with 100 requests per second.
+Quick sync is enabled by default for all apps that use AppSheet databases.
+
+Summary
+AppSheet databases combine the familiarity of editing data in a table-like structure with the performance and scale of a cloud database. 
+
+
+
+
+Google Sheets
+
+
+AppSheet applications using Google Sheets as a data source is very common and practical, especially for small to medium size applications. App creators performing large scale app deployments with Sheets data sources, however, should be mindful of how AppSheet uses the Sheets API so as not run into quota exhaustion issues. Here are some key details to note regarding quota usage:
+
+The Sheets API quota calculation is based on a per minute, per project, per user request basis.  
+All AppSheet apps access the API from a single Cloud project running the entire AppSheet environment.
+            
+This AppSheet project has an unpublished, increased quota that is occasionally updated as demand increases.
+Since individual AppSheet apps do not have their own Cloud projects, it is not possible to request a quota increase.  
+
+
+The per user quota calculation is typically based on the individual app creator’s credentials as the default access mode is to run as the app creator.
+
+Again, quota overruns are typically not seen with small to medium size Sheets-based applications, but application creators should take note of these API quota considerations when planning large scale deployments to serve many users simultaneously at peak times.
+Example apps and expected Sheets API quotas
+A Travel Approval app - A basic app for submitting travel approval requests.
+
+Runs continuously 24/7 for employees to submit their travel plans for approval. There are no significant usage peaks as the load is spread out over the entire day.
+The application’s data needs are also comparatively small. Typically just enough information cover travel details (travel dates, reason for travel, flight and hotel expenses, and so on).
+Since the data needs are small, and the traffic is spread out over time, running as app creator or app user access modes is not a large factor.
+Summary: Light risk. This app would likely not experience concurrency or quota issues with the Sheets API.
+
+A Daily Tasks app - An app to track multiple daily tasks for employees every morning.
+
+A large scale app with multiple users and large data amounts accessed during a specific time of the day.
+This app could experience issues with API quota limits, especially  if the app has peak usage spikes, such as in the morning in a specific region.
+Large data amounts could further compound the problem especially if each user is generating multiple tasks per usage, and if each task has multiple data fields.
+Due to high peak usage times and high data volume, this app could be impacted with API quota issues if a large number of people access the app within a minute.
+Additionally, if running with creator access mode, this will further compound the risk for quota overruns.
+Summary - High risk. This app would likely experience concurrency/quota issues with the Sheets API since it has peak usage times and processes large data amounts. This could still potentially be moderated if the app is running in user access mode, with limited data amounts and if app access was spread out over time. 
+
+Summary
+AppSheet apps with Google Sheets data sources can experience concurrency or quota issues with the Sheets API if app access time (avoidance of peak usage spikes), app access mode, and overall data volume are not considered when designing AppSheet with Sheets architectures.
+
+
+
+
+Cloud SQL (MySQL, PostgreSQL, and SQL Server)
+
+
+AppSheet apps with Cloud SQL data sources will not experience the same quota limit issues as the Sheets API since Cloud SQL does not even impose any queries per second (QPS) limits.
+If a Cloud SQL instance is receiving excessively high amounts of requests for what it is configured for, the database will experience slowness and timeouts due to resource exhaustion (which will appear in the audit logs). Again, this can be remedied by properly configuring the SQL instance for the additional traffic.
+Additionally, the types of queries that the app is making against the database and overall data profile (that is, the number of tables, rows columns and whether database views are used) can also impact performance and scalability. 
+The primary factor however that governs scalability is the Cloud SQL instance configuration, including the following:
+
+Number of vCPUs
+Memory
+Storage type and capacity
+
+The default production and development configurations for the three database types (MySQL, PostgreSQL, and SQL Server) are shown below.
+
+
+
+
+ 
+
+Production
+
+
+Development
+
+
+
+
+Availability
+
+
+Highly Available
+
+
+Single Zone
+
+
+
+
+vCPU
+
+
+8
+
+
+4
+
+
+
+
+Memory
+
+
+32 GiB
+
+
+16 GiB
+
+
+
+
+Storage
+
+
+250 GiB
+
+
+100 GiB
+
+
+
+
+
+Summary
+AppSheet apps with Google Cloud SQL data sources will not experience concurrency issues due to quota overruns. Instead, maximum database performance is 100% governed by how your instances are configured. In a production environment with changing needs over time, it’s recommended that you continuously adjust your SQL instance configurations to best suit your performance and concurrency goals.
+
+
+
+
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Improve the speed of SyncMake sure to read and understand the core concepts affecting app performance. If you can focus on improving Sync performance, it will have the greatest positive impact on the end-users of the app.
+In this article, we'll focus on read-only Syncs as this affects all apps. There are additional approaches to improve the speed of Syncs that involve data updates, as described in Improve the speed of Sync with data updates.
+To improve the speed and performance of Sync, consider the following methods:
+
+Choose an efficient data provider
+Reduce the amount of data transferred during Sync
+Reduce the amount of computation (for spreadsheet formulas and virtual columns) performed during Sync
+Fetch or compute data in parallel (relevant if there are many tables in the app or many expensive virtual columns)
+Use a faster network (this is relevant for the connection between the device and the AppSheet Server)
+Run Sync in the background so that the user is not waiting for a Sync to occur
+
+The AppSheet platform provides tools (like the Performance Profile) for you to understand, analyze, and improve app performance.
+1. Choose an efficient data provider
+AppSheet supports many different data providers. All the data providers vary in terms of the initial latency in responding to a request. Here are some general rules of thumb:
+
+Database providers are generally better than file system or spreadsheet providers. 
+Among spreadsheet file systems, Google Sheets is the most performant as it has been built from the ground-up to support web-based concurrent data access.
+If using Excel, it is more efficient to use Office365 than a pure file system like Dropbox or Box. With Office365, spreadsheet formulas can be run in the cloud by Office365, whereas with Dropbox and Box AppSheet has to download the entire Excel file and evaluate formulas locally.
+
+In reality, this may not be a choice you have because your data set may already reside in a specific data provider.
+2. Reduce the amount of data transferred 
+Remove unnecessary data
+The first step is to remove unnecessary data in the table/worksheet itself. 
+
+Delete empty rows, including empty rows at the bottom of the sheet.
+    If your worksheets contain hundreds or thousands of empty rows, you can greatly improve performance by deleting them.
+Delete empty columns, including empty columns to the right of the sheet.
+    If your worksheets contain empty columns, you can greatly improve performance by deleting them.
+
+A spreadsheet workbook (that is, file) contains one or more worksheets. The next step is to ensure that there isn't unnecessary data in the spreadsheet workbook. 
+
+
+Only include worksheets that the application requires and remove the rest.
+      Extra worksheets will add overhead when the data provider is fetching the requested data. Any changes to those worksheets also interferes with caching optimizations.
+
+
+Place read-only tables in their own workbook.
+      There are greater opportunities to cache read-only tables. When placed in their own workbook, the platform can more accurately track if they have been updated.
+
+
+Configure AppSheet settings
+Various settings in your AppSheet app can reduce the amount of data transferred. The app may explicitly reduce the amount of data via: 
+
+
+Security filters
+      Use security filters to eliminate rows that do not satisfy the filter criteria. If the data comes from a spreadsheet source, the entire spreadsheet is read by the AppSheet Server, the security filter is applied, and the subset of rows that satisfy the condition are sent on to the app. If the data comes from a database source and the filter is simple (such as [ColumnX] = USEREMAIL()), then the filter can be "pushed" into the data retrieval from the data source. In other words, the data retrieval from the data source also becomes much more efficient and less data is transferred to the AppSheet provider. See Scale using security filters.
+
+
+Partitioning
+      Manage very large data sets by dividing them into partitions. Each user only ever needs the data in one partition. Naturally, this significantly reduces the amount of data transferred. See Scale using data partitions.
+
+
+The app may also implicitly reduce the amount of data transferred by avoiding redundant data transfer. Data transfer is redundant if the app already has a cached copy of the latest data available (from a previous sync). In order for caching to be effective, the system needs to record when a cached copy was maintained and check if the data source has been updated since then.
+ To configure the data caching settings: 
+
+ Open the app in the app editor.
+Select Settings > Performance.
+Configure the settings under Sync: Cloud to Data Source.
+When you are done, save the app by selecting one of the following:
+    
+Save - Save the app.
+Save & verify data - Save the app and verify that it is runnable based on external dependencies.
+
+
+
+
+
+
+We've made some improvements to the app editor.
+You are opted in to the new editor by default, but you can switch back to the legacy editor at any time.
+
+
+ 
+
+If you are using the legacy navigation
+
+ To configure the data caching settings:
+
+Open the app in the app editor.
+Select Behavior > Offline/Sync.
+Configure the settings under Sync: Cloud to Data Source.
+When you are done, save the app by selecting one of the following:
+        
+Save - Save the app.
+Save & verify data - Save the app and verify that it is runnable based on external dependencies.
+
+
+
+
+
+
+Configure the data caching settings:
+
+
+
+Setting
+Description
+
+
+Server caching
+The AppSheet Server can maintain cached copies of read-only tables for up to five minutes. If your app depends on reference data that doesn't change often, be sure to mark the table as Read-Only and enable server caching.
+
+
+Delta sync
+
+Enable this option to maintain timestamps for the last time each table was fetched. On each sync, the AppSheet server tries to determine if the table has been updated after that timestamp. Only then is the table data retrieved from the cloud data source.
+
+The Delta sync setting is ignored for tables that use security filters.
+
+
+
+
+
+
+Caution: The Delta sync option has the potential to significantly speed up Sync, but it also has the potential to cause data errors.
+
+AppSheet is only able to check Delta sync with cloud providers that use spreadsheet files. It checks the LastModifiedTime property of the file to determine if it has been updated (updates could happen directly to the spreadsheet). In cloud file systems like Google Drive, this timestamp is not perfectly accurate.
+If the sheet involves formulas fetching data from external sources, the file itself may never reflect a modified timestamp although the computed data in it might change. Virtual columns relying solely on this data are not recomputed. 
+
+
+3. Reduce the amount of computation 
+Computations happen during sync at two places:
+
+In spreadsheet formulas
+In AppSheet virtual columns
+
+Both can add significant overhead to Sync times.
+Spreadsheets use formulas to compute data. Some formulas can be very expensive and long-running. Such formulas can cause significant delays and in extreme cases even timeouts when using AppSheet.
+
+Ensure that the spreadsheet only uses simple/cheap formulas.
+Cross-sheet formulas and those using external services (like Google Finance) are likely to severely impact sync performance.
+It is particularly important to minimize worksheet formulas when the data source is Excel on Dropbox or Box, because these formulas must be re-computed by the AppSheet Server each time the Excel worksheet is read. 
+
+Virtual columns in a table are defined by App Formulas and are computed by the AppSheet Server on every sync. App Formulas are very powerful and expressive, but it is possible to write very inefficient App Formulas. For example, in an Order Capture app with three tables (Products, Customers, and Orders), let us assume there is a virtual column defined on the Order table to find the sum of all prior Orders made by the same Customer for the same Product. Depending on the amount of data in the app, this will probably be very expensive to compute against the entire data set. The Performance Profile will indicate if virtual columns are contributing significantly to sync time.
+4. Fetch or compute data in parallel  
+So far, we have ignored the fact that most apps have multiple tables. Let's say your app has five tables. Are they fetched from the data source one after the other or are they fetched in parallel? Ideally, this would be as fully parallel as possible, but doing this is resource-intensive for the AppSheet server (each parallel request requires a concurrent thread of computation in the server and there is a limit on the total number of threads that can run at the same time). Consequently, we control the degree of parallelism based on the subscription plan of the app owner --- the more expensive plans are given a greater degree of parallelism.
+A similar approach is applied to the computation of virtual column values as well.
+
+  Increasing parallelism doesn't necessarily always result in faster sync. For example, if you have three tables, two of which take just a second to fetch and the third takes a whole minute to fetch, there will be no perceptible difference when increasing the degree of parallelism. The table that takes a whole minute to fetch dominates all other activities.
+  You can try out the effect of higher-degrees of parallelism in the app emulator hosted inside the app editor. Note that the effects vary depending on the amount of data in the tables as well. So while the effects may be minimal when developing your app with initial datasets, they may be more pronounced as the app is used and the data sets grow. 
+5. Use a faster network
+Most people intuitively believe that a faster network should lead to a faster Sync. The same intuition also leads people to believe that the biggest bottleneck in sync is the speed of the data network (2G vs LTE for example) used by the mobile devices. In most situations however, this is an oversimplification.
+In our observation:
+
+Cloud provider latency is usually the biggest contributor to slow syncs. The actual data transfer between cloud provider and AppSheet server is pretty efficient (the internet has high throughput).
+Network latency between the device and the AppSheet server can also add significant delay. We observe this typically with customers who are geographically remote from the AppSheet server cloud.
+The actual data transfer from the AppSheet Server to the mobile device is usually very efficient (that is, even though mobile networks may not have great throughput, it is more than sufficient for the data volumes being transferred). The fact that AppSheet compresses the data before transmission helps with this.
+
+This is a very important observation and it is because AppSheet apps typically have relatively small data volumes. Even if the underlying data set is very large, each app user typically only needs a small subset of the data and this is achieved via mechanisms like Security Filters and Data Partitioning.
+6. Run Sync in the background  
+All our discussion so far has been to reduce the actual latency of Sync. However, since all we really care about is latency perceived by the end-user, a very sensible additional step is to minimize the impact of Sync latency on the end-user by delaying the Sync or running it in the background.
+
+  There is a tradeoff in making this choice. The app is perceived to run faster. However, the data may be stale. You need to pick a suitable balance for your app, and utilize various Sync options to tell AppSheet how you want the system to behave.  When choosing Sync options, consider the following:
+
+With all Sync options disabled, the default behavior of the app is to sync immediately if a row is added/updated/deleted by the app. Otherwise, the app will only sync if the user explicitly hits the Sync button.
+Enable Sync on start to force the app to sync every time it is restarted. This is a good mechanism to limit the staleness of the data.
+Enable Delayed sync to queue updates rather than sync them immediately. For apps that are used in remote regions (such as wilderness surveys), this is a good option. When the user returns an area with good network access, such as the office, they can explicitly click Sync to sync all queued updates to the backend. Note that the longer the time between syncs, the greater the possibility for data conflicts because someone else may have updated the same data.
+Enable Automatic updates to hide latency without data staleness. This option is appropriate for environments where there is good network connectivity. Any updates made by the app immediately kick off a sync in the background, while the user can continue to use the app. If there are no updates made by the app, the system will still periodically run a sync to ensure that it has the latest data. This option will increase use of battery, network, and server resource and likely run more syncs than are necessary. This will need to be weighed against the benefit of having an app that is always close to up-to-date without users waiting for sync.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Improve the speed of Sync with database updatesData captured or updated by the app on a device needs to be sent via the AppSheet server to the cloud provider. This can be one of the slowest aspects of the Sync process because the changes have to be made sequentially (to ensure correctness). Conceptually, there are four ways to improve this aspect of Sync performance:
+
+Reduce the number of updates
+Reduce the amount of data sent with each update (for example, images captured per row)
+Reduce the amount of computation that must happen with each update
+Sync changes in the background so that the user does not need to wait for them to complete
+
+1. Reduce the number of updates
+The design of the app sometimes increases the number of updates that are created. For example, if three different column values of the same row are modified using Quick Edit, this creates three different updates. However, using a form to edit the row and make all three changes produces just a single update.
+Similarly, be cautious with the use of app actions that make changes to a large number of rows. While these changes appear instantaneously to the app user, they all have to be synced to the backend.
+2. Reduce the amount of data sent
+Rows that involve images add significantly to the amount of data sent per update. We have seen customers build apps with more than ten image columns per row. This adds inefficiency not just to the initial Add Row action but also to subsequent updates to the row.
+You can control the resolution of uploaded images using an option on the UX > Options page. Obviously, if you choose to upload images at a higher resolution, this significantly increases the amount of data transferred during Sync. 
+3. Reduce the amount of computation
+There are two sources of computation when an update is synced. The first source is the use of any spreadsheet formulas. For example, Google Sheets will recompute all affected spreadsheet formulas on every single update. if you have expensive formulas (eg: computing aggregates across all the entries in the spreadsheet), this can add significant delays.
+Automations are the other source of computation overhead. On every update, the automations in your app have to be evaluated. Depending on the logic in the condition and action, this could be a trivial overhead or it could be significant. In particular, automations that make data changes to other rows can add significant overhead to each update that is synced.
+While these delays may be insignificant for a single update, you should consider the actual usage patterns of your app and the cumulative effect of these overheads. For example, if a user expects to collect many data changes during the day with Delayed Sync enabled, then come back to the office to sync all the changes, it may take quite a while for the sync to complete.  
+4. Sync changes in the background
+You can turn on automatic updates. When these are turned on, local changes by a user will be sent to the server. It takes about 30 minutes to read back the latest data from other users' changes. 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Manage IP addresses and firewall informationLast updated: 10/26/2023 
+A common reason AppSheet is unavailable from within a corporate network is that our servers are blocked by a firewall or access control list. If you are managing network traffic within your organization, or need to request AppSheet traffic be added to your allow list, use the AppSheet IP addresses listed below based on the data residency region. See Manage data residency.
+This list also applies to any web service that restricts traffic based on IP address, such as cloud databases or other data sources. 
+
+AppSheet IP addresses (all regions)
+AppSheet IP addresses (EU only)
+
+
+If the list of AppSheet IP addresses changes, an announcement will be made on the AppSheet Announcements page.
+ 
+By default, webhook automation API calls originate from a dynamic list of IP addresses. If your webhook automation API calls depend on the stability of the IP addresses for access control security, you can request that they also use the static IP addresses by contacting AppSheet Support.
+
+AppSheet IP addresses (all regions)
+34.30.208.22
+  34.31.98.215
+  34.71.7.214
+34.82.138.241
+  34.83.133.82
+34.83.247.7
+  34.86.96.199
+  34.86.235.230
+34.87.102.230
+  34.87.103.64
+  34.87.131.237
+  34.87.159.166
+  34.87.233.115
+  34.90.174.231
+  34.90.249.137
+  34.91.142.99
+34.91.161.74
+  34.91.186.92
+34.116.117.132
+34.123.81.112
+  34.135.161.164
+34.141.206.242
+34.145.159.146
+35.189.26.70
+35.194.89.186
+  35.197.185.203
+  35.199.162.121
+  35.203.182.241
+  35.203.191.15
+  35.204.85.7
+  35.204.102.20
+  35.204.159.159
+  35.204.213.55
+  35.221.38.52
+  35.222.253.144
+35.230.32.44
+35.232.30.149
+  35.233.206.57
+35.239.112.17
+  35.239.203.99
+35.240.241.182
+  35.240.247.148
+  35.244.107.184
+  35.244.126.141
+  35.245.45.144
+  35.245.185.255
+  35.245.209.204
+  35.245.210.44
+35.245.229.252
+  35.247.40.210
+  35.247.56.116
+  35.247.115.29
+  104.154.218.192
+  104.199.122.182
+AppSheet IP addresses (EU only)
+The following AppSheet IP addresses are specific to European Union (EU) data residency. See Manage data residency.
+34.90.234.200
+  34.91.95.77
+  34.91.131.47
+  34.91.113.123
+34.91.205.83
+  35.204.29.52
+  35.204.48.89
+  35.204.224.165
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ What if I lose connectivity?
+If you expect your app to be offline for any non-trivial period of time, we strongly recommend configuring the app to indicate that it should work offline. AppSheet has platform features that explicitly handle this scenario.
+However, even for apps that have not enabled this feature, AppSheet is designed to work through transient connectivity failures. Mobile apps work in occasionally connected environments, and network failures do occur.
+
+All changes are made locally and are queued up to send over the network when you choose to Sync.
+During Sync, if any changes fail to be propagated, they are retried. Our system is designed so that the changes are idempotent - this means that even if we mistakenly try to apply the same change repeatedly, the result is still sensible.
+You can keep using the app until you get to a location with reliable connectivity and successfully Sync your changes.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Errors and retry
+Mobile apps must account for failure to send updates to the backend. There are multiple reasons for failure:
+
+Your mobile device may have connectivity issues.
+We hate to say this, but AppSheet's servers could have occasional connectivity or downtime issues.
+Your cloud file system (eg: Google Drive) can have occasional connectivity or downtime issues.
+
+These are the realities of working in a mobile-to-cloud environment where changes from the app have to be recorded at the backend cloud service. Yet any data captured by the app should never be lost.
+AppSheet accomplishes this using three basic mechanisms (none of which you need to do anything to configure-- it just happens automatically):
+
+
+All changes are recorded locally on the device. Even if the device shuts down and restarts, the changes are still available. Of course, if the device is lost or destroyed before you sync, those changes are gone forever.
+
+
+When data is synced from the app, it travels to the AppSheet backend, and then on to the backend spreadsheet. At this point, the acknowledgment of success has to flow all the way back to the mobile app. If this does not happen in a timely fashion, the user sees an error message. Importantly, the change is queued up for a subsequent retry. If the user syncs again, the change gets sent again.
+
+
+Of course, now we could have the situation where the same change is attempted multiple times (because the success acknowledgment may have failed to reach the app even if the update was successfully applied). All AppSheet updates are designed to be idempotent--that is, you can apply them repeatedly without a change in behavior.
+
+
+There is one other situation where errors occur: when the app creator changes the app definition by adding or removing columns, but some user of the app still has the old version of the app and has un-synced updates on that app. Unfortunately, when there is a structure mismatch between the updates and the app definition, the updates fail. Retries will continue to fail. More details on handling this situation are provided in Errors and warnings during sync.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Approaches to data scalabilityWhen an app starts and fetches data, there are three steps involved:
+
+
+Cloud to AppSheet server: the data is fetched from the cloud source (a spreadsheet, database, or API) by the AppSheet server.
+
+
+AppSheet server to the app: the data is sent from the AppSheet server to the app running in a browser or device.
+
+
+Persist the data locally on the device/browser. AppSheet apps always download their entire working data set to the device or browser. This allows the apps to work seamlessly when offline, partially disconnected, or on a slow network.
+
+
+App creators should consider how the app will scale when the data sets become large. The primary motivation is performance, of course. However, there are other motivations as well. For example, Smartsheet does not allow more than 20,000 rows in a single spreadsheet. Google Sheets limits a spreadsheet to 10 million cells. Apps may need to scale to go past these limits.
+There are two kinds of app patterns that can lead to large data sets:
+
+Partitionable: Such apps may have a lot of data rows, but each app user only accesses a smaller subset of the rows. For example, an app that maintains timesheets for employees. Each employee only has one timesheet entry per day, but across a large organization, there may be several tens of thousands of employees.
+Non-partitionable: Such apps require each user to have access to a large data set. For example, an app that keeps a catalog of a million products and wants this entire data set accessible in the mobile app.
+
+Scale partitionable apps
+Partitionable apps can scale very effectively. This section identifies three mechanisms that are used to achieve scale. With these techniques, a properly designed app can even work against data sets that have millions of records.
+
+Scale using security filters: the data is filtered after step 1 (Cloud to AppSheet server). For spreadsheet data sources, the entire sheet is fetched to AppSheet and the filtering only reduces the data in steps 2 and 3. For database data sources with simple security filters, the data is filtered during step 1 (Cloud to AppSheet server) at the database. This can lead to very significant performance improvements.
+Scale using data partitioning: the data is divided into many identical partitions, each with a different subset of the data. Each user gets data from just one specific partition. This technique can be used along with security filters and leads to almost infinite scalability.
+
+Each of these techniques is described in a separate article in this section. The standard recommendations to scale an app are: 
+
+Add security filters (requires user sign in or user settings enabled in the app) 
+Data partitioning -- lets you scale your app while remaining on spreadsheets. 
+Move to a database data source -- see Use multiple data sources for information about databases (for example MySQL or SQL server).
+
+Scale non-partitionable apps
+AppSheet apps do not work effectively for the second category (apps not suitable for per-user partitioning). If a lot of data must be available to every user of the app, all of it has to be fetched and moved through all three steps. This will certainly lead to an app that becomes unusably slow as the data set scales.  
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Scale using security filters
+A security filter is an expression that is evaluated on each row in a table and returns true or false. If true, the row is included in the app and if false, the row is not included. While security filters are primarily meant to be a security feature, they can also be used as a scalability feature. 
+Security filters usually compare data from the row with some user-specific data (such as, the user's email or some user setting value). For example, the app user's email address might be used to retrieve only the records that have that email value in a specific column.
+Security filters versus table slices
+As covered in the following video, a security filter functions differently than a table slice. Slices download all of the data to the client before filtering the data. Security filters retrieve only the records that meet the expression criteria, which restricts the content that gets downloaded to the client.
+Quick Tip Friday - Security Filters
+Security filters with spreadsheet data
+When reading data from a spreadsheet source, the entire spreadsheet or worksheet is retrieved from the cloud backend before the security filter is applied. Therefore, this does not reduce the time needed for this initial step of the sync process. However, it can significantly reduce the time needed for the second step (sending the data to the app) and can significantly reduce the time and space needed for the third step (saving the data locally with the app).
+Security filters with database data
+When security filters are used with database sources, there is the potential for the system to convert the security filter into a database query. To explain, if the underlying database table has a million records but the security filter limits the table to those where the value of the Email column is mary@mydomain.com, there are two ways this can be executed:
+
+Fetch all the million rows from the database to the AppSheet backend, evaluate the filter and retain just the ten records that match, or
+Send the database a query: SELECT * from MyTable where Email =mary@mydomain.com
+    The database would return just the ten records that match. 
+
+Obviously, the second approach is much more efficient. Database systems have techniques like indexing that can run such queries quickly. AppSheet can scale to handle millions of database records, provided the security filters can be mapped to efficient queries.
+AppSheet attempts to "push" the security filter into the SQL query for the following database providers:
+
+MySql
+Microsoft SQL Server
+MariaDB
+Oracle
+Postgres
+Redshift
+
+Efficient security filter definitions for database data
+The best way to ensure that a security filter is efficient is if it reduces to a simple comparison of a column to a value, or if it involves an AND() with two or more such comparisons. More complex conditions are almost certain to lead to inefficiency as the data set scales.
+Here is the list of simple conditions that AppSheet does recognize and push into the SQL query:
+
+[Column] = constant-value
+[Column] < constant-value
+[Column] > constant-value
+IN([Column], {constant-value1, constant-value2, ... constant-valueN})
+AND(simple-condition1, simple-condition2, ... simple-conditionN)
+
+Almost all other conditions are not pushed into the SQL queries (such as NOT() or OR() expressions). The platform does make an effort to push partial conditions. For example:
+
+
+AND([Column1] = 5, LEN(CONCATENATE([Column2], " file")) < 20) - The second condition is not one of the simple conditions due to the LEN(CONCATENATE([Column2], " file")) part of the expression, but the first is, so the first alone will be pushed into the SQL query.
+
+
+It is important to understand that often, the expression itself may be more complex, but what matters is that it can be reduced to a simple form just before execution. For example:
+
+
+AND([Column] = 5, USERROLE() = "Admin") - At runtime, AppSheet knows the user role. If the user is an admin and [Column] = 5, this expression evaluates to TRUE (which means "fetch all the rows").
+
+
+IN([Column], SELECT(AnotherTable[SomeColumn], [EmailColumn] = USEREMAIL())) - The entire SELECT() function evaluates to a constant list at runtime before this security filter has to be run. Therefore, the whole expression reduces to IN([Column], list-of-values) which can be pushed into the SQL query.
+
+
+In general, for efficiency, avoid complex NOT() and OR() expressions in the security filter. If there are complex expressions, they should avoid using columns of the table that is being fetched.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Scale using data partitionsAn AppSheet app defines a table as having one table source. The table source is usually a spreadsheet file with an optional worksheet name, but it could also be a database table or other table source.
+When using the data partition, you:
+
+Partition (or divide) the rows of the table into many table sources
+Register these different table sources in the app's table definition using the app editor
+Provide a partition expression that lets the system determine which table source to use for which user
+
+For example, if you have a table of timesheet entries for employees and there are 10,000 employees, you can partition this data into 10 separate sheets or partitions, each holding 1000 employees. The partition expression will identify a specific partition for each user based on the USEREMAIL() or USERSETTINGS() values.
+Data partitions are a powerful mechanism to scale your app while keeping your data in the format of familiar spreadsheet systems like Google Sheets, Excel, or Smartsheet. However, because you have divided your data set into several physical sheets, you may create extra management overhead for data maintenance and reporting.
+
+Important: It is important that all the partitions have identical column structure. AppSheet cannot guarantee this behavior, so this becomes an additional responsibility for the app creator.
+
+Data partitioning: Multiple worksheets
+Whatever the data source, you can partition the data into several worksheets in the same workbook/spreadsheet. This is an option in the Table definition in the app editor:
+
+Data partitioning: Multiple spreadsheets
+Whatever the data source, you can partition your table into several spreadsheets. This is an option in the table definition in the app editor:
+
+Data partitioning: Maximal scale
+The different data partitioning mechanisms can be combined. The data can be partitioned across several spreadsheet workbooks and each can be partitioned across several worksheets. It is important that each of the workbooks has identically named worksheets. A security filter may further reduce the data sent to the mobile device. This combination will maximize the scale of the app.
+As long as each user of the app needs only a reasonably small subset of the overall table, the underlying data can scale almost infinitely in this fashion. Users on the Smartsheet platform can easily scale past the 20,000 row limit imposed by Smartsheet. Users on the Google Sheets platform can easily scale past the 10 million cell limit imposed by Google.
+Data partitioning: Other scenarios
+While data partitioning is primarily a feature to improve performance at scale, it can also be a convenient mechanism to handle deployment scale in a relatively common scenario. It is sometimes the case that data sets needs to be maintained in separate physical containers (tables of a single database or spreadsheet files accessible by a single Google account source) for reasons other than performance. For example, if an app is used by five different clients, it might be important to keep each client's data in a separate sheet. However, if you want to build a single app that is used by all five clients, data partitions provide a convenient solution. You can build, maintain and distribute a single app, yet each client sees just their own data and the data sets for each client are all kept physically distinct.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Advanced techniques: Horizontal scalingEffective scaling for apps with large datasets can reduce sync times while maintaining a convenient user interface. When an app syncs, the data is copied from the database to the device, allowing the user to easily interact with the data inside the app. By default all data associated with the app will be synced when the app is initially loaded. The default setting is effective for apps with small to medium datasets, but will result in long sync times for very large datasets.
+Horizontal scaling is a technique by which the app creator can structure how and when data is synced into the app. This is accomplished by breaking the data up into buckets. Bucket #1 contains data the user needs to begin using the app. Bucket #2 contains additional data based on what the user selects in Bucket #1. This model can be scaled indefinitely with each bucket drilling down further based on the selection made in the preceding bucket.
+To give an example, let’s consider an app that allows users to see a menu of desserts. To make things interesting, let’s assume our company offers a vast array of desserts totaling over 60,000 unique delicious choices. Loading the entire dataset will take some time. However, by thoughtfully breaking the data up into buckets, we can significantly reduce the sync time and improve performance.
+Table Structure
+
+Workflow
+I broke the tables up into three buckets based on the user experience I will create in my app. 
+Bucket 1
+  When the user opens the app, they are taken to a home page where they can select the type of dessert. At this point, AppSheet has only synced the Type table. The user makes their selection and clicks Go to proceed.
+
+ 
+Bucket 2
+  AppSheet loads all rows from the Dessert table where Type matches the user’s selection from Bucket 1. By using the initial filter, we have significantly reduced the sync requirements from the full 60,000.
+
+Bucket 3
+  AppSheet loads only the Reviews and Recipes associated with the subset of Desserts loaded in Bucket 2. This offers another significant reduction to the number of records loaded during the sync.
+
+Implementation
+User Settings and security filters are the tools in AppSheet that enable horizontal scaling.
+User Settings are displayed as a Form view and allow users to make a selection and save the form. These values can then be accessed by formulas throughout the app.
+Security filters are formulas that limit the data loaded during the sync. By creating a security filter based on the User Settings selected by the user, we are able to filter the data to only the Type(s) selected. The data that does not meet the filter criteria will not be included in the sync. 
+Example: Security filter used on Dessert table
+= [Type ID]=USERSETTINGS("Type")
+Example: Security filter used on Review table
+= IN([Dessert ID], Dessert[Dessert ID])
+Variant approach using slices
+The implementation described above has a limitation where the user is not able to see any desserts until they select a Type. In some cases, you may want to allow your users to make their initial selection by searching on the full list of desserts. 
+Example: Updated User Settings to allow display of desserts
+
+Searching the entire dessert list presents a challenge because we want to have the full dessert list available, but we don’t want to load all the Reviews and Recipes associated with every dessert. We can solve this with slices.
+Slices are subsets of data. The subset can then be used throughout AppSheet in the same way as a data table. We can create a slice of the dessert table and apply a Row filter condition based on the Search Method chosen by the user. If the user filters by type, the slice will contain all desserts that match that type. If the user chooses to select a single dessert from the full list, the slice will contain only that single dessert. 
+Example: Filter expression for Dessert Slice
+SWITCH(USERSETTINGS("Search Method"), "Type", [Type ID]=USERSETTINGS("Type"), "Full Dessert List", [Dessert ID]=USERSETTINGS("Dessert"), FALSE)
+The security filter for Reviews and Recipes will select only those rows where the Dessert ID matches what is in the slice.
+Example: Security filter used on Review and Recipe tables
+= IN([Dessert ID], Dessert Slice[Dessert ID])
+Example: Updated table structure
+
+Auto-select based on user’s email
+Another variant on this concept is to auto-select a subset of the data when the application loads. A common use case is to filter based on the signed-in user’s email. This is effective in situations where the user only needs to see records with which they are associated. 
+Example: Security filter for user’s email
+= [mailColumn]=USEREMAIL()
+An additional performance improvement can be achieved by filtering child tables to only load data associated with the rows of the parent table that passed the USEREMAIL() filter. This can be done by checking if the Primary Key in the reference column of the child table matches a Primary Key of the filtered parent table. This can be done using an IN() statement such as the one below.
+Example: IN() statement to filter child table
+= IN([Parent ID], Parent Table[Parent ID])
+For more information about applying security filters based on user’s email, see Limit users to their own data.
+Partitioning
+As mentioned in the Approaches to data scalability article, an app based on spreadsheets will receive limited performance improvement from security filters. This is because the entire spreadsheet must be read before the security filter is applied. When working with spreadsheets, partitioning is a powerful tool for both improving performance and avoiding maximum data size restrictions.
+Limitations
+The limitation for horizontal scaling is the interface for updating User Settings. The user must access these settings from the menu. It is possible to set the User Settings view as the home page to prompt the user for an initial selection before entering the app. However, once the initial selection has been made, the user must return to User Settings from the menu to update their selection.
+Sample app
+Demo: Horizontal scaling demonstrates the processes described in this article. 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Support for AppSheet apps on mobile devices and browsersAppSheet apps run on iOS and Android devices in a variety of device form factors, and on mobile or desktop browsers. The following sections provide more details:
+
+Support for AppSheet apps on mobile devices
+Support for white label apps
+Support for mobile and desktop browsers
+
+Support for AppSheet apps on mobile devices
+
+
+This support plan will go into effect on December 1, 2022. For more information, see Updated support plan for AppSheet apps on mobile devices. 
+
+
+To ensure an optimal experience for users of your AppSheet apps:
+
+AppSheet is supported on Android and iOS versions for 5 years after the last minor OS update
+    To ensure an optimal experience, we do not support mobile devices outside of this OS support window. Users with OS versions that are no longer supported stop receiving updates to their PlayStore and AppStore AppSheet apps until they upgrade their OS. 
+AppSheet supports its native app versions on the PlayStore and AppStore for 2 years
+Combined together, AppSheet apps won’t run on devices with iOS and Android versions that are greater than 7 years old. After that timeline, app users need to upgrade their OS version to run AppSheet.
+
+In addition, app users who do not update their AppSheet app from the PlayStore or the AppStore automatically are prompted to do so once support has ended, meaning two years after we release them. 
+As an example, the following diagram shows the support timeline for users on iOS 15 and Android 12, assuming a device cannot have its OS upgraded beyond these versions: 
+
+FAQ: Support for AppSheet apps on mobile devices
+Review the following FAQ to understand support for AppSheet apps on mobile devices.
+
+
+Which Android versions are currently supported?
+
+
+AppSheet is supported on Android version 8 and higher. Android 5 through 7 will still run AppSheet, but there are no Play Store updates.
+
+
+
+
+Which iOS versions are currently supported?
+
+AppSheet supports iOS version 11.0 or higher. Earlier versions of iOS can cause subtle bugs or performance problems. 
+
+
+What happens when an OS is no longer supported?
+
+
+
+Users are sent a notification to upgrade to a newer OS version and download the latest version of AppSheet app.
+If users can't upgrade to a newer OS version, then they have until the final version of the AppSheet app is two years old. After that, the app is no longer supported.
+
+
+
+
+
+Are users completely blocked from using the app after the support timeline?
+
+
+Users can still use AppSheet apps on a mobile browser. However, they will not have access to mobile-only functionalities, such as barcode scanning. 
+Users using an unsupported OS may not receive new features and bug fixes. Note that not all features and bug fixes need a new version of the AppSheet native apps.
+
+
+
+
+Support for branded (white label) AppSheet apps
+App creators need to update and distribute their branded apps every 18 months so that app users can benefit from the latest features and bug fixes that AppSheet releases. 
+Similar to users of an old version of the AppSheet native apps, users of an old version of a branded app need to upgrade their app. When they open the application, these users see a warning message to contact the app owner to get a newer version. By updating and distributing a new version of your app every 18 months, you ensure your users an optimal experience. Users are eventually blocked from using the app if it is too old. 
+Branded apps work on an OS at least up to 5 years after the latest OS release and if the branded app users received is less than 18 months old. 
+As an example, let’s look at Android 12 which got its last update in March 2022. AppSheet supports branded apps on Android 12 until March 2027 at a minimum. If the branded app is updated in March 2025, then that app works until September 2026. At that point, users need to get from app creators a newer version of the branded app. In this case, they can use the app until March 2028 because the app creator updated the branded app before the OS is not supported.
+FAQ: Support plan for branded AppSheet apps 
+Review the following FAQ for the support for branded apps.
+
+What happens if I don’t remember when I last updated and distributed my branded app??
+
+
+
+When you open the app in the app editor it shows you a warning if the app is older than 18 months. If no warning is shown, no action is needed.
+In addition, you can open your branded app on a mobile device to see the same warnings your users see (if any).
+
+
+
+
+
+Is my branded app going to stop working on older devices exactly 5 years after the latest OS release?
+
+If you follow our recommendation to update your branded app every 18 months, there is a grace period of approximately 6 months. App users can use the branded app 5 years and 6 months after the final OS update is released.
+
+
+Why isn’t the policy for branded apps the same as for non-branded apps (ie native apps)?
+
+AppSheet controls how often it releases new versions of its native apps. For branded apps, the app creator is responsible for releasing new versions of the branded app. This creates additional dependencies that the AppSheet team needs to take into account for its support plan.
+
+
+
+Support for mobile and desktop browsers
+We recommend using a modern browser. AppSheet works best on Chrome.
+
+Notes: AppSheet is not supported for use on Internet Explorer.
+
+Most functionality is supported in a browser, except:
+
+Bar code scanning
+Near Field Communication (NFC) scanning
+Offline image and document caching
+Offline app launch 
+Push notifications
+
+To view your app in a browser, click the Open in tab link above the AppSheet preview pane in the app editor. 
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Limits on app definition size
+AppSheet has a size limit for app definitions. If you see the error message "The app is too large and cannot be saved." then your app definition has exceeded the size limit. The primary contributor to the size of your app definition is the number of tables and number of columns in each table.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Limits on tables per applicationAppSheet does not enforce a limit on the number of tables per application. Complex apps can have 20 to 30 tables and 20 to 30 views. However, performance degrades as the number and size of tables grows. Performance also degrades when tables are stored in separate spreadsheet files. The biggest determinant of performance is the number of times AppSheet must go to the provider, such as Google Drive, to fetch a file.  
+Generally, we advocate limiting your app to a few tables and a few views. The main reason is focus. Apps are different from websites. Usually a website has everything from an organization, but apps that try to do too much usually don't serve anybody well. It is a good practice to have an app for a specific purpose. It is easy enough to build another app for another purpose. For example, even Facebook has separate apps for Messenger and regular Facebook.
+This is the philosophy behind AppSheet design. This is why AppSheet has an app launcher (so you can break your mega-app into multiple sub apps) and why our per-user pricing model has a per-user cost for any number of apps.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Limits on data sizeAppSheet is meant for mobile apps that are designed to work seamlessly despite intermittent connectivity or being completely offline. As a result, all data used by the app must be cached locally on the mobile device. This is an important factor to consider when designing your app. 
+Ideally, you should make your data set as small as possible to achieve the desired functionality.
+Actual limits
+Do not build an AppSheet app against a huge data set. What is "huge"? For an AppSheet app, the compressed data size limit is 5MB or 10MB (depending on the device) for all the data in one app. It is difficult to translate this accurately into a specific number of rows or columns because compressed data size depends on how much repetition there is in the data. For example, a large spreadsheet with a lot of empty cells will probably compress better than a smaller spreadsheet with no empty cells. In general, the fewer cells in the sheet, the better.
+External data like images and documents are not included in this data size limit. You can definitely have applications with many rows and an image in every row. Images and documents are not cached locally on the device by default. If you do enable the option to cache images for offline access, they are stored in a different location on the device that does not have the same size limitations.
+Limits on the spreadsheet
+
+Do not exceed 100K rows in your spreadsheet.
+
+Each spreadsheet provider has their own limitations based on performance, file size, number of formulas and calculations. Keep this in mind as you build your app. If you've ever worked in an Excel spreadsheet that uses all the processors in your PC and takes over a minute to refresh because of formulas, then you should expect a similar behavior in your app if it's connected to that spreadsheet. 
+If you want to know the limitations by provider, please check the links below:
+
+Google Drive: Files you can store in Google Drive
+Excel and Office 365: Excel specifications and limits
+Smartsheet: Sheet and file size limitations
+Box: What is the maximum file size I can upload? *
+Dropbox: Is there a limit or maximum to how big my files can be? *
+
+* Excel limitations apply across all cloud providers when you use an Excel file to build your app.
+Performance concerns
+In practice today, this is not a meaningful limit because system performance degrades well before you reach the limit. This happens for three reasons:
+
+Slow iterative development-- the data set is checked repeatedly during app development to ensure that the app is consistent with the data.
+Long sync times-- when data is synchronized between the device and the backend, the delay depends on the size of the data set. 
+Sluggish app behavior-- large data sets can make the app itself sluggish in its interactions like scrolling, search, and so on.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+

@@ -1,0 +1,487 @@
+ View errors and warnings in the app editorTo view errors and warnings in the app editor
+
+Sign in to AppSheet. 
+Open the app in the app editor.
+    If the app has an error or warning, an icon appears in the navigation or tools panel.
+
+
+Click  to open the Errors & Warnings dialog that lists all of the issues in the app.
+
+
+Click Go to problem, to navigate to the issue.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Errors with spreadsheets
+The following sections provide guidance for resolving errors with spreadsheets:
+
+Errors with spreadsheet structure
+Errors accessing spreadsheet
+
+Errors with spreadsheet structure
+AppSheet automatically extracts structure from a spreadsheet so that your app can be generated. While most spreadsheets are simple tabular structures, there are also ways to use spreadsheets that are incompatible with AppSheet. So you may see errors, warnings, and information messages in the app editor when AppSheet reads your spreadsheet. 
+
+
+Errors with spreadsheet structure -- these errors typically occur when AppSheet is unable to properly identify the column headers. Often this is because the first worksheet in your spreadsheet has non-tabular data like charts or pictures.
+
+
+Errors when switching spreadsheets -- when you switch to a different spreadsheet, AppSheet tries to retain as much as possible of your existing app. However, the new spreadsheet may have a totally different column structure. In this case, you may see errors that ask you to change the other parts of the app definition appropriately.
+
+
+Warnings about column structure mismatch -- this is the most common warning seen during the app creation process. As users modify spreadsheets, they add, remove, or rename columns. Each time you do this and tell AppSheet to refresh the column structure, you are warned if the old column structure and new structure do not align. AppSheet always adjusts to the new structure, so this is a warning, not an error.
+
+
+Warnings about formulas -- there are only certain kinds of spreadsheet formulas that make sense to use in your data. See Spreadsheet formulas.
+
+
+Information about the key column -- as described earlier, this information tells you which column is chosen as the key. The key also plays an important part in the presentation of data as described in the UX section. If AppSheet cannot find a good key column, it tries to combine pairs of columns to find a composite key. If that also fails, it settles for the row number (an implicit column). This is typically not a good choice unless you have an app that is purely showing information and prevents all edits. This is because the number of a row in a spreadsheet changes dynamically as rows are being added to or deleted from the spreadsheet either directly or through the app.
+
+
+Errors accessing a spreadsheet
+AppSheet can experience errors reading or writing spreadsheet data from any cloud storage provider. 
+
+Error 401 -- this occurs when AppSheet does not have permission to work on behalf of the user.
+Error 403 (permission denied) -- this occurs when AppSheet tries to access your spreadsheet, but the storage provider responds that AppSheet does not have the permission to access it. 
+Error 404 (cannot access the spreadsheet) -- this occurs when AppSheet tries to access your spreadsheet but the storage provider responds that no such document exists. Perhaps you have deleted, renamed, or moved the document? Perhaps you never had access to it?
+Timeout -- occasionally, the remote storage provider has a timeout and fails to provide the spreadsheet data to AppSheet despite repeated retries. Although fewer than 1% of our requests encounter such issues, it is still significant enough that you may encounter such a problem. You may experience this problem as an unexpected delay during Sync, or even a sync failure. Typically a refresh or retry after a few seconds rectifies the problem.
+Error 500 (internal server error)  -- very infrequently the remote storage provider has an internal error and fails to provide the spreadsheet data to AppSheet. Typically this is a transient problem and often is hidden from our users because we automatically retry the request. 
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Error: The App is not runnableYou may see the  The App is not runnable error in the app emulator (in the editor) or your users may see this error on a mobile device. 
+It indicates that the app definition is invalid (most likely) or corrupt (rare).
+The most likely reason for an app definition to become invalid is that the structure of the spreadsheet used to create the app changed. For example, someone added or deleted a column. Now the spreadsheet is no longer compatible with the app. Every time you open the app in the app editor, or refresh the app editor web page, AppSheet rechecks this and alerts you with error messages if the app definition is invalid. In many cases, AppSheet will automatically adjust the app to make it runnable again. However, this does not happen unless the app creator actually opens the app editor ---that is, it requires an intentional action by the app creator. 
+AppSheet will also consider an app definition as invalid if the underlying spreadsheets are no longer readable (if the data cannot be read, then the app cannot be verified or run).
+On a mobile device, an app definition may be corrupted if a network error occurs while the app definition is being downloaded (initially or during a sync). This is a relatively rare event and usually is resolved with a restart or sync. In rare cases, you may need to uninstall and reinstall AppSheet.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Error: Workspace AppSheet Core security violation
+This error applies to AppSheet Core accounts only.
+
+If you receive a Workspace AppSheet Core security violation error, then you may be using a feature that is not allowed by policy, as described in Set the AppSheet Core security setting.
+To address this issue, remove the disabled features from your apps or contact your Workspace administrator for assistance with turning off the AppSheet Core Security setting.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Error: OutgoingEmailAllowListViolationsIf you receive an OutgoingEmailAllowListViolations error in Audit History, then either your team admin has restricted the recipient list for outgoing mail or sending email to external recipients is not allowed by policy, as described in Set the AppSheet Core security setting. 
+To address this issue, contact your team administrator to adjust the restricted recipient list or contact your Workspace administrator for assistance with turning off the AppSheet Core Security setting.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Why is my app blocked for my users?There are two reasons an app may be blocked for your app users.
+App is paused
+You (the app creator) may have paused the app on the Manage > Deploy pane of the app editor. If you click Pause app, this prevents users of the app from making any changes to data and syncing the data successfully. When they try to sync, they will see a message: The app creator has blocked all data updates. To fix this, go to the Manage > Deploy pane of the app editor and click Resume paused app.
+App is blocked
+This happens when you have an account alert (an issue related to billing) that stays unresolved for an extended period of time. Any such issues are brought to your attention in three ways:
+
+You will see an alert symbol in the top bar of the web site and also more details on the My account page
+After a couple of days, all users of your app will see a warning message on the sync screen
+You will receive three email messages over a period of a week informing you of the problem
+
+If the account alerts are not resolved after a period of time (approximately 9 days), the system finally blocks your app. At this point, your users will see the message: Error: app blocked. To fix the problem, go to your My Account page, check the account alert and address it. Once the alert is no longer shown, each of your app users will need to run Sync once. This will fetch the latest app definition and their apps will then start running as expected.
+Usually, customers end up in this state because they did not see the email alert messages. Check your email settings and ensure that email from AppSheet is not sent to your junk email folder.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ My users are not able to access the appIf a user can't access your app, it might be due to one of the following issues:
+
+User doesn't have permission to access app
+App is not runnable
+One or more tables in the app require "as app user" access
+
+User doesn't have permission to access app
+This can occur if one or more of the following are true:
+
+You have required user authentication for your app and the user's email doesn't match any entry in the user allow list for the app. The email address associated with the user's sign-in account must match the email address in the allow list. See Share: The Essentials.
+A team shared resource, such as a data source or auth domain, is no longer available. This can occur if the team root or admin removed access to the team shared resource or if the app user is not in the same group-based team as the shared resource. In this case, the following error message is returned when accessing the app: 
+User XXXXX does not have access to data source
+
+You've defined your team membership using a Google Group, but one or both of the following requirements are not met:
+
+
+Google Group members must have permission to view other members in the Google Group. For example, in the following example the entire organization has permissions to view other members.
+
+
+
+The auth domain used to create the team must be set as the default auth domain for the team. See Share integrations with your team.
+
+
+
+
+
+App is not runnable 
+When there's an error in the app definition, the user will see a message indicating the app isn't runnable, with direction to contact the app creator. As the app creator, to resolve the issue view the errors and warnings in the app editor and go to the problem.
+See also: Error: The App is not runnable
+One or more tables in the app require "as app user" access
+This occurs when there's a security option you may have explicitly enabled. If you do so, the user's account must have permissions to access the underlying data for the table (such as, a spreadsheet in cloud storage). Often, app creators invite a user to try their app but forget to give the user appropriate permissions. For this reason, we recommend the Use app app permissions be used sparingly and only when absolutely necessary. See Set access mode as app creator or app user.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Determine side effects of changing column namesSometimes, you have to change the name of a column. Since columns have Display Names that are independent of the actual stored column name, the reason for this is rarely for user interface requirements. Rather, the motivation is either that the column was not named correctly initially and you want to adjust it to be logically consistent, or you are copying the app to a different storage provider. Each storage provider may have its own constraints on the length of column names. For example, MySQL requires column names to be less than 64 characters in length.
+
+  For many name changes (like the names of tables), AppSheet automatically fixes many of the references to the table. However, it does not (at this time) automatically fix table names and column names inside expressions/formulas. Instead, you will see errors in the expressions when you change a column name and save.
+
+  One way to handle this is to see the errors and resolve each of them manually. Another and more structured way to do this is to go to the app documentation at Info > Properties > Documentation and find the link at the bottom that has auto-generated documentation for the app. This is simply an HTML file with the URL of the form: https://www.appsheet.com/template/appdoc?appid=<app-id>
+
+  Many of our advanced users utilize this documentation to run textual searches (Control-F in a browser) to look for all the places a particular column name is used. While this is still a manual process (you can't actually change anything while viewing the documentation), it allows you to anticipate the impact before you make the change.
+
+  There may be column names used in expressions inside external task template files (used to generate PDF attachments for emails, for example). These aren't part of the documentation and therefore may still cause errors. Therefore, after any such change, use the Save and Verify Changes option from the Save drop-down. That forces a more thorough check of not just the app definition but all of the external files as well.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Issues with BoxBox.com users tend to have corporate accounts and often see two specific errors:
+
+A 403 error may occur when you attempt to copy a sample application or make a new application. This error indicates that you do not have the right permissions to create the folder to hold the new or copied application. By default, AppSheet creates a folder for each application under the /appsheet/data path. The sample spreadsheet and data are copied into this folder. In many corporate Box installations, users do not have permissions to create a folder in this path. Instead, each user (say 'joe') has permissions to a path such as '/users/joe'. In this case, you must change the default folder path for your AppSheet account. You can do this as follows:
+    
+Click My Account in the top navigation bar.
+Click Settings.
+Set the Default folder path to a Box folder path where you are allowed to create folders and files.
+
+
+The other error reported by some of our Box users is that Excel spreadsheet files seem to be automatically converted into CSV files on some Box installations. Users can check this by simply trying to download the Excel file from Box to see if its format has been modified -- if so, consult with your Box admin.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Google sign in warningGoogle verifies its third-party apps to ensure valid data access. As a result, for some users a warning screen might be displayed when you sign in informing you that AppSheet is unverified and not to proceed. This might occur if permissions that you may have provided to AppSheet in the past are no longer valid, and when AppSheet tries to sign you in, Google’s security system displays this warning.
+To resolve this issue, do one of the following:
+
+If the warning screen has an Advanced option, you can click it and proceed with your sign in. 
+Perform the following steps:
+
+
+Go to https://myaccount.google.com/permissions
+Under Third party apps with account access, find AppSheet, click on it, and then Remove Access.
+Go to https://www.appsheet.com/account/login and sign in via Google.
+    You should be able to successfully sign in.
+If you had set up any Google Calendar data source, or any Google Domain auth source, go to your account page in AppSheet, find the appropriate Calendar data source or Domain auth source, click on its icon, and go through its sign-in process again.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Issues with Google DriveLearn how to resolve problems with Google Drive.
+403 or 404 Errors
+Users of Google Drive can sometimes see Error 403 (permission denied) or Error 404 (not found). There are a few common reasons for this:
+
+You may have inadvertently deleted the Google worksheet. You can recover the deleted Google worksheet as described in Recover a deleted Google file or worksheet. 
+You are not the owner of the document but this is a shared document owned by a different Google account. Check your document sharing permissions on Google.
+You have multiple Google accounts (let's call them Acct1 and Acct2): your spreadsheet is owned by Acct1 but you sign into AppSheet using Acct2 to access the spreadsheet. Either use the same account or share the document across accounts. 
+You had access to the file at one point, but the access has been removed.
+This can sometimes occur if you have a corporate Google Docs account that has an admin policy that prohibits all users from enabling third-party software like AppSheet (so you may need to talk to your account admin).
+
+See also Share files from Google Drive.
+Google AppScript onEdit Triggers
+If you use one of the AppSheet add-ons to integrate with Google Forms, Sheets, or Docs, see Use data from Google Sheets to learn more about specific limitations on those integrations. 
+In particular, if you utilize Google AppScript onEdit triggers on your Google Sheet, or a third-party add on that utilizes these triggers, the triggers are not fired when AppSheet makes a change to the data in the spreadsheet. This is an unfortunate limitation imposed by Google on all third-party solutions like AppSheet. The best workaround is to utilize a timed AppScript trigger (or an onChange trigger) rather than an onEdit trigger.
+Google Sheet filters
+Also, do not use filters on your Google Sheets -- it can make the filtered rows invisible to updates. Instead, use filter views (this is a Google Sheets feature that lets each user create and use their own filters without affecting other users of the sheet). See also: Use data from Google Sheets
+Public Google Sheets
+Make certain that your spreadsheet is not marked as Public. The Google spreadsheets API doesn't enable updates against public spreadsheets.
+Google worksheet names exceeding 31 characters in length
+Make certain that your Google worksheet names do not exceed 31 characters in length. All characters in the name are counted including blanks and special characters.
+Error: Unable to read spreadsheet: hexadecimal value 0xNN is an invalid character
+ When AppSheet attempts to read your Google worksheet you may see an error like the following:
+
+Unable to read the spreadsheet for '<worksheet name>' due to spreadsheet reader error: '', hexadecimal value 0x0C, is an invalid character. Line 9999, position 999
+The actual hexadecimal value will vary and as will the line and position values. The line and position are not helpful for the reason described below.
+AppSheet reads the Google Sheet by asking Google to export the worksheet as an Excel .xlsx document. Google converts the Google worksheet into an Excel .xlsx document file and returns this .xlsx file to AppSheet. AppSheet reads the .xlsx file and extracts all of the worksheet cell values, formulas, formatting, and other information from the Excel .xlsx document.
+An invalid character error occurs when Google fails to export the Google worksheet as a valid Excel .xlsx document. Instead, the exported Excel .xlsx document contains invalid data that Excel cannot read. The line and position values in the error message are not useful because they refer to a location in the exported Excel .xlsx document. There is no easy way to use these values to locate the problem in your worksheet.
+You may be able to locate the problem by doing the following:
+
+Open your workbook in Google Sheets.
+From the Google Sheets File menu select Download as... and then select Microsoft Excel (.xlsx). By doing this you are exporting the Google workbook to Excel in the same way that Google Sheets is exporting it to AppSheet.
+When the export finishes, you will see the exported .xlsx file name at the bottom left of your browser screen. 
+Click the ^ character to the right of the .xlsx file name and select Open. This will open the exported file in Excel. Excel is very likely to report an error when reading the exported file. The Excel error message may help you locate the problem.
+Return to Google Sheets and modify your workbook to eliminate the problem.
+Repeat the steps above until the you have eliminated the problem. 
+
+Here are some things to check:
+
+Ensure there are no invalid character values in your worksheet cell values. Invalid character values may be displayed in the form  . You can use the Google Sheets search function to locate the invalid character. Open your worksheet in Google Sheet. From the Edit menu select Find and replace ... Copy   into the Find box to search for the invalid character.
+One customer reported their problem was caused by an import range function in a cell of their Google worksheet. Replacing the import range with the actual data values eliminated the problem.
+If you discover other causes for this problem, report them to us. We will add your information to this list to help other users.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Recover a deleted Google file or worksheetTo recover a deleted Google file or worksheet:
+
+If you mistakenly deleted your Google Sheet file, you can recover it from the Google Drive trash.
+
+
+If you mistakenly deleted your Google worksheet, but the Google Sheet file that contained it is still present, you can recover it from the Google Sheet revision history.
+If you permanently deleted the Sheet file itself from the trash in the past 25 days, you can request that it be recovered, as described in Find or recover a file.
+If you permanently deleted the Sheet file itself and are using a Workspace account, we recommend contacting your administrator so they can recover the sheet for you.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Issues with Google Sheets formulasWhen you create an AppSheet application from Google Sheets, AppSheet does the following.
+
+Asks Google Sheets to export your Google workbook as an Excel .xlsx file.
+AppSheet uses an Excel library to read the contents of the exported .xlsx file. This allows it to extract the cell data values, cell formats, cell formulas, and other values from each worksheet in the exported .xlsx file.  
+In the case of formulas, AppSheet converts the formulas from A1 format to R1C1 format. It is easier for AppSheet to interpret formulas in R1C1 format. AppSheet can more easily determine if a formula is accessing values in other rows. To learn move about R1C1 formulas see A1 versus R1C1 formulas.
+AppSheet uses all of the information extracted from the worksheet to infer the attributes of each column in the worksheet. AppSheet uses this information to determine the name, type, precision, formula, and other attributes of each field in the table created from the worksheet.
+AppSheet does this when you first add a table that is based on a Google Sheet and repeats this each time you click Regenerate. 
+
+Fortunately, the vast majority of Google Sheets formulas can be translated into equivalent Microsoft Excel formulas. Unfortunately, some Google Sheets formulas have no Microsoft Excel equivalents. These include:
+
+ADD
+ARRAYFORMULA
+CONCAT
+CONTINUE
+COUNTUNIQUE
+DETECTLANGUAGE
+DIVIDE
+EQ
+FILTER
+GOOGLEFINANCE
+GOOGLETOURNAMENT
+GOOGLETRANSLATE
+GT
+GTE
+IMAGE
+IMPORTDATA
+IMPORTFEED
+IMPORTHTML
+IMPORTRANGE
+IMPORTXML
+JOIN
+LT
+LTE
+MINUS
+MULTIPLY
+POW
+QUERY
+SORT
+SPARKLINE
+SPLIT
+UMINUS
+UNARY_PERCENT
+UNIQUE
+UPLUS
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Errors and warnings during SyncSync has four stages:
+
+The client prepares the change data to be Synced to the server.
+    This stage is usually quick. When this stage finishes, the Sync progress bar is about 1/4 complete.
+The client sends the change data to the server and the server processes the change data and any data change events that are triggered.
+    This stage may take a long time depending on the complexity of the changes being performed and the automation events, if any, that are triggered. When this stage finishes, the Sync progress bar is about 1/2 complete.
+The client fetches the latest application definition and application data from the server.
+    This stage can take a while, but it normally takes less time than stage 2. When this stage finishes, the Sync progress bar is about 3/4 complete.
+The client processes the application definition and application data returned by the server.
+    This stage is usually quick.
+
+Most Sync errors occur in the second stage:
+
+If there are network errors between the client and the server, the Sync is retried a few times. If the failure persists, the Sync is halted. The solution is to retry later when connectivity is better.
+If you have poor connectivity or if large images have to be sent as part of the Sync, this step can take a long time and can potentially timeout. The solution is to retry later when connectivity is better.
+
+You can always retry a failed Sync request.
+Error: A duplicate request is already in progress
+When the AppSheet client submits a Sync request to the AppSheet server, the client includes a RequestId that uniquely identifies that client Sync request. When the AppSheet server receives the Sync request, it remembers the Sync request and its RequestId. The server then goes on to process the client Sync request.
+If the client Sync request takes a long time to process, the client may resubmit the Sync request. The client may also resubmit the Sync request if it loses network communication with the server. In either event, when the client resubmits the Sync request, the server uses the RequestId in the Sync request to check the list of in flight client Sync requests. 
+If the server has already completed the client Sync request, the server returns the same Sync response it returned for the original client Sync request. This ensure that the client Sync request is only performed once by the server, and that the client receives the same Sync response every time is submits the same Sync request. 
+If the server detects that the client request is still being processed, it returns the warning:
+A duplicate request is already in progress
+This tells the client that the server is still  processing the original Sync request. The client will wait and later retry the Sync request. 
+So long as the server is still processing the original client Sync request, each client Sync retry will get the warning response A duplicate request is already in progress. Once the server completes the original Sync request, the client will get the appropriate Sync response.
+If you are seeing this warning repeatedly, check the Performance Profile to see why the client Sync requests is taking so long to complete. This warning may signify that the add, update, or delete is taking a long time to process. It may also signify that the add, update, or delete is triggering an automation that is taking a long time to process.
+Error: Unable to fetch data
+If your users see errors like this during sync:
+The remote server returned an error: (403) Forbidden
+it means that our service is unable to fetch the data from your cloud service (such as, Google Sheets) because the cloud service has explicitly denied permissions. There are two possible reasons:
+
+You have enabled the run as app user security option in your app. Therefore, our service tries to access the data using the identity of the user of the app. And this app user does not have access to the data/spreadsheet. This option (run as app user) should be used only for extra security and in these situations, such a failure is appropriate.
+Your app creator account has been denied permission to access the data or spreadsheet in the cloud service. This can happen if you built the app from a shared spreadsheet and someone else removed your access to the sheet.  
+
+Error: Unable to update row
+If you have made changes in the app and Sync, you may see an error of the form:
+Unable to update row in table 'Your-Table-Name. Execution of request failed: https://spreadsheets.google.com/feeds/cells/....... Unable to complete sync.
+The error may say:
+Google sheets service seems to be unresponsive
+This error occurs when the AppSheet backend is unable to send your changes to the cloud storage provider (in this case, Google Sheets). Almost always, this is because the request times out. If this error occurs often, it is usually a clear sign that there are complex cross-sheet formulas in the Google Sheet. Making a simple update to the sheet takes a lot of time to complete because all the formulas are recomputed by Google Sheets. You will need to simplify your Google Sheet, in particular avoiding some cross-sheet formulas. 
+Error: This change cannot be applied
+The following message is displayed if a client attempts to sync after the app definition has been changed on the server:
+This change cannot be applied because there is a newer version of your app
+For example, you will see this message if columns have been added or removed from a table and the client is not using the latest version of the application. You may also see an error message indicating that the number of columns is incorrect or that a column is missing. The local changes queued on the device cannot be applied by the server when this happens.
+You can verify this by comparing the app and backend application version numbers. You can obtain the app version number by clicking the menu at the top left and selecting About. You can obtain the backend application version number by opening the application in the editor and going to the Info > Properties pane.
+There are two possible remedies when this occurs. With both the remedies, the changes queued up in the app will be copied to a recovery file and will need to be manually applied to the spreadsheet.
+Recovery mode
+With this option, you will place the app in Recovery Mode to allow the sync to proceed. Follow the steps below:
+
+Open the app in the app editor.
+Go the Manage > Deploy pane of the app editor.
+Click Switch to recovery mode.
+On the device where the sync fails, try the sync again. This time, it should go through successfully. 
+On the Manage > Deploy pane, click Return to normal mode.
+You will find a special Recovery folder within the root folder for the app (in the app owner's cloud file system). The changes from the app will be written into this recovery folder in recovery.txt files. Note that row images will still be saved in the app's usual image folder.
+Now examine the row values from the recovery folder and copy them to the spreadsheet as appropriate. The row values are saved in JSON format. You might want to copy these into an online service like http://json2table.com to convert them into a tabular format that is convenient to copy into a spreadsheet.
+
+Manual recovery
+
+Note: Manual recovery is not supported for desktop browsers. 
+
+As an end-user of the app,  you can manually abandon the changes on a mobile device following the steps below:
+
+First capture the app's changes by clicking Show Changes in the  menu at the top left of the mobile app. This will allow you to send yourself or the app owner a copy of the changes via email, so that someone can manually process the changes and add them to the data source.
+This will also create a copy of the changes in a special Recovery folder in the root folder for the app (in the app owner's cloud file system). 
+In the app, click Reset Changes in the menu. This will permanently discard the queued up changes and synchronize the app with the backend.
+
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Sync, restart, or reinstall AppSheetSometimes an application needs to be reset or restarted to recover from an error. 
+Sync
+When you Sync the AppSheet app, the latest version of the app definition and data is always returned.
+Restart
+When you stop and restart the AppSheet app, the AppSheet app is reset to its starting state, and any software updates to fix AppSheet bugs are applied. 
+Stopping AppSheet on Apple iOS
+
+Double-click the Home button to see your most recently used apps.
+Swipe right or left to find the AppSheet app.
+Swipe up on the AppSheet preview to close AppSheet.
+
+Stopping AppSheet on Google Android
+
+Launch the recent applications menu.
+Swipe right or left to find the AppSheet app.
+Swipe up on the AppSheet preview to close AppSheet.
+
+Reinstall
+Uninstalling and reinstalling the AppSheet app from the Google Play Store or the Apple App Store has the same effect as stopping and restarting the AppSheet app. 
+This is a simple way of stopping and restarting the app. Many people do not know how to stop and restart an app. They may think they have stopped the app, but it is still running in the background on their mobile device. That is why asking your users to uninstall and reinstall the AppSheet app is sometimes the simplest way to get them to restart the AppSheet app.
+Sometimes users will uninstall and reinstall the shortcut icon for their app. This does nothing useful. At best, it will refresh the shortcut icon logo.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Images or files that do not loadMany apps are used to capture images. Sometimes, apps are also used to display existing images or files. These images and files normally are stored in the cloud file system associated with the app (for example, Google Drive).
+
+  This should all work automatically, but it is not uncommon that somebody moves files around or wants to copy in new files from some other location, etc. These changes can cause images to stop showing in the app. You will see the symptoms of these problems as: (a) a missing image in a mobile/web app, or (b) a missing image in a PDF report generated as part of an automation.
+Basics
+First, it is useful to understand how things are supposed to work.
+
+
+If your app captures images in an Image column of a table, the values stored in that column are partial path names. Something like MyTable_Images/<someimagefilename>.jpg.
+
+
+If your data table is called MyTable and is stored in a spreadsheet that lives in a particular folder (let's say the folder name is. /appsheet/data/MyFolder), then we expect images for that table to be in a sub-folder called MyTable_Images (with the folder path /appsheet/data/MyFolder/MyTable_Images) and files to be in a sub-folder called MyTable_Files_ (with folder path /appsheet/data/MyFolder/MyTable_Files_).
+
+
+Please note that every application has a default folder (usually something like /appsheet/data/MyApp-123456) but the sheets it uses do not need to be in that folder. Images and files are in sub-folders relative to the location of the sheet, not the location of the app default folder.
+
+
+If your data source is from something like a SQL database (something that doesn't let you save files to it directly), then by default, the image sub-folders are located within the app default folder (with folder path something like /appsheet/data/MyApp-123456/MyTable_Images).
+
+
+When your app shows images (in a browser or app on a device), it is actually fetching an image from a HTTPS URL. The AppSheet service constructs the image url by combining: (a) the name/id of the app, (b) the name of the table, (c) the name of the file with a relative path within the table.
+
+
+These image urls usually take the format below if the app has been set up with the default secure image configuration. https://www.appsheet.com/template/gettablefileurl?...<many details> ...
+
+
+If you have set up your app to avoid using secure images, you may instead see a url that looks like this: https://www.appsheet.com/get/?..<many details> ... This format allows the images to be cached and served from CDN (which makes image delivery very fast but is only meant for public images). Most apps will not have this configuration. We'll focus the rest of this troubleshooting guide on the common case.
+
+
+Using this information, AppSheet is able to respond to the URL GET request by:
+
+Going to the cloud file system.
+Traversing the folder hierarchy.
+Finding the file.
+Retrieving its contents.
+Serving it back to the caller as a HTTPS response.
+
+Every step of this process can have an error. The most common errors are when the file is not found or there is something wrong with the folder hierarchy.
+Troubleshoot
+There are some simple self-service debugging tools you can use to understand why an image doesn't display. The basic approach is to copy the image URL and open it in a browser window. If the image doesn't display, you will instead see an error trace. This will allow you to drill-down step-by-step to find the problem (almost always, a folder or a file is not found where it is expected to be).
+
+How do you get the image URL? One simple way is to run the app in a browser window, and for images that do not load, right-click and choose Inspect. This shows you the details of the html used to render the image, and the image URL will be also present. Copy the image url and open it in a browser window.
+
+Another approach is to preview the data in a table. This by default shows the first 1000 rows of the table and all the columns of each row. Any file or image column value is also shown along with a link to open the file or see the image full size. If you click the link, it will try to open the file or image in a separate browser tab. Once again, you can see a useful error trace.
+
+ 
+ 
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Reset AppSheetReset AppSheet as described below.
+
+Resetting AppSheet will permanently delete all un-synced (pending) changes.
+
+iPhone/iPad
+The easiest way to reset AppSheet on iPhone/iPad is to delete the AppSheet app and reinstall it from the App Store.
+Android
+Deleting the app on android doesn't clear the data, so the data needs to be cleared manually.
+
+Open the Android Settings app.
+Select Apps.
+Select AppSheet.
+Select Storage & cache.
+Select Clear storage and then Clear vache.
+
+Now you can uninstall the AppSheet app and reinstall it from the Google Play Store.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Rows are missing when reading your spreadsheet
+When reading your spreadsheet, AppSheet must determine which rows contain valid data. For example, your spreadsheet may contain 1000 rows but most of those rows may be empty. AppSheet must ignore those empty rows.
+
+  AppSheet detects empty rows by examining each row in the spreadsheet. If a row contains at least one non-empty column value, AppSheet treats the row as a valid row. If every column value in the row is empty, AppSheet treats the row as an empty row and ignores it.
+Columns containing Array formulas complicate empty row detection. A column with an array formula can have a non-empty field value even if the row is otherwise empty. That is the nature of array formulas. Consequently, AppSheet ignores any column having an array formula when deciding whether a row is empty.
+You must ensure that at least one column in every row of your spreadsheet contains a non-empty value. Columns containing array formulas are ignored, so make sure the non-empty value is in some other column of the row.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ App changes are not captured in the spreadsheet or the appIf changes are not captured in a spreadsheet
+If changes made in the app do not appear to be recorded in the backend spreadsheet, here are some troubleshooting steps:
+
+Is the app being synced after the updates are made? In some cases, your app users may not know they should click Sync.
+Were there any errors reported during Sync?
+Check the app's Audit History to see if it shows that the changes were actually received and successfully applied.
+Do you have a lot of empty rows in your sheet? If you have a hundred empty rows followed by a row with some text in it, AppSheet will insert new entries after that very last row. You may not see these rows because you may not be scrolling down your spreadsheet to find them. Remove all empty rows in your sheet to avoid this situation. 
+Do you use the RowNumber column as the key of your table? This is a bad idea and can lead to data being overwritten or the wrong row being updated.
+
+If you are using Google Sheets:
+
+Do you have filters set on the sheet? There is a bug in Google Sheets that causes updates to appear to succeed (but never actually get applied). Do not use spreadsheet filters -- instead use filter views if you are using Google Sheets.
+Using the File menu in Google Sheets, you can access the Revision History of the sheet. This shows all changes made to the sheet, so you can go back in time to see earlier states and the changes made. It is useful to correlate these changes with the audit log to find the effect of a specific change. Note that these times may be local to your computer while the audit log times are in UTC.
+
+If you are using Smartsheet:
+
+Does the column order in Smartsheet still match the column order in your AppSheet app definition? If there is a mismatch, AppSheet may not correctly find the row to make an update.
+Do you have a column called Row ID in your Smartsheet? Remove this column. AppSheet utilizes a fake column called Row ID in order to match to specific rows in Smartsheet. If you have such an explicit column, it messes up this comparison and causes updates to be skipped.
+
+If some rows from the sheet are not visible in the app
+If changes made in the app are correctly captured in the spreadsheet but are not shown in the app, the most common reason is the presence of a number of empty rows in the middle of the sheet.
+If you are using Google sheets, the presence of custom formatting might prevent AppSheet from reading the entire spreadsheet. One common type of sheet formatting that can cause problems is alternating colors. If you have an alternating colors formatting rule in your sheet, you need to ensure that the range of the rule applies to the entire sheet. For instance, if the range of the rule is A1:F7, AppSheet will only recognize rows 1 to 7 and columns A to F as being part of the table. Any row beyond row 7 and any column beyond F will be ignored when AppSheet reads the sheet. To fix this problem, you can change the range of the rule to A:F, which includes all the rows in the sheet. If new columns are added to the sheet, you will need to modify the rule accordingly to include the new column in the formatting rule.
+If you are using Excel and the worksheet has nested tables, only the first nested table is read by AppSheet.
+If your app contains tables that are not used directly in any view (for example, if all views are based on a slice of the table), the server may determine the full table is not needed and only send the rows that are part of the slice. This can affect expressions that lookup data from the full table. If your app uses expressions that require the full table data, you can make sure the full data set is sent to the app by including at least one view based on the full table.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Application crashes and errors on mobile devicesIf you're experiencing app crashes, there are a couple of steps you can try to resolve these issues:
+
+Close high memory apps: crashes on a mobile device are commonly due to high memory use, and closing background apps can help free memory. For Android devices, there are some step by step instructions at Find, open, and close apps on Android, and for iOS at https://support.apple.com/en-us/HT201330.
+Restart the device: restarting can also free system memory which may resolve the issue.
+Reset AppSheet.
+Update your operating system: there may be an operating system update that resolves the issue. For Android devices, you'll need to check with your device manufacturer (Samsung, LG, HTC, etc.). For iOS, there are instructions at https://support.apple.com/en-us/HT204204.
+Free-up device storage: when a device is low on storage, your app could misbehave in a variety of ways. For instance, it may require the user to login much more frequently than normal, possibly even every time they open it! Review the usage of the device's storage and consider removing unneeded and unwanted apps, photos, videos, music files, podcasts, and downloads.
+If your crashes are related to photos on Android, try reducing the photo resolution in your photos app. The below is an example of how to do it on a Samsung Galaxy phone. Other camera apps on other phones work differently, though most should have the option to change resolution. If you're capturing a large number of photos, you can also try lowering the Image Upload Resolution setting in the app editor in the UX > Options tab
+
+
+If the steps above haven't resolved your issue, contact Customer Support. When you contact support, please let us know which device you're using and what OS version you're running. For example, "Samsung Galaxy S6 running 5.1.1" or "iPhone 6 Plus running iOS 8.3".
+It will also help us to know if the crash reproduces in a web browser on your device. To test, open Chrome on your Android device or Mobile Safari on iOS. From the browser on your device, login to appsheet.com. In the My Apps section of the website, click Preview for your app, then Fullscreen. This should start your app in your mobile browser. Use your app as you normally would and let us know if you see the problem while running in the browser as well.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Audit History performance
+The time it takes to display the Audit History results can vary. The factors described below can impact Audit History performance.
+Length of time period
+Audit History performance can be impacted by the period of time you are viewing. 
+
+The greater the period of time you are viewing, the longer it will take for the the Audit History results to display.
+The older the period of time you are viewing, the longer it will take for he Audit History results to display.
+
+Number of audit records
+Audit History performance depends on the number of Audit History records that are present. The more Audit History records, the longer it will take for the the Audit History results to display.
+Number of changes to your app
+Audit History performance depends on the number of changes you have made to your application during the period of time you are viewing. 
+Each time you do a Save in the editor, AppSheet creates a new version of your application. If you have saved your app many times, then there will be a lot of versions of your application. AppSheet formats each log record based on the version of your application that was current when the log record was created.
+Retrieving the current version of your application is relatively quick. Retrieving old versions of your application is slower. The more versions of your application, the longer it will take for the the Audit History results to display.
+Number of images, signatures, and drawings
+Audit History performance depends on the number of images, signatures and drawings that are present. Each image, signature, or drawing increases the volume of data that must be retrieved. The more images, signatures, or drawings, the longer it will take for the the Audit History results to display.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
+ Sharing your app to troubleshoot issuesYou can add your application to your portfolio to allow others to troubleshoot or improve it.
+
+The data in your Portfolio applications is visible to the public. Never include confidential data in a Portfolio application.
+
+See Share sample apps in your public portfolio.
+   Was this helpful?How can we improve it?YesNoSubmit   
+
